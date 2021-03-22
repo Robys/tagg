@@ -115,9 +115,11 @@ type Mutation{
     
     addGame(owner:String,title:String!,publisher:String,platform:String,status:String,location:String,value:String,description:String,cover:Upload):Game!
     deleteGame(_id:ID!):Game
+    updateGame(_id:ID!,title:String,platform:String,status:String,location:String,value:String,description:String,cover:Upload):Game
 
     createNotify (_id:ID,receiver:String,content:String,accepted:Boolean): Notify
     deleteNotify (_id:ID): Notify
+    updateNotify (_id:ID):Notify
 
     createRequest (_id:ID,selected:String,required:String) : Request
     deleteRequest (_id:ID) : Request

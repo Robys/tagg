@@ -34,6 +34,7 @@ export const MY_NOTIFIES = gql`query Notifies($_id:ID){
         from
         receiver
         content
+        accepted
     }
 }` 
 
@@ -124,9 +125,8 @@ export const ALL_REQUESTS = gql `query AllRequests{
     }
     
 }`
-export const REQUESTS = gql `query Requests($_id:ID){
-    requests (_id:$_id){
-
+export const REQUESTS = gql `query Requests{
+    requests{
          id
         madeBy
         selected

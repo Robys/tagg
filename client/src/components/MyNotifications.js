@@ -1,28 +1,44 @@
 import {FindNotifies} from '../utils/utils'
 import NotifyToast from './NotifyToast'
-import {Spinner,Card} from 'react-bootstrap'
+import {Spinner,Card,Tabs,Tab} from 'react-bootstrap'
 
 export default function MyNotifications(){
-    const {data,loading,error}  = FindNotifies() 
+    const {data,loading,error}  = FindNotifies()
+    console.log(data) 
 
     return(
         <Card className="notify-area">
             <Card.Header>Recados</Card.Header>
             <Card.Body>
-
-            {loading? <Spinner/> : ""}
-            {error? <p>não foi possivel carregar as mensagens</p> : ""}
-            {data?
-             data.notifies.length === 0 ? <p>você não possui mensagens</p>
-            : data.notifies.map(item => <NotifyToast item={item}/> ) 
-            : ""}
+            <Tabs defaultActiveKey="new">
+                <Tab eventKey="new" title="Novos">
+                {data?
+                data.notifies.map(item => <NotifyToast item={item} enabled={!item.accepted}/> )  
+                : <p>você não possui mensagens</p>}
+                </Tab>
+                <Tab eventKey="readed" title="Lidos">
+                {data?
+                 data.notifies.map(item => <NotifyToast item={item} enabled={item.accepted}/> )
+                :  <p>você não possui mensagens</p>}
+                </Tab>
+            </Tabs>
 
             </Card.Body>
+            {loading? <Spinner/> : ""}
+            {error? <p>error {error.message}</p>:""}
 
         </Card>
 
     )
 }
+
+/**
+ * 
+ * {data?
+             data.notifies.length === 0 ? <p>você não possui mensagens</p>
+            : data.notifies.map(item => <NotifyToast item={item}/> ) 
+            : ""}
+ */
 
 /*
  {data.notifies.length === 0

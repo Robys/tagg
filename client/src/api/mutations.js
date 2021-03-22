@@ -76,6 +76,12 @@ export const DELETE_NOTIFY = gql` mutation DeleteNotify($_id:ID){
         receiver
     }
 }`
+export const UPDATE_NOTIFY = gql` mutation UpdateNotify($_id:ID){
+    updateNotify(_id:$_id){
+        id
+        receiver
+    }
+}`
 
 export const CREATE_REQUEST = gql` mutation CreateRequest($_id:ID,$selected:String,$required:String){
     createRequest(_id:$_id,selected:$selected,required:$required){
