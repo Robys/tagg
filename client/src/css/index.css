@@ -1,0 +1,364 @@
+
+/* Mobile first */
+@media only screen and (max-width: 600px) {
+    body{
+        margin: 0 auto;
+        background-color: #1d1d1d;
+    }
+
+    .home{
+        height: 200vh;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: smaller;
+        font-weight: lighter;
+    }
+
+    .login-card{
+        width: 100%;
+        height: 740px;
+    }
+
+    .login-card form{
+        padding: 10px;
+    }
+
+    .login-card input{
+        width: 320px;
+        margin-bottom: 10px;
+    }
+
+    .login-card input, button, textarea{
+        margin-bottom: 10px;
+    }
+    .notify-area{
+        display: none;
+    }
+    .game-container{
+        width: 100%;
+        height: 700px;
+        margin-bottom: 10px;
+    }
+    .game-container img{
+        height: 500px; 
+    }
+
+    .add-game {
+        width: 320px;
+        margin-top: 100px;
+        margin-left: 20px;
+        padding: 10px;
+    }
+
+    .profile{
+        width: 100%;
+    }
+
+    .profile-info{
+        position: absolute;
+        top:260px;
+        bottom: 20px;
+        left: 20px;
+        width: 300px;
+        border-radius: 3px;
+        text-align: center;
+        color: white;
+        line-height: 10px;
+    }
+
+    .profile-lib{
+        float: left;
+        margin: 40px 20px;
+    }
+
+    .game-thumb{
+        float: left;
+        margin: 5px;
+        width: 160px;
+        height: 300px;
+    } 
+    .game-thumb img{
+        width: 160px;
+        height: 180px;
+    }
+    
+    .game-thumb a{
+        color: black;
+    }
+    
+    .game-details{
+        width: 100%;
+        margin: 20px;
+        color: white;
+        font-size: smaller;
+    }
+
+    .game-details-footer{
+        width: 100%;
+        color: white;
+        margin-top: 60px;
+        font-size: smaller; 
+        
+    }
+
+    .game-details-footer img{
+        width: 100px;
+        height: 100px;
+    }
+}
+/* Desktop Here*/
+@media only screen and (min-width: 640px) {
+    body{
+        margin: 0 auto;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: medium;
+        font-weight: lighter;
+        background-color: #EAE6DA;
+        
+    }
+
+    .nav-bar{
+        height: 40px;
+        background-color: #21211F;
+    }
+
+    .nav-bar img{
+        width: 48px;
+        height: 48px;
+    }
+
+    .home ul{
+        display: inline-flex;
+        margin: 40px 80px;
+        list-style: none;
+    }
+
+    .user-call{
+        width: 790px;
+        height: 540px;
+        background-color: gray;
+        color: white;
+    }
+    .user-call img{
+        width: 790px;
+        height: 540px;
+    }
+
+    .user-call h2{
+        position: absolute;
+        width: 655.05px;
+        height: 170px;
+        left: 178.07px;
+        top: 202px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 64px;
+        line-height: 85px;
+        text-transform: uppercase;
+    }
+    
+    .sign-card{
+        height: 540px;
+        padding: 20px;
+        border-radius: 0;
+    }
+    .sign-card input{
+        margin-bottom: 10px;
+    }
+
+    
+    .home section{
+        height: 640px;
+        width: 100%;
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    .faq{
+        height: 640px;
+        width: 1090px;
+        margin: 40px 120px;
+        text-align: left;
+    }
+    
+    .home-card{
+        display: inline-flex;
+        margin: 40px;
+        width: 18rem;
+    }
+
+    .home-card img{
+        height: 300px;
+    }
+
+    
+    
+    .login-card{
+        margin-top: 40px;
+        margin-bottom: 120px;
+        left: 440px;
+        width: 400px;
+        height: 320px;
+    }
+    
+    .login-card form {
+        padding: 10px;
+    }
+    
+    .login-card input{
+        margin-bottom: 10px;
+    }
+    
+    footer{
+        bottom: 0;
+        width: 100%;
+        height:240px;
+        background: #21211F;
+    }
+
+    .dashboard{
+        float: left;
+        left: 19%;
+        width: 800px;
+        height: 100vh;
+        background-color: transparent;
+        border: none;
+    }
+    .notify-area{
+        float: right;
+        width: 300px;
+        height: 100vh;
+        padding: 10px;
+    }
+
+    .game-container{
+        width: 400px;
+        height: 200px;
+        margin: 30px;
+        display: flex;
+        flex-direction: row;  
+    }
+    .game-container img{
+        width: 160px;
+        height: 200px; 
+    }
+
+    .paginate{
+        margin: 20px;
+    }
+
+    .add-game {
+        float: left;
+        width: 420px;
+        height: 336px;
+        margin-top: 20px;
+        margin-left: 10px;
+    }
+
+    .add-game input{
+        margin-bottom: 5px;
+    }
+
+
+    .profile{
+        float: left;
+        margin: 20px;
+        color: white;
+        width: 240px;
+        height: 400px;
+        line-height: 15px;
+    }
+
+    .profile img{
+        height: 220px;
+    }
+
+    .profile p{
+        color: black;
+    }
+
+    .profile-lib{
+        float: right;
+        color: black;
+        width: 460px;
+        margin: 20px;
+    }
+
+    .game-thumb{
+        float: left;
+        margin: 10px;
+        width: 160px;
+        height: 290px;
+    } 
+    .game-thumb img{
+        width: 160px;
+        height: 180px;
+    }
+    
+    .game-thumb a{
+        color: black;
+    }
+
+    .game-details{
+        width: 90%;
+        height: 560px;
+        margin: 20px;
+        display: flex;
+        flex-direction: row;  
+        color: white;
+        font-size: smaller;
+    }
+    .game-details p{
+        font-size: 14px;
+    }
+    .game-details img{
+        width: 200px;
+        height: 280px; 
+    }
+
+    .game-details li{
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .game-details-footer{
+        color: white;
+        font-size: medium;
+        display: flex;
+        flex-direction: row;
+        margin-top: 100px;
+        font-size: smaller; 
+        
+    }
+
+    .game-details-footer img{
+        width: 100px;
+        height: 100px;
+    }
+    .game-details-footer button{
+        float: right;
+    }
+
+    .chat-list{
+        float: left;
+        width: 25%;
+        height: 100vh;
+    }
+
+    .chat-screen{
+        float: left;
+        height: 100vh;
+        width: 75%;
+    }
+
+    .chat-box{
+        height: 140px;
+    }
+
+    .chat-input{
+        height: 100px;
+        width: 75%;
+        margin-bottom: 10px;
+    }
+    
+}  

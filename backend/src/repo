@@ -1,0 +1,154 @@
+const UploadFile = require('./config/cloudinary')
+const {getGames,deleteGame,addGame} = require('./models/Game')
+const {findById,getUsers,addUser,deleteUser,users} = require('./models/User')
+const Notify = require('./models/Notify')
+
+const {PubSub,withFilter} = require('apollo-server-express')
+const pubSub = new PubSub();
+
+const NOTIFY_ADDED = 'NOTIFY_ADDED';
+
+const resolvers = {
+    Subscription: {
+        notifyAdded:{
+          // Additional event labels can be passed to asyncIterator creation
+          subscribe: withFilter(() => pubSub.asyncIterator(NOTIFY_ADDED),
+          (payload,variables) => {
+              return payload.notifyAdded._id === variables._id
+          })
+        }
+      },
+
+    Query:{
+        me: (parent, args, context) => {return context.getUser()},
+        users: (parent, args, context) => getUsers(),
+        user: (parent, {_id}, context) => {
+           const user = findById(_id)
+           return user
+        },
+
+        games: async () =>{
+            return await getGames()
+        },
+        notifies: async (parent, {_id}, context) =>{
+            return Notify.find({receiver:_id})
+        }
+
+    }, 
+
+
+    Mutation:{
+        logout: (parent, args, context) => context.logout(),
+        login: async (parent, {email,password}, context) =>{
+            const {user} = await context.authenticate('graphql-local',{email,password})
+            await context.login(user)
+            return {user}
+        },
+        promoteUser: (parent,{_id,roles}, context) => {
+            const currentUser = context.getUser()
+            if(currentUser == null || currentUser.roles == 'USER' ){
+                throw new Error ('you need to log as ADMIN')
+            }
+            const user = users.findByIdAndUpdate(_id, {roles: roles.toString()})
+            return {user}
+        },
+
+        signup: async (parent, {firstName,lastName,email,picture,location,password}, context) =>{
+          //  const users = context.User.getUsers();
+         //   const user = users.find(user => user.email === email)
+          //  if(user){throw new Error('email already used')}
+
+          const upfile = await UploadFile(picture)
+          const newfile = {filename:null, path: upfile.secure_url}
+
+            const newuser = {
+                roles: 'USER',
+                firstName,
+                lastName,
+                email,
+                location,
+                picture:newfile.path,
+                password
+            }
+
+            addUser(newuser)
+            await context.login(newuser)
+
+            return newuser
+        },
+
+        updateUser: async (parent, {_id,firstName,lastName,email,picture,location}, context) =>{
+            const user = await users.findById(_id)
+            if(!user){
+                throw new Error("usuário não encontrado")
+            }
+            if(firstName !== undefined){
+                user.firstName = firstName
+            }
+            if(lastName !== undefined){
+                user.lastName = lastName
+            }
+            if(email !== undefined){
+                user.email = email
+            }
+            if(picture !== undefined){
+                const upfile = await UploadFile(picture)
+                const newfile = {filename:null, path: upfile.secure_url}
+                user.picture = newfile.path
+
+            }
+            if(location !== undefined){
+                user.location = location
+            }
+
+            user.save()
+
+            return user
+        },
+
+        deleteUser: (parent, {_id}, context)=>{
+            return deleteUser(_id)
+        },
+
+        createNotify: async (parent, {receiver,content,accepted}, context)=>{
+            const current = await context.getUser()
+            const from = current._id
+            const notify = await Notify.create({from,receiver,content,accepted})
+            pubSub.publish(NOTIFY_ADDED, { notifyAdded: notify  });
+            return notify
+
+        },
+        deleteNotify: async (parent, {_id}, context) =>{
+            return Notify.findByIdAndDelete(_id)
+
+        },
+
+        addGame: async (parent, {title,publisher,platform,status,value,description,cover}, context)=>{
+            const user = context.getUser()
+            if(!user){
+                throw new Error('user not found/logged')
+            }
+            
+            const upfile = await UploadFile(cover)
+            const newfile = {filename:title, path: upfile.secure_url}
+            const newGame = await addGame({
+                title:title,
+                publisher:publisher,
+                platform:platform,
+                status:status,
+                value:value,
+                description:description,
+                location:user.location, 
+                cover:newfile});
+            newGame.save()
+            await user.lib.push(newGame.id)
+            user.save()
+        },
+
+        deleteGame : async (parent, {_id}, context) => {
+            return await deleteGame(_id);
+        }
+    }
+}
+
+module.exports = resolvers
