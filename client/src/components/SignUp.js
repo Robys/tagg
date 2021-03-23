@@ -54,7 +54,7 @@ const  SignUp = ()=>{
                 </Alert> 
                 : ""}
 
-                <p>Já possui uma conta? <Link to="/login"> click aqui</Link> </p>
+                <p>Já possui uma conta? <Link to="/login" style={{color:"red"}}> click aqui</Link> </p>
 
                 <Row>
                     <Col>

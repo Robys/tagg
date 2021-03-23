@@ -173,26 +173,23 @@
         margin-top: 40px;
         text-align: center;
     }
-
-    .faq{
-        height: 640px;
-        width: 1090px;
-        margin: 40px 120px;
-        text-align: left;
-    }
-    
     .home-card{
         display: inline-flex;
         margin: 40px;
         width: 18rem;
     }
-
+    
     .home-card img{
         height: 300px;
     }
-
     
-    
+    .faq{
+            height: 400px;
+            width: 1090px;
+            margin: 20px 120px;
+            text-align: left;
+        }
+        
     .login-card{
         margin-top: 40px;
         margin-bottom: 120px;
@@ -212,10 +209,51 @@
     footer{
         bottom: 0;
         width: 100%;
-        height:240px;
+        height:320px;
         background: #21211F;
+        
+    }
+    .footer-logo-area img{
+        max-width: 200px;
+        max-height: 200px;
+        float: left;
+        margin: 40px;
+    }
+    
+    .footer-text{
+        float: left;
+        max-width: 600px;
+        margin-left: 20px;
+        margin-top: 40px;
+        color:#EAE6DA;
+        text-align: left;
+        font-size: 12px;
     }
 
+    .footer-text input{
+        margin: 10px;
+        padding: 5px;
+        width: 200px;
+        font-size: 12px;
+        background-color: #1d1d1d;
+        color: #EAE6DA;
+    }
+
+    .footer-text p,a{
+        color:#EAE6DA;
+    }
+    .footer-text a:hover{
+        max-width: 200px;
+        color:red;
+    }
+    .footer-end{
+        position: absolute;
+        margin-top: 280px;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        background-color: #EAE6DA;
+    }
     .dashboard{
         float: left;
         left: 19%;
