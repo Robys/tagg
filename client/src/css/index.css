@@ -394,5 +394,13 @@
         width: 75%;
         margin-bottom: 10px;
     }
+
+    .modal-content{
+        background-color: #EAE6DA;
+        color: #21211F;
+    }
+    .modal-content input{
+        margin-bottom: 10px;
+    }
     
 }  

@@ -69,7 +69,7 @@ export default function UserTable(props){
 
     return(<div>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}  className="admin-modal">
                 <Modal.Header closeButton>
                     <Modal.Title>Criar Notificação</Modal.Title>
                 </Modal.Header>

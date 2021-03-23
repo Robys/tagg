@@ -59,6 +59,14 @@ export const ADD_GAME = gql` mutation AddGame($owner:String,$title:String!,$publ
     }
 }`
 
+export const UPDATE_GAME = gql` mutation UpdateGame($_id:ID,$title:String,$description:String,$location:String){
+    updateGame(_id:$_id,title:$title,description:$description,location:$location){
+        id
+        title
+        owner
+    }
+}`
+
 export const CREATE_NOTIFY = gql` mutation CreateNotify($_id:ID,$receiver:String,$content:String,$accepted:Boolean){
     createNotify(_id:$_id,receiver:$receiver,content:$content,accepted:$accepted){
         id

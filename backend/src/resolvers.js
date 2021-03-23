@@ -374,7 +374,7 @@ const resolvers = {
             return Notify.findByIdAndDelete(_id)
 
         },
-        /* ADICIONA E DELETA JOGOS  */
+        /* ADICIONA, ATUALIZA E DELETA JOGOS  */
         addGame: async (parent, {owner,title,publisher,platform,status,value,description,cover}, context)=>{
             const current = await findById(owner)
 
@@ -404,6 +404,34 @@ const resolvers = {
 
         deleteGame : async (parent, {_id}, context) => {
             return await deleteGame(_id);
+        },
+
+        updateGame: async (parent, {_id,title,publisher,platform,status,value,description,cover}, context)=>{
+            const game = await games.findById(_id)
+            if(!game){
+                throw new Error ("jogo não encontrado")
+            }
+            if(title!==undefined){
+                game.title = title;
+                
+            }
+            if(publisher!==undefined){
+                game.publisher = publisher
+            }
+            if(platform!==undefined){
+                game.platform = platform
+            }
+            if(status!==undefined){
+                game.status = status
+            }
+            if(value!==undefined){
+                game.status = status
+            }
+            if(description!==undefined){
+                game.description = description
+            }
+            game.save()
+            return game
         },
 
         /* CRIA, ATUALIZA E EXCLUI PEDIDO/REQUISIÇÂO DE TROCA */
