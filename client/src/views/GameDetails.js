@@ -1,6 +1,6 @@
 import {Button, Card,Dropdown,DropdownButton,Image} from 'react-bootstrap'
 import DelayLink  from 'react-delay-link'
-import generic from '../imgs/generic.png'
+//import generic from '../imgs/generic.png'
 import {FindGame,FindUser,FindCurrent,FindCollection} from '../utils/utils'
 
 export default function GameDetails(props){
@@ -14,13 +14,14 @@ export default function GameDetails(props){
     if(array[0] === undefined){
         disableRequest = false
     }
-
+    console.log(game.cover)
     return(
         <div>
             <Card className="game-details" bg="dark">
-            {game.cover !== undefined 
-            ? <Card.Img src={game.cover.path} alt={game.title}/> 
-            : <Card.Img src={generic} alt={game.title}/>  }
+                {game.cover !== undefined
+                ? 
+                <Card.Img src={game.cover.path} alt={game.title}/> 
+                :""}
                     <Card.Body>
                         <Card.Header>
                         <Card.Title>{game.title}</Card.Title>

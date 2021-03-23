@@ -9,8 +9,8 @@ export default function GamesTable(props){
     const ref = createRef()
     const [gameId,setGameId] = useState()
     const [title,setTitle] = useState('')
-    const [location,setLocal] = useState('')
-    const [description,setDescription] = useState('')
+    const [location,setLocal] = useState(undefined)
+    const [description,setDescription] = useState(undefined)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
@@ -47,6 +47,8 @@ export default function GamesTable(props){
                         </Button>
                             <Button variant="success" 
                             onClick={e=>{
+                                e.preventDefault()
+                                console.log(title,location,description)
                                 updateGame({variables: 
                                     {_id:gameId,title:title,location:location,description:description}})
                                 }}>

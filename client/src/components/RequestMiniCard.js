@@ -1,4 +1,4 @@
-import {FindGame,FindUser} from '../utils/utils'
+import {FindGame,FindUser,FindCurrent} from '../utils/utils'
 import UpdateRequest from './UpdateRequest'
 import {Card} from 'react-bootstrap'
 
@@ -8,18 +8,38 @@ export default function RequestMiniCard (info){
        return res
    })
 
-   let owner = []
-   let other = []
+   const current = FindCurrent()
+   
+   let personProfile = []
+   let myProfile = []
+   let show = false
    
    const requiredGame = FindGame(res[0].required)
    const SelectedGame = FindGame(res[0].selected)
 
    if(requiredGame && SelectedGame){
-        owner = FindUser(requiredGame.owner)
-        other = FindUser(SelectedGame.owner)
+        personProfile = FindUser(requiredGame.owner)
+        myProfile = FindUser(SelectedGame.owner)
+
+        if(myProfile && personProfile){
+
+            if(myProfile.id === current.id){
+                show=true
+            }
+            if(personProfile.id === current.id){
+                show=true
+            }
+
+        }
+
    }
 
+
+
     return(
+        <div>
+            {show ?
+            
         <Card className="game-details" bg="dark">
             {requiredGame.cover !== undefined ? <Card.Img src={requiredGame.cover.path} alt={requiredGame.title}/> : "" }
             <Card.Body>
@@ -30,25 +50,23 @@ export default function RequestMiniCard (info){
                         <p>id da troca: {res[0].id}</p>
                         <Card.Subtitle>para : {requiredGame.platform}</Card.Subtitle>
                         </Card.Header>
-                        {owner!==null
-                        ?
-                        <Card.Header>
-                        <Card.Text> quem pediu : <a href={`/profile/${owner.id}`}> {owner.firstName} {owner.lastName} </a></Card.Text>
-                        <Card.Text>{owner.email}</Card.Text>
-                    
-                        <Card.Text>pedido feito : {res[0].createdAt}</Card.Text>
-                        {res[0].accepted === true ?
-                         <p style={{color:"green"}}>aceita</p>
-                         : <p style={{color:"red"}}>negada/pendente</p>
-                         }
+                        {personProfile
+                        ? <Card.Body>
+                            <Card.Text> pertence a:
+                                <a href={`/profile/${myProfile.id}`}>
+                                     {personProfile.firstName} {personProfile.lastName} 
+                                    </a>
+                                </Card.Text>
+                            <p>{personProfile.email}</p>
+                            
+                            {res[0].accepted === true ?
+                                <p style={{color:"green"}}>aceita</p>
+                             : <p style={{color:"red"}}>negada/pendente</p>
+                            }          
+                        <UpdateRequest id={res[0].id} from={res[0].madeBy} receiver={personProfile.id} status={res[0].accepted} madeBy={res[0].madeBy}/>
+                        </Card.Body>
+                        :<Card.Text>usuário não encontrado</Card.Text>}
 
-                         
-                {(other && owner) !== null? 
-                <UpdateRequest id={res[0].id} from={owner.id} receiver={other.id} status={res[0].accepted} madeBy={res[0].madeBy}/>
-                :""}
-
-                        </Card.Header>
-                        : <p>informações não encontradas</p> }
                         
 
                 </div>
@@ -57,30 +75,34 @@ export default function RequestMiniCard (info){
                     <Card.Title>O anuncincio não encontrado ou  excuído</Card.Title>
                 </Card.Header>}
 
-                {other!==null? 
+
                         <Card.Header>
                         <Card.Title>Trocando por: {SelectedGame.title}</Card.Title>
                         <Card.Subtitle>para : {SelectedGame.platform}</Card.Subtitle>
-
-                        {other
-                        ? 
+                        {myProfile
+                        ?
                         <div>
-
-                            <p>pertence a: <a href={`/profile/${other.id}`}> {other.firstName} </a></p>
-                            <p> {other.email} </p>
-                            <a href={`/details/${SelectedGame.id}`}>ir para detalhes</a>
+                            <p>pertence a: <a href={`/profile/${myProfile.id}`}> {myProfile.firstName} {myProfile.lastName} </a></p>
+                            <p> {myProfile.email}</p>
+                            <a href="#">ir para detalhes</a>
                         </div>
+                    
+                        :""}
 
-                        : <p>O usuário dono deste game não foi encontrado, ou a conta não existe mais.</p>  
-                         }
                 </Card.Header>
-                : <p>informações não encontradas</p>}
-
-                        
+      
             
             </Card.Body>
 
             
-            </Card>
+            </Card> : ""}
+
+
+        </div>
     )
 }
+
+/***
+ * 
+ *  
+ */

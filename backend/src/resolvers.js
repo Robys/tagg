@@ -430,6 +430,12 @@ const resolvers = {
             if(description!==undefined){
                 game.description = description
             }
+            if(cover!==undefined){
+                const upfile = await UploadFile(cover)
+                const newfile = {filename:title, path: upfile.secure_url}
+                game.cover = newfile
+            }
+
             game.save()
             return game
         },

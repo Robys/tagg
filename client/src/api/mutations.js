@@ -51,7 +51,7 @@ export const UPDATE_USER = gql` mutation UpdateUser ($_id:ID,$firstName:String,$
         }
     }
 } `
-export const ADD_GAME = gql` mutation AddGame($owner:String,$title:String!,$publisher:String,$platform:String,$status:String, $value:String,$description:String,$cover:Upload){
+export const ADD_GAME = gql` mutation AddGame($owner:String,$title:String!,$publisher:String,$platform:String,$status:String,$value:String,$description:String,$cover:Upload){
     addGame(owner:$owner,title:$title,publisher:$publisher,platform:$platform,status:$status,value:$value,description:$description,cover:$cover){
         id
         owner
@@ -59,11 +59,10 @@ export const ADD_GAME = gql` mutation AddGame($owner:String,$title:String!,$publ
     }
 }`
 
-export const UPDATE_GAME = gql` mutation UpdateGame($_id:ID,$title:String,$description:String,$location:String){
-    updateGame(_id:$_id,title:$title,description:$description,location:$location){
+export const UPDATE_GAME = gql` mutation UpdateGame($_id:ID,$title:String,$publisher:String,$platform:String,$status:String,$value:String,$description:String,$cover:Upload){
+    updateGame(_id:$_id,title:$title,publisher:$publisher,platform:$platform,status:$status,value:$value,description:$description,cover:$cover){
         id
         title
-        owner
     }
 }`
 
