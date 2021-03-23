@@ -2,7 +2,7 @@ import {useState,createRef} from 'react'
 import {Table,Button} from 'react-bootstrap'
 import {FindUser,FindGame} from '../../utils/utils'
 import Paginate from '../../components/Paginate'
-import ReactToPdf from 'react-to-pdf'
+import {ExportRequestPDF} from '../components/ExportPDF'
 
 export default function RequestsTable(props){
 
@@ -78,11 +78,13 @@ export default function RequestsTable(props){
 
             </Table>
 
-            <ReactToPdf targetRef={ref} filename="tabela-usuarios.pdf" x={.5} y={.5}>
-                    {({toPdf}) => (
-                    <Button onClick={toPdf}>Gerar pdf</Button>
-                    )}
-                </ReactToPdf>
+            <Button onClick={e=>{
+                e.preventDefault()
+                ExportRequestPDF(list)
+            }}>
+                Exportar PDF
+            </Button>
+
 
             {size>10
                 ?<Paginate postPerPage={postPerPage} totalPosts={size} paginate={paginate}/>

@@ -1,17 +1,18 @@
+import {useState,createRef} from 'react'
 import {Table,
     Form,
     Button,
     Modal,
     Dropdown} 
 from 'react-bootstrap'
-import {useState,createRef} from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {DELETE_USER,CREATE_NOTIFY} from '../../api/mutations'
 import {GET_USERS} from '../../api/queries'
 import {FindCurrent} from '../../utils/utils'
 import PromoteUser from "../components/PromoteUser" 
 import Paginate from '../../components/Paginate'
-import ReactToPdf from 'react-to-pdf'
+import {ExportUserPDF} from '../components/ExportPDF'
+
 
 export default function UserTable(props){
     const [error,SetError] = useState()
@@ -135,11 +136,11 @@ export default function UserTable(props){
                 
                 </Table>
 
-                <ReactToPdf targetRef={ref} filename="tabela-usuarios.pdf" x={.5} y={.5}>
-                    {({toPdf}) => (
-                    <Button onClick={toPdf}>Gerar pdf</Button>
-                    )}
-                </ReactToPdf>
+                <Button onClick={e => {
+                    e.preventDefault()
+                    ExportUserPDF(list)
+                }}>Exportar PDF</Button>
+
 
                 {size>10
                 ?<Paginate postPerPage={postPerPage} totalPosts={size} paginate={paginate}/>

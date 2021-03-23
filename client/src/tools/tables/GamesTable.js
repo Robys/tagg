@@ -1,7 +1,7 @@
 import {createRef} from 'react'
 import {Table,Button} from 'react-bootstrap'
 //import Paginate from '../../components/Paginate'
-import ReactToPdf from 'react-to-pdf'
+import {ExportGamesPDF} from '../components/ExportPDF'
 
 export default function GamesTable(props){
     const ref = createRef()
@@ -26,15 +26,17 @@ export default function GamesTable(props){
                                 <td>{res.platform}</td>
                                 <td>{res.location}</td>
                                 <td>{res.status}</td>
-
-
-
                             </tr>
                         )
                         :""}
                     </tbody>
 
         </Table>
+
+        <Button onClick={e => {
+                    e.preventDefault()
+                    ExportGamesPDF(props.list.games)
+        }}>Exportar PDF</Button>
             
                 
         </div>
