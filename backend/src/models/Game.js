@@ -6,7 +6,10 @@ const GameSchema = mongoose.Schema({
     publisher:String,
     platform:String,
     status:String,
-    value:String,
+    value:{
+        type:String,
+        default:"0"
+    },
     description:String,
     location: String,
     createdAt:String,

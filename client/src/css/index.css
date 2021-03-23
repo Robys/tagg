@@ -236,12 +236,8 @@
         width: 200px;
         font-size: 12px;
         background-color: #1d1d1d;
-        color: #EAE6DA;
     }
 
-    .footer-text p,a{
-        color:#EAE6DA;
-    }
     .footer-text a:hover{
         max-width: 200px;
         color:red;

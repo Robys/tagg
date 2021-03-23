@@ -178,8 +178,65 @@ const resolvers = {
                 ]);
 
             }
+            if(keyword === 'values'){
+                count = await games.aggregate([
+                    {
+                        $project:
+                        {
+                            value: "$value",
+                            title: "$title"
+                        }
+                    },
+                    { $unwind: '$value' },
+                    {
+                        $group: {
+                            _id: { value: "$value", title:"$title"},
+                           
+                        }
+                    },
+                
+                    {
+                        $addFields: {
+                            value: "$_id.value",
+                            title: "$_id.title"
+                        }
+                    },
+                    {
+                        $project: {
+                            _id: false
+                        }
+                    }
+                ]);
+               
+            }
+            if(keyword === 'requests'){
+                count = await Request.aggregate([
+                    {
+                        $project:
+                        {
+                            date: "$createdAt",
+                        }
+                    },
+                    {
+                        $group: {
+                            _id: { createdAt: "$date"},
+                            requests: { $sum: 1 }
+                        }
+                    },
+                
+                    {
+                        $addFields: {
+                            createdAt: "$_id.createdAt"
+                        }
+                    },
+                    {
+                        $project: {
+                            _id: false
+                        }
+                    }
+                ])
+            }
             return count
-           
          }
     },
  

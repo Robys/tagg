@@ -88,6 +88,9 @@ type Metrics{
     games:String
     platform:String
     location:String
+    value:String
+    title:String
+    requests:String
 }
 
 type Query{

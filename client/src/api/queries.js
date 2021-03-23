@@ -161,5 +161,8 @@ export const GET_METRICS = gql` query Metrics($keyword:String){
         games
         platform
         location
+        value
+        title
+        requests
     }
 }`
