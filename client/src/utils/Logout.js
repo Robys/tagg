@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/react-hooks'
-import {Nav} from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {LOGOUT} from '../api/mutations'
 
 export const Logout = () =>{
@@ -7,8 +7,8 @@ export const Logout = () =>{
 
     return(
 
-        <Nav.Link href="/" onClick={e=>{
-        logout()}}> Sair </Nav.Link>
+        <Button variant="danger" href="/" onClick={e=>{
+        logout()}}> Sair </Button>
 
     )
 }

@@ -20,6 +20,8 @@ export default function Dashboard(){
 
     return(
         <div>
+            {current? <MyNotifications user={current}/> : "" }
+
             <Card className="dashboard">
                 <Card.Header>
 
@@ -45,7 +47,6 @@ export default function Dashboard(){
             </Card.Body>
             </Card>
 
-            {current? <MyNotifications user={current}/> : "" }
             </div>
 
     )
