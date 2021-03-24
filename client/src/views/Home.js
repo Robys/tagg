@@ -25,9 +25,9 @@ export default function Home(){
                 </li>
 
                 </ul>
+                    <h4>O que é o Tagg ?</h4>
 
                 <section className="content">
-                    <h4>O que é o Tagg ?</h4>
 
                     <Card className="home-card">
                         <Card.Img src={what1} alt="info1"/>
@@ -63,11 +63,11 @@ export default function Home(){
                         </Card>
                         
                 </section>
-
-                <section className="content">
                     <h4>FAQ</h4>
 
-                    <Accordion className="faq">
+                <section className="faq">
+
+                    <Accordion>
                     <Card>
                         <Card.Header>
                         <Accordion.Toggle as={Button} variant="link" eventKey="0">

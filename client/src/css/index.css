@@ -1,36 +1,119 @@
 
 /* Mobile first */
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 370px) {
     body{
         margin: 0 auto;
-        background-color: #1d1d1d;
-    }
-
-    .home{
-        height: 200vh;
-        color: white;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: smaller;
         font-weight: lighter;
     }
-
-    .login-card{
-        width: 100%;
-        height: 740px;
+    .nav-bar{
+        max-width: 100%;
+        height: 60px;
+        background-color: #21211F;
+    }
+    
+    .nav-bar a{
+        color: #EAE6DA;
     }
 
-    .login-card form{
+    .nav-bar img{
+        width: 48px;
+        height: 48px;
+        margin-left: 5px;
+    }
+
+    .nav-bar-icon{
+        margin-top: 5px;
+        margin-left: 10px;
+        color: #EAE6DA;
+    }
+    .nav-bar-icon:hover{
+        color: red;
+    }
+
+    .home ul{
+        list-style: none;
+    }
+
+    .user-call img{
+        position: sticky;
+        height: 440px;
+    }
+
+    .sign-card{
+        height: 540px;
+        padding: 20px;
+        border-radius: 0;
+    }
+    .sign-card input{
+        margin-bottom: 10px;
+    }
+    
+    .login-card{
+        margin-top: 40px;
+        margin-bottom: 120px;
+        left: 40px;
+        width: 400px;
+        height: 320px;
+    }
+    
+    .login-card form {
         padding: 10px;
     }
-
+    
     .login-card input{
-        width: 320px;
         margin-bottom: 10px;
     }
 
-    .login-card input, button, textarea{
-        margin-bottom: 10px;
+    footer{
+        bottom: 0;
+        width: 100%;
+        height:800px;
+        background: #21211F;
+        align-content: center;
+        
     }
+    .footer-logo-area img{
+        max-width: 200px;
+        max-height: 200px;
+        margin: 40px;
+    }
+    
+    .footer-text{
+        float: left;
+        max-width: 600px;
+        margin-left: 20px;
+        margin-top: 40px;
+        color:#EAE6DA;
+        font-size: 12px;
+    }
+
+    .footer-text input{
+        margin: 10px;
+        padding: 5px;
+        width: 200px;
+        font-size: 12px;
+        background-color: #1d1d1d;
+    }
+    .footer-text a{
+        max-width: 200px;
+        color:#EAE6DA;
+    }
+
+    .footer-text a:hover{
+        color:red;
+        font-size: medium;
+    }
+    .footer-end{
+        position: absolute;
+        margin-top: 520px;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        background-color: #EAE6DA;
+    }
+   
     .notify-area{
         display: none;
     }
@@ -107,7 +190,7 @@
     }
 }
 /* Desktop Here*/
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 600px) {
     body{
         margin: 0 auto;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -127,7 +210,6 @@
     }
 
     .nav-bar img{
-        position: fixed;
         width: 48px;
         height: 48px;
         margin-left: 5px;
@@ -165,6 +247,9 @@
         margin: 40px 80px;
         list-style: none;
     }
+    .home h4{
+        text-align: center;
+    }
 
     .user-call{
         width: 790px;
@@ -177,18 +262,6 @@
         height: 540px;
     }
 
-    .user-call h2{
-        position: absolute;
-        width: 655.05px;
-        height: 170px;
-        left: 178.07px;
-        top: 202px;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 64px;
-        line-height: 85px;
-        text-transform: uppercase;
-    }
     
     .sign-card{
         height: 540px;
@@ -200,28 +273,24 @@
     }
 
     
-    .home section{
+    .content{
         height: 640px;
         width: 100%;
-        margin-top: 40px;
-        text-align: center;
-    }
-    .home-card{
+        margin-top: 20px;
+        margin-left: 60px;
         display: inline-flex;
-        margin: 40px;
+    }
+
+    .home-card{
+        margin-left: 80px;
         width: 18rem;
+        height: 460px;
     }
     
     .home-card img{
         height: 300px;
     }
     
-    .faq{
-            height: 400px;
-            width: 1090px;
-            margin: 20px 120px;
-            text-align: left;
-        }
         
     .login-card{
         margin-top: 40px;

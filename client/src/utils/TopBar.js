@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import {Navbar,NavLink,Nav,Image} from 'react-bootstrap'
 import {FindCurrent} from './utils'
+import {Navbar,Col,Row,Container,Image,Nav} from 'react-bootstrap'
 import {Logout} from './Logout'
 import logo from '../imgs/icons/tagg-logo-orange.png'
 import Icon from '@mdi/react';
@@ -13,55 +13,68 @@ export default function TopBar(){
     const toggle = () =>  setShow(!show)
     
     return(
-        <div className="nav-bar">
-            {user 
-            ?
-            <Nav>
-                <Icon path={mdiMenu} size="32px" 
-                className="nav-bar-icon" onClick={e=>{
-                toggle()
-                }}/>
+        <div>
+        <Navbar className="nav-bar">
+            <Container>
+            <Row>
+                <Col>
+                {user ?
+                <Icon path={mdiMenu} size={1} onClick={e=>toggle()} color="#EAE6DA"/>
+                : 
+            <Navbar.Brand>
+                <Image src={logo} alt="tagg"/>
+            </Navbar.Brand>}
+                
+                </Col>
 
-                <Nav style={{float:"right", position:"absolute", left:"85%"}}>
+            </Row>
+            <Row>
+                <Col>
+                {user?
+                <Nav>
 
-                <NavLink href={`/profile/${user.id}`}>
-                    {user.firstName}
-                </NavLink>
+                <Nav.Link href={`/profile/${user.id}`}>
+                 {user.firstName}
+                </Nav.Link>
                 <Logout/>
-
+                
                 </Nav>
 
-            </Nav>
-            
-            : <img src={logo} alt="logo-tagg" href="/"/> }
+                : ""}
+                </Col>
+            </Row>
+            </Container>
+        </Navbar>
 
-            {show
-            ?
-            <div className="side-menu">
-                <Nav className="flex-column side-menu-content">
-                <NavLink href={`/dashboard`}>
+        {show
+        ?
+        <div className="side-menu">
+        <Nav className="side-menu-content flex-column ">
+        
+            <Nav.Link href={`/dashboard`}>
                     Home
-                </NavLink>
+                </Nav.Link>
 
-                <NavLink href={`/requests`}>
+                <Nav.Link href={`/requests`}>
                     Pedidos
-                </NavLink>
+                </Nav.Link>
 
-                <NavLink href={`/mailbox`}>
+                <Nav.Link href={`/mailbox`}>
                     Mensagens
-                </NavLink>
+                </Nav.Link>
 
             {user.roles === 'ADMIN' || user.roles === 'MENAGER'  ? 
-             <NavLink href={`/tools/${user.id}`}>
+             <Nav.Link href={`/tools/${user.id}`}>
                  ADMIN
-             </NavLink> :""}
+             </Nav.Link>:""}
+        </Nav>
 
-                </Nav>
-            </div> 
-            
-            :""}
+        </div> 
+        
+        :""}
 
-            
+
+
         </div>
     )
 

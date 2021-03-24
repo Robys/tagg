@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/reset.css'
 import './css/index.css'
-import './css/admin.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {ApolloClient,InMemoryCache,split} from '@apollo/client'
 import {ApolloProvider} from '@apollo/react-hooks'
 import {createUploadLink} from 'apollo-upload-client'
