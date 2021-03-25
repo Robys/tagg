@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 
 import {BrowserRouter,Route} from 'react-router-dom'
 import Home from './views/Home'
@@ -12,14 +12,12 @@ import DeleteGame from './views/DeleteGame'
 import UserSettings from './views/UserSettings'
 import Requests from './views/Requests'
 import MailBox from './views/MailBox'
-
-import TopBar from './utils/TopBar'
+import Notifications from './views/Notifications'
 
 function App() {
 
   return (
     <div className="App">
-      <TopBar/>
        <BrowserRouter>
     <Route exact path="/" component={Home}/>
     <Route exact path="/login" component={Login}/>
@@ -32,6 +30,7 @@ function App() {
     <Route exact path="/deleteGame/:id" component={DeleteGame}/>
     <Route exact path="/requests" component={Requests}/>
     <Route exact path="/mailbox" component={MailBox}/>
+    <Route exact path="/notifications" component={Notifications}/>
     
     </BrowserRouter>
 

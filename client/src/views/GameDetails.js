@@ -2,6 +2,7 @@ import {Button, Card,Dropdown,DropdownButton,Image} from 'react-bootstrap'
 import DelayLink  from 'react-delay-link'
 //import generic from '../imgs/generic.png'
 import {FindGame,FindUser,FindCurrent,FindCollection} from '../utils/utils'
+import TopBar from '../utils/TopBar'
 
 export default function GameDetails(props){
     const game = FindGame(props.match.params.id)
@@ -17,7 +18,9 @@ export default function GameDetails(props){
     console.log(game.cover)
     return(
         <div>
-            <Card className="game-details" bg="dark">
+            <TopBar/>
+            
+            <Card className="game-details">
                 {game.cover !== undefined
                 ? 
                 <Card.Img src={game.cover.path} alt={game.title}/> 
@@ -40,7 +43,7 @@ export default function GameDetails(props){
 
                         {owner
                         ? 
-                    <Card className="game-details-footer" bg="dark">
+                    <Card className="game-details-footer">
                         
                     <Card.Img src={owner.picture} alt={owner.firstName}/>
                     <Card.Header>
@@ -50,8 +53,7 @@ export default function GameDetails(props){
                     </Card.Header>
                     <Card.Body>
 
-                    <Button
-                    style={{float:"right"}}  variant="danger"
+                    <Button as="button" variant="danger"
                     disabled={!disableRequest} href={`/deleteGame/${game.id}`}>
                             Excluir Game
                      </Button>

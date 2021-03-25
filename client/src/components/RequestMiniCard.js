@@ -40,7 +40,7 @@ export default function RequestMiniCard (info){
         <div>
             {show ?
             
-        <Card className="game-details" bg="dark">
+        <Card className="game-details">
             {requiredGame.cover !== undefined ? <Card.Img src={requiredGame.cover.path} alt={requiredGame.title}/> : "" }
             <Card.Body>
                 {requiredGame ?

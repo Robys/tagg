@@ -3,6 +3,7 @@ import {useState} from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {UPDATE_USER} from '../api/mutations'
 import {Card,Form,Button,Col,Row,Spinner,Alert} from 'react-bootstrap'
+import TopBar from '../utils/TopBar'
 
 export default function UserSettings(){
     const [show, setShow] = useState(true);
@@ -28,8 +29,9 @@ export default function UserSettings(){
 
     return (
         <div>
+            <TopBar/>
 
-            <Card className="game-details" bg="dark">
+            <Card className="game-details">
             {current.picture !== undefined ?
             <div>
                 <Card.Img src={current.picture} alt={current.firstName}/>
@@ -84,7 +86,7 @@ export default function UserSettings(){
 
                 <Row>
                     <Col>
-                    <Form.Control type="password" onChange={e=> SetPassword(e.target.value)} style={{width:"600px"}}/>
+                    <Form.Control type="password" onChange={e=> SetPassword(e.target.value)}/>
                     </Col>
                     <Col>
                     <Button variant="danger" type="submit">Alterar senha</Button>

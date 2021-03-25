@@ -3,6 +3,7 @@ import {Button, Jumbotron,Spinner} from 'react-bootstrap'
 import {FindGame} from '../utils/utils'
 import {useMutation} from '@apollo/react-hooks'
 import {DELETE_GAME} from '../api/mutations'
+import TopBar from '../utils/TopBar'
 
 export default function DeleteGame(props){
     const game = FindGame(props.match.params.id);
@@ -17,6 +18,7 @@ export default function DeleteGame(props){
     
     return(
         <div>
+            <TopBar/>
 
             <Jumbotron>
                {!data? <div>

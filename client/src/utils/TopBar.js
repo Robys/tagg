@@ -1,81 +1,53 @@
-import {useState} from 'react'
 import {FindCurrent} from './utils'
-import {Navbar,Col,Row,Container,Image,Nav} from 'react-bootstrap'
+import {Navbar,Container,Nav,NavLink} from 'react-bootstrap'
 import {Logout} from './Logout'
-import logo from '../imgs/icons/tagg-logo-orange.png'
-import Icon from '@mdi/react';
-import { mdiMenu } from '@mdi/js';
 
 export default function TopBar(){
     const user = FindCurrent()
-    const [show,setShow] = useState(false)
-    
-    const toggle = () =>  setShow(!show)
     
     return(
-        <div>
-        <Navbar className="nav-bar">
-            <Container>
-            <Row>
-                <Col>
-                {user ?
-                <Icon path={mdiMenu} size={1} onClick={e=>toggle()} color="#EAE6DA"/>
-                : 
-            <Navbar.Brand>
-                <Image src={logo} alt="tagg"/>
-            </Navbar.Brand>}
+       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+           <Container>
+           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+           <Navbar.Collapse id="responsive-navbar-nav">
+               <Nav>
+               <NavLink href={`/dashboard`}>
+                    Home
+                </NavLink>
+               <Nav>
+
+               {user.roles === 'ADMIN' || user.roles === 'MENAGER'  ? 
+             <NavLink href={`/tools/${user.id}`}>
+                 ADMIN
+             </NavLink> :""} 
+
+                <NavLink href={`/requests`}>
+                    Pedidos
+                </NavLink>
+
+                <NavLink href={`/notifications`}>
+                    Notificações
+                </NavLink>
+
+                <NavLink href={`/mailbox`}>
+                    Mensagens
+                </NavLink>
                 
-                </Col>
 
-            </Row>
-            <Row>
-                <Col>
-                {user?
-                <Nav>
-
-                <Nav.Link href={`/profile/${user.id}`}>
+                <NavLink href={`/profile/${user.id}`}>
                  {user.firstName}
-                </Nav.Link>
-                <Logout/>
-                
-                </Nav>
+                </NavLink>
 
-                : ""}
-                </Col>
-            </Row>
-            </Container>
+                 <Logout/>
+
+                 </Nav>
+
+               </Nav>
+               </Navbar.Collapse>
+           </Container>
+
         </Navbar>
 
-        {show
-        ?
-        <div className="side-menu">
-        <Nav className="side-menu-content flex-column ">
-        
-            <Nav.Link href={`/dashboard`}>
-                    Home
-                </Nav.Link>
-
-                <Nav.Link href={`/requests`}>
-                    Pedidos
-                </Nav.Link>
-
-                <Nav.Link href={`/mailbox`}>
-                    Mensagens
-                </Nav.Link>
-
-            {user.roles === 'ADMIN' || user.roles === 'MENAGER'  ? 
-             <Nav.Link href={`/tools/${user.id}`}>
-                 ADMIN
-             </Nav.Link>:""}
-        </Nav>
-
-        </div> 
-        
-        :""}
-
-
-
-        </div>
     )
 
 }

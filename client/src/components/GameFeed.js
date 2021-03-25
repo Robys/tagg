@@ -1,6 +1,13 @@
+import {useState} from 'react'
 import GameFeedContainer from './GameFeedContainer'
-
-export default function GameFeed({data,result}){
+import {InputGroup,FormControl,Button, Card, Media} from 'react-bootstrap'
+import ScrollArea from '@xico2k/react-scroll-area';
+import {FindGames} from '../utils/utils'
+import {FilterGames} from '../utils/Filters'
+export default function GameFeed(){
+    const data = FindGames()
+    const [keyword,setKeyWord] = useState()
+    const [result,setResult] = useState()
 
     const SortArray = array => {
         const sortProperty = 'createdAt';
@@ -9,8 +16,33 @@ export default function GameFeed({data,result}){
 
     }
 
+    const OnSearchButton = e =>{
+        e.preventDefault()
+        const results = FilterGames(data,keyword)
+        setResult(results)
+    }
+
         return(
-            <div>
+            <Media>
+            <Card className="game-feed">
+                <Card.Header>
+            <InputGroup className="mb-3">
+                <FormControl
+                placeholder="Procure aqui"
+                aria-label="barra de pesquisa"
+                aria-describedby="basic-addon2"
+                onChange={e => setKeyWord(e.target.value)}
+                />
+                <InputGroup.Append>
+                <Button variant="outline-secondary" onClick={e => OnSearchButton(e)}>Procurar</Button>
+                </InputGroup.Append>
+            </InputGroup>
+                </Card.Header>
+            
+                
+            <Card.Body style={{height:"548px"}}>
+            <ScrollArea height="100%">
+
                 {result
                 ?<div>
                     <h4>Resultado da pesquisa</h4>
@@ -26,8 +58,13 @@ export default function GameFeed({data,result}){
                     SortArray(values) )}
             </div> 
                 :""}
+                
+                </ScrollArea>
+            </Card.Body>
 
-            </div>
+            </Card>
+
+            </Media>
             
             )
             

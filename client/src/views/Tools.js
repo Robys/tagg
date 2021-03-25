@@ -8,6 +8,8 @@ import UsersList from '../tools/components/UsersList'
 import RequestsList from '../tools/components/RequestsList'
 import GamesList from '../tools/components/GamesList'
 
+import TopBar from '../utils/TopBar'
+
 export default function Tools(props){
     const {data,loading,error} = useQuery(GET_USER, { variables:{ _id: props.match.params.id} })
 
@@ -15,7 +17,8 @@ export default function Tools(props){
     if(error) {return <p>Ops... {JSON.stringify(error)}</p>}
 
     return(
-        <div className="home">
+        <div>
+             <TopBar/>
 
             <Notifications id={data.user.id}/>
 

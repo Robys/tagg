@@ -3,6 +3,7 @@ import ChatScreen from '../components/ChatScreen'
 import Contact from '../components/Contact'
 import {FindCurrent,FindChat} from '../utils/utils'
 import {Card,Spinner} from 'react-bootstrap' 
+import TopBar from '../utils/TopBar'
 
 export default function MailBox(){
     const current = FindCurrent()
@@ -10,9 +11,12 @@ export default function MailBox(){
     const [currentChat,setCurrentChat] = useState()
 
     const contact = (currentChat) => setCurrentChat(currentChat);
-
+    
+    console.log(data)
+    
     return(
         <div>
+            <TopBar/>
             
             <Card className="chat-list">
                 <Card.Header>contatos</Card.Header>

@@ -3,7 +3,6 @@ import {useMutation} from '@apollo/react-hooks'
 import {Redirect,Link} from 'react-router-dom'
 import {SIGNUP} from '../api/mutations'
 import {useState} from 'react'
-import FacebookButton from './FacebookButton'
 import {Form,Col,Row,Button,Card,Alert} from 'react-bootstrap'
 
 
@@ -82,16 +81,25 @@ const  SignUp = ()=>{
                 <Form.Label>Foto de Perfil</Form.Label>
 
                 <Form.File id="myfile" onChange={convertFile}/>
-                
+
+                <Row>
+                    <Col xs={6} md={4}>
                 <Button type="submit">
                     Entrar
                 </Button>
+                    </Col>
+                    <Col xs={6} md={4}>
+                    <Button href="http://localhost:4000/auth/facebook">
+                    Entrar com Facebook
+                    </Button>
+                    </Col>
+                </Row>
+                
 
                 {ready
                 ? <Redirect to="/login"/> 
                 : ""}
 
-                <FacebookButton/>
           
             </Form>
             

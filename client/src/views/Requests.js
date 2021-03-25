@@ -1,6 +1,7 @@
 import {FindCurrent,FindRequests} from '../utils/utils'
 import RequestMiniCard from '../components/RequestMiniCard'
 import {Jumbotron} from 'react-bootstrap'
+import TopBar from '../utils/TopBar'
 
 export default function Requests (){
     const current = FindCurrent()
@@ -25,6 +26,7 @@ export default function Requests (){
 
 return(
     <div>
+         <TopBar/>
         {getData()}
 
     </div>

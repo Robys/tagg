@@ -4,6 +4,8 @@ import {Button, Jumbotron,Spinner} from 'react-bootstrap'
 import {useMutation} from '@apollo/react-hooks'
 import {CREATE_REQUEST} from '../api/mutations'
 
+import TopBar from '../utils/TopBar'
+
 export default function ProcessRequest(props){
     const required = props.location.state.required.id
     const selected = props.location.state.selected.id
@@ -20,6 +22,7 @@ export default function ProcessRequest(props){
 
     return(
         <div>
+            <TopBar/>
 
             <Jumbotron>
                 <h2>Quase Lá!</h2>

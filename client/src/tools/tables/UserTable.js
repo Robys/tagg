@@ -105,7 +105,7 @@ export default function UserTable(props){
                         <tr key={user.id}>
                         <td>
                         <Dropdown>
-                            <Dropdown.Toggle style={{backgroundColor:"transparent",color:"black",border:"none"}}>
+                            <Dropdown.Toggle style={{backgroundColor:"transparent",border:"none"}}>
                             {user.id}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>

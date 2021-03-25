@@ -9,7 +9,6 @@ export default function MetricCharts (){
 
     return (
     <div>
-        <div style={{margin:"20px"}}>
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
                 <Col sm={3}>
@@ -52,8 +51,6 @@ export default function MetricCharts (){
                 </Col>
             </Row>
             </Tab.Container>
-
-        </div>
 
     </div>
     );

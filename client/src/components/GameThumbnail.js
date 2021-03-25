@@ -6,7 +6,7 @@ const GameThumbnail = (props) =>{
     return (
       <div>
           {props.games.map(game => 
-            <Card className="game-thumb" bg="dark">
+            <Card className="game-thumb">
             <Card.Img src={game.cover.path} alt={game.title}/>
             <Card.Body>
                 <Card.Title ><a href={`/details/${game.id}`}> {game.title} </a></Card.Title>

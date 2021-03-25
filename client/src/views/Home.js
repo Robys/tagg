@@ -1,7 +1,7 @@
 import React from 'react'
 import SignUp from '../components/SignUp'
 import Footer from '../utils/Footer'
-import {Card,Accordion,Button,Image} from 'react-bootstrap'
+import {Card,Accordion,Button,Image, Container, Row,Col} from 'react-bootstrap'
 import what1 from '../imgs/home-card-1.jpg'
 import what2 from '../imgs/home-card-2.jpg'
 import what3 from '../imgs/home-card-3.jpg'
@@ -10,22 +10,21 @@ import taGif from '../imgs/tag.gif'
 export default function Home(){
     return(
         <div className="home">
-            <ul>
-                <li>
+            <Container>
+                <Row>
+                    <Col>
+                    <Image src={taGif} alt="tagg-logo" className="tagg-logo-big"/>
+                    </Col>
 
-                <div className="user-call">
-                    <Image src={taGif} alt="tagg-logo"/>
-                </div>
-                </li>
+                    <Col>
+                    <SignUp/>
+                    </Col>
 
-                <li>
+                </Row>
 
-                <SignUp/>
+            </Container>
 
-                </li>
-
-                </ul>
-                    <h4>O que é o Tagg ?</h4>
+            <h4>O que é o Tagg ?</h4>
 
                 <section className="content">
 

@@ -6,17 +6,22 @@ import AddGame from '../components/AddGame'
 import Collection from '../components/Collection'
 import generic from '../imgs/user.png'
 
+import TopBar from '../utils/TopBar'
+
 export default function Profile (props){
     const data = FindUser(props.match.params.id)
     const current = FindCurrent()
     console.log(data)
     return(
-        <div className="home">
-            <Card className="profile" bg="dark">
+        <div>
+
+            <TopBar/>
+
+            <Card className="profile">
                    {data.picture===""
                    ?
                     <Card.Img src={generic}/>
-                   : <Card.Img src={data.picture} /> }
+                   : <Card.Img  src={data.picture} className="user-picture"/> }
 
                     <Card.Body className="profile-info">
                                 <h3>{data.firstName} {data.lastName}</h3>

@@ -12,7 +12,7 @@ export default function CreateChat(props){
     const current = FindCurrent()
 
     const StartChat = () =>{
-        console.log(props.receiver)
+        console.log(props)
         if(current.id === props.from){
         SetReceiver(props.receiver)
         }
@@ -28,7 +28,7 @@ export default function CreateChat(props){
                 console.log(error)
             })
 
-        }, 3000)
+        }, 5000)
     
     }
 

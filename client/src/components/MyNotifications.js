@@ -1,12 +1,12 @@
 import {FindNotifies} from '../utils/utils'
 import NotifyToast from './NotifyToast'
-import {Spinner,Card,Tabs,Tab} from 'react-bootstrap'
+import {Spinner,Card,Tabs,Tab,Container} from 'react-bootstrap'
 
 export default function MyNotifications(){
     const {data,loading,error}  = FindNotifies()
-    console.log(data) 
 
     return(
+        <Container>
         <Card className="notify-area">
             <Card.Header>Recados</Card.Header>
             <Card.Body>
@@ -28,6 +28,7 @@ export default function MyNotifications(){
             {error? <p>error {error.message}</p>:""}
 
         </Card>
+        </Container>
 
     )
 }

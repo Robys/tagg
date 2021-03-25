@@ -2,8 +2,9 @@ import {Card, Button} from 'react-bootstrap'
 
 export default function GameFeedContainer(props){
 
-    return(
-        <Card className="game-container" bg="dark">
+
+    return( 
+        <Card className="game-container">
                 <Card.Img src={props.game.cover.path}/>
                     <Card.Body>
                         <Card.Title>{props.game.title}</Card.Title>
