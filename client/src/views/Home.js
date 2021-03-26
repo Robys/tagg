@@ -24,9 +24,8 @@ export default function Home(){
 
             </Container>
 
-            <h4>O que é o Tagg ?</h4>
-
                 <section className="content">
+                     <h2>O que é o Tagg ?</h2>
 
                     <Card className="home-card">
                         <Card.Img src={what1} alt="info1"/>
@@ -62,9 +61,8 @@ export default function Home(){
                         </Card>
                         
                 </section>
-                    <h4>FAQ</h4>
-
                 <section className="faq">
+                    <h4>FAQ</h4>
 
                     <Accordion>
                     <Card>

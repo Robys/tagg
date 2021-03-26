@@ -83,16 +83,19 @@ const  SignUp = ()=>{
                 <Form.File id="myfile" onChange={convertFile}/>
 
                 <Row>
-                    <Col xs={6} md={4}>
+                    <ul>
+                        <li>
                 <Button type="submit">
                     Entrar
                 </Button>
-                    </Col>
-                    <Col xs={6} md={4}>
+                        </li>
+                        <li>
                     <Button href="http://localhost:4000/auth/facebook">
                     Entrar com Facebook
                     </Button>
-                    </Col>
+                        </li>
+                    </ul>
+
                 </Row>
                 
 

@@ -24,7 +24,7 @@ export default function ProcessRequest(props){
         <div>
             <TopBar/>
 
-            <Jumbotron>
+            <Jumbotron className="processing">
                 <h2>Quase Lá!</h2>
                 <p> O pedido de troca está sendo encaminhado </p>
                 <p> em breve o dono do {required.title} poderá entrar em contado, então fique atento!</p>

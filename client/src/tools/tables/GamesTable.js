@@ -19,7 +19,7 @@ export default function GamesTable(props){
     
     return(<div>
 
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} className="admin-modal">
                 <Modal.Header closeButton>
                     <Modal.Title>Editar Informações do Jogo</Modal.Title>
                 </Modal.Header>

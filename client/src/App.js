@@ -13,6 +13,7 @@ import UserSettings from './views/UserSettings'
 import Requests from './views/Requests'
 import MailBox from './views/MailBox'
 import Notifications from './views/Notifications'
+import Contacts from './views/Contacts'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
     <Route exact path="/deleteGame/:id" component={DeleteGame}/>
     <Route exact path="/requests" component={Requests}/>
     <Route exact path="/mailbox" component={MailBox}/>
+    <Route exact path="/contacts" component={Contacts}/>
     <Route exact path="/notifications" component={Notifications}/>
     
     </BrowserRouter>

@@ -1,55 +1,41 @@
-import {FindCurrent} from './utils'
-import {Navbar,Container,Nav,NavLink} from 'react-bootstrap'
-import {Logout} from './Logout'
+import { FindCurrent } from "./utils";
+import { Navbar, Container, Nav, NavLink } from "react-bootstrap";
+import { Logout } from "./Logout";
 
-export default function TopBar(){
-    const user = FindCurrent()
-    
-    return(
-       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-           <Container>
-           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-           <Navbar.Collapse id="responsive-navbar-nav">
-               <Nav>
-               <NavLink href={`/dashboard`}>
-                    Home
-                </NavLink>
-               <Nav>
+export default function TopBar() {
+  const user = FindCurrent();
 
-               {user.roles === 'ADMIN' || user.roles === 'MENAGER'  ? 
-             <NavLink href={`/tools/${user.id}`}>
-                 ADMIN
-             </NavLink> :""} 
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav>
+            <NavLink href={`/dashboard`}>Home</NavLink>
+            <Nav>
+              {user.roles === "ADMIN" || user.roles === "MENAGER" ? (
+                <NavLink href={`/tools/${user.id}`}>ADMIN</NavLink>
+              ) : (
+                ""
+              )}
 
-                <NavLink href={`/requests`}>
-                    Pedidos
-                </NavLink>
+              <NavLink href={`/requests`}>Pedidos</NavLink>
 
-                <NavLink href={`/notifications`}>
-                    Notificações
-                </NavLink>
+              <NavLink href={`/notifications`}>Notificações</NavLink>
 
-                <NavLink href={`/mailbox`}>
-                    Mensagens
-                </NavLink>
-                
+              <NavLink href={`/mailbox`}>Mensagens</NavLink>
 
-                <NavLink href={`/profile/${user.id}`}>
-                 {user.firstName}
-                </NavLink>
+              <NavLink href={`/contacts`}>Contatos</NavLink>
 
-                 <Logout/>
+              <NavLink href={`/profile/${user.id}`}>{user.firstName}</NavLink>
 
-                 </Nav>
-
-               </Nav>
-               </Navbar.Collapse>
-           </Container>
-
-        </Navbar>
-
-    )
-
+              <Logout />
+            </Nav>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
 /**

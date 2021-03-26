@@ -7,15 +7,124 @@ body{
 }
   
   @media screen and (min-width: 980px) /* Desktop */ {
-    body {
-     background-color: #EAE6DA;
+
+    .tagg-logo-big{
+        position: absolute;
+        width: 814px;
+        height: 567.54px;
+        left: 20px;
+        top: 20px;
     }
-  }
-  
-  @media screen  and (max-width: 979px) /* Tablet */ {
-    body {
+
+    .sign-card{
+        position: absolute;
+        width: 381px;
+        height: 568px;
+        left: 240px;
+        top: 20px;
+        padding: 20px;
+    }
+    .sign-card ul{
+        list-style: none;
+        margin-top:10px;
+    }
+
+    .sign-card li{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .content{
+        position: absolute;
+        width: 100%;
+        height: 680px;
+        top: 560px;
+        padding: 80px;
+        align-content: center;
+        text-align: center;
+    }
+    .home-card{
+        display: inline-block;
+        width: 18rem;
+        margin: 20px;
         background-color: #21211F;
+        color: #EAE6DA;
     }
+    .home-card img{
+        width: 18rem;
+        height: 300px;
+    }
+
+    .faq{
+        position: absolute;
+        width: 920px;
+        top:1200px;
+        left: 220px;
+        text-align: center;
+        align-content: center;
+    }
+    footer{
+        position: absolute;
+        top: 1400px;
+        width: 100%;
+        height:360px;
+        padding: 40px;
+        background: #21211F;
+        align-content: center;
+        
+    }
+    .footer-logo-area img{
+        float: left;
+        max-width: 180px;
+        max-height: 180px;
+        margin: 20px;
+    }
+    
+    .footer-text{
+        float: left;
+        max-width: 600px;
+        margin-left: 20px;
+        margin-top: 20px;
+        color:#EAE6DA;
+        font-size: 12px;
+    }
+
+    .footer-text input{
+        margin: 10px;
+        padding: 5px;
+        width: 200px;
+        font-size: 12px;
+        background-color: #1d1d1d;
+    }
+    .footer-text a{
+        max-width: 200px;
+        color:#EAE6DA;
+    }
+
+    .footer-text a:hover{
+        color:red;
+        font-size: medium;
+    }
+    .footer-end{
+        margin-top: 280px;
+        width: 100%;
+        height: 40px;
+        text-align: center;
+        background-color: #EAE6DA;
+    }
+
+    .game-feed{
+        width: 100%;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+    .game-container{
+        flex-direction: row;
+        width: 18rem;
+        margin-bottom: 20px;
+    }
+
   }
   
   @media screen and (max-width: 500px) /* Mobile */ {
@@ -25,7 +134,7 @@ body{
     }
 
     .tagg-logo-big{
-        max-width: 500px;
+        max-width: 400px;
     }
 
     .sign-card{
@@ -35,9 +144,16 @@ body{
         color: #EAE6DA;
     }
 
-    .sign-card button{
+    .sign-card ul{
+        list-style: none;
         margin-top:10px;
     }
+
+    .sign-card li{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
 
     .login-card{
         margin-top: 40px;
@@ -121,7 +237,7 @@ body{
     }
 
     .game-container{
-        width: 18rem;
+        width: 22rem;
         margin-bottom: 20px;
         background-color: #21211F;
         color: #EAE6DA;
@@ -165,28 +281,41 @@ body{
         background-color: #21211F;
         color: #EAE6DA;
     }
+    .game-thumb img{
+        max-height: 420px;
+    }
 
     .game-thumb a{
         color: red;
     }
 
     .game-details{
-        margin: 20px;
         background-color: #21211F;
         color: #EAE6DA;
     }
 
     .game-details-footer{
+        margin: 10px;
         background-color: #21211F;
         color: #EAE6DA;
         align-content: center;
     }
 
+
+    .game-details-footer img{
+        max-height: 360px;
+    }
+
     .game-details-footer a{
         color:red
     }
-    .game-details-footer button{
+    .game-details-footer ul{
+        list-style: none;
+    }
+    .game-details-footer li{
         margin: 5px;
+        display: inline-block;
+        max-width: 80px;
     }
 
     .users-list{
@@ -194,6 +323,15 @@ body{
     }
     .users-list tr,td,th{
         color:#EAE6DA
+    }
+
+    .admin-modal .modal-content{
+        max-width: 375px;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+    .admin-modal input{
+       margin-bottom: 10px;
     }
 
     .metric-card{
@@ -204,11 +342,64 @@ body{
     }
 
     .chat-list{
-        height: 180px;
+        height: 110vh;
         width: 100%;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+    .contact{
+        list-style: none;
+    }
+    
+    .contact li{
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .chat-screen{
+        background-color: #21211F;
+        color: #EAE6DA;
     }
 
     .notify-screen{
         height: 100vh;
+        background-color: #21211F;
+        color: #EAE6DA;
     }
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #21211F;
+        background-color: #EAE6DA;
+        border-color: none;
+    }
+    
+    .nav-tabs {
+        border-bottom: none;
+    }
+    
+    .nav-tabs .nav-link{
+        color:#EAE6DA
+    }
+    .nav-tabs .nav-link:hover{
+        color:red
+    }
+
+    .update-request {
+        list-style: none;
+    }
+    .update-request li{
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .processing{
+        height: 100vh;
+        background-color:#EAE6DA;
+        color: #21211F;
+    }
+    .mailbox-fail{
+        height: 100vh;
+        background-color:#21211F;
+    }
+    
   }

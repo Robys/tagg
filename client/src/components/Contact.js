@@ -1,31 +1,44 @@
-import {FindUser,FindCurrent} from '../utils/utils'
-import {Image} from 'react-bootstrap'
+import { FindUser, FindCurrent } from "../utils/utils";
+import { Image } from "react-bootstrap";
 
-export default function Contact ({info,contact}){
-    var user = ''
-    const current = FindCurrent()
+export default function Contact({ info, contact }) {
+  var user = "";
+  const current = FindCurrent();
 
-    const setUser = () =>{
-        
-        if(current.id === info.receiver){
-            user = FindUser(info.from)
-        }
-        else{
-            user = FindUser(info.receiver)
-        }
-        console.log(info)
-
+  const setUser = () => {
+    if (current.id === info.receiver) {
+      user = FindUser(info.from);
+    } else {
+      user = FindUser(info.receiver);
     }
+    console.log(info);
+  };
 
-    return (
-        <div>
-            {setUser()}
-        {user!==null ? <Image rounded  src={user.picture} alt={user.firstName} 
-        onClick={e => {
-            e.preventDefault()
-            contact(info)
-        }}/> 
-        :""}
-        </div>
-    )
-} 
+  return (
+    <div>
+      {setUser()}
+      {user !== null ? (
+        <ul className="contact">
+          <li>
+            <Image
+              roundedCircle
+              src={user.picture}
+              alt={user.firstName}
+              style={{ height: "80px", width: "80px" }}
+              onClick={(e) => {
+                e.preventDefault();
+                contact(info);
+              }}
+            />
+          </li>
+
+          <li>
+            {user.firstName} {user.lastName}
+          </li>
+        </ul>
+      ) : (
+        ""
+      )}
+    </div>
+  );
+}

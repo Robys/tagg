@@ -12,9 +12,9 @@ export default function UpdateRequest (props){
     const current = FindCurrent()
 
         return (
-            <div>
+            <div className="update-request">
             {current.id === props.receiver
-             ?  <ul style={{listStyle:"none"}}>
+             ?  <ul className="update-request">
                 <li>
                 <Button variant="danger" disabled={props.accepted} onClick={e=>{
                 e.preventDefault()

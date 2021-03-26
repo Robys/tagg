@@ -23,11 +23,11 @@ export default function ChatScreen ({chatId,from,receiver}){
 
 
     return (
-        <Card>
+        <Card className="chat-screen">
             {user!== null 
             ?<Card.Header>{user.firstName} {user.lastName}</Card.Header> 
             : <Card.Header>Selecione um contato</Card.Header> }
-            <Card.Body style={{height:"378px"}}>
+            <Card.Body style={{height:"348px"}}>
                 <ScrollArea height="100%">
 
                     {data? Object.values(data).map(itens =>

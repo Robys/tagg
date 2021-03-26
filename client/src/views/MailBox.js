@@ -1,46 +1,30 @@
-import {useState} from 'react'
-import ChatScreen from '../components/ChatScreen'
-import Contact from '../components/Contact'
-import {FindCurrent,FindChat} from '../utils/utils'
-import {Card,Spinner} from 'react-bootstrap' 
-import TopBar from '../utils/TopBar'
+import ChatScreen from "../components/ChatScreen";
+import TopBar from "../utils/TopBar";
+import { Button, Jumbotron, Alert } from "react-bootstrap";
 
-export default function MailBox(){
-    const current = FindCurrent()
-    const {data,loading,error} = FindChat(current.id)
-    const [currentChat,setCurrentChat] = useState()
+export default function MailBox(props) {
+  return (
+    <div>
+      <TopBar />
 
-    const contact = (currentChat) => setCurrentChat(currentChat);
-    
-    console.log(data)
-    
-    return(
-        <div>
-            <TopBar/>
-            
-            <Card className="chat-list">
-                <Card.Header>contatos</Card.Header>
-                <Card.Body>
-                    {loading? <Spinner/> : ""}
-                    {error? <p>ops, não foi possível carregar os dados</p>:""}
-                    {data? Object.values(data).map(chats => 
-                        chats.map(chat => <Contact key={chat.id} info={chat} contact={contact}/> )) 
-                    :""}
+      {props.location.state !== undefined ? (
+        <>
+          <ChatScreen
+            chatId={props.location.state.chat.id}
+            from={props.location.state.chat.from}
+            receiver={props.location.state.chat.receiver}
+          />
+        </>
+      ) : (
+        <Jumbotron className="mailbox-fail">
+            <Alert variant="warning">
+                <Alert.Heading> Você precisa selecionar um contato! </Alert.Heading>
+                <p>Se estiver tendo problemas você pode nos contatar</p>
+              <Button href="/contacts" variant="outline-warning">Selecionar contato</Button>
+            </Alert>
 
-                </Card.Body>
-
-            </Card>
-
-           {currentChat!==undefined
-           ? <>
-            <ChatScreen chatId={currentChat.id} from={currentChat.from} receiver={currentChat.receiver}/>
-           </>
-            : <>
-            <ChatScreen/>
-           </>
-           }
-           
-         
-        </div>
-    )
+        </Jumbotron>
+      )}
+    </div>
+  );
 }
