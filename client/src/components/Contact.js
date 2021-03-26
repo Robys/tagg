@@ -33,7 +33,9 @@ export default function Contact({ info, contact }) {
           </li>
 
           <li>
-            {user.firstName} {user.lastName}
+           <p> 
+          {user.firstName} {user.lastName}
+          </p> 
           </li>
         </ul>
       ) : (

@@ -9,12 +9,11 @@ export default function NotifyToast (props){
     const [deleteNotify] = useMutation(DELETE_NOTIFY, { variables : {_id: props.item.id} })
 
     return(
-        <div style={{marginTop:"40px"}}>
-
-        <Toast key={props.item.id} show={props.enabled} onClose={e=>deleteNotify()}>
+        <Toast className="notify-toast"
+        key={props.item.id} show={props.enabled} onClose={e=>deleteNotify()}>
             <Toast.Header>
-                <Image src={sender.picture} alt={sender.firstName} 
-                style={{height:"20px",width:"20px", marginRight:"5px"}}/>
+                <Image 
+                roundedCircle src={sender.picture} alt={sender.firstName} />
                 de: 
                 <a href={`/profile/${sender.id}`}>
                 {sender.firstName} {sender.lastName}
@@ -23,7 +22,6 @@ export default function NotifyToast (props){
             <Toast.Body>{props.item.content}</Toast.Body>
         </Toast>
 
-        </div>
 
     )
 }

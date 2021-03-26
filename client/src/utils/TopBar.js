@@ -13,11 +13,6 @@ export default function TopBar() {
           <Nav>
             <NavLink href={`/dashboard`}>Home</NavLink>
             <Nav>
-              {user.roles === "ADMIN" || user.roles === "MENAGER" ? (
-                <NavLink href={`/tools/${user.id}`}>ADMIN</NavLink>
-              ) : (
-                ""
-              )}
 
               <NavLink href={`/requests`}>Pedidos</NavLink>
 
@@ -27,6 +22,11 @@ export default function TopBar() {
 
               <NavLink href={`/contacts`}>Contatos</NavLink>
 
+              {user.roles === "ADMIN" || user.roles === "MENAGER" ? (
+                <NavLink href={`/tools/${user.id}`}>ADMIN</NavLink>
+              ) : (
+                ""
+              )}
               <NavLink href={`/profile/${user.id}`}>{user.firstName}</NavLink>
 
               <Logout />

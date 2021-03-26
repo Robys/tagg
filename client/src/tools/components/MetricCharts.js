@@ -8,7 +8,7 @@ import {Tab,Col,Row,Nav} from 'react-bootstrap'
 export default function MetricCharts (){
 
     return (
-    <div>
+    <div className="metrics-charts">
         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
             <Row>
                 <Col sm={3}>

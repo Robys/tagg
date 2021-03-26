@@ -54,10 +54,22 @@ const Login = () => {
             <Form.Label>Senha</Form.Label>
             <Form.Control type="password" onChange={e=> SetPassword(e.target.value)}/>
 
+            <ul>
+                <li>
             <Button style={{marginRight:"10px"}}
             type="submit">
             Entrar
             </Button>
+                </li>
+                <li>
+                <Button href="http://localhost:4000/auth/facebook">
+                    Entrar com Facebook
+                    </Button>
+                </li>
+
+
+            </ul>
+
 
             {ready
             ? <Redirect to="/dashboard"/> 

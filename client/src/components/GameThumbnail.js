@@ -4,8 +4,10 @@ import {Card} from 'react-bootstrap'
 const GameThumbnail = (props) =>{
    
     return (
-      <div>
-          {props.games.map(game => 
+      <ul>
+          {props.games.map(game =>
+          <li key={game.id}>
+
             <Card className="game-thumb">
             <Card.Img src={game.cover.path} alt={game.title}/>
             <Card.Body>
@@ -14,11 +16,13 @@ const GameThumbnail = (props) =>{
             </Card.Body>
 
         </Card>
+
+          </li> 
             
             
             )}
 
-      </div>
+      </ul>
     )
 }
 

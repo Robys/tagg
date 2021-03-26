@@ -62,7 +62,7 @@ export default function Home(){
                         
                 </section>
                 <section className="faq">
-                    <h4>FAQ</h4>
+                    <h2>FAQ</h2>
 
                     <Accordion>
                     <Card>

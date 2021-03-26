@@ -4,6 +4,8 @@ body{
     font-size: medium;
     font-weight: lighter;
     font-style: normal;
+    background-color: #21211F;
+    color: #EAE6DA;
 }
   
   @media screen and (min-width: 980px) /* Desktop */ {
@@ -23,6 +25,8 @@ body{
         left: 240px;
         top: 20px;
         padding: 20px;
+        background-color: #EAE6DA;
+        color: #21211F;
     }
     .sign-card ul{
         list-style: none;
@@ -63,14 +67,34 @@ body{
         text-align: center;
         align-content: center;
     }
+
+    .login-card{
+        width: 26rem;
+        margin: 80px;
+        left: 25%;
+        padding: 20px;
+        background-color: #EAE6DA;
+        color: #21211F;
+    }
+
+    .login-card ul{
+        list-style: none;
+        margin-top:10px;
+    }
+
+    .login-card li{
+        display: inline-block;
+        margin-left: 10px;
+    }
+
     footer{
         position: absolute;
         top: 1400px;
         width: 100%;
         height:360px;
-        padding: 40px;
         background: #21211F;
         align-content: center;
+        padding: 40px;
         
     }
     .footer-logo-area img{
@@ -113,17 +137,228 @@ body{
         background-color: #EAE6DA;
     }
 
+    .dashboard ul{
+        list-style: none;
+        
+    }
+    
+    .dashboard li{
+        margin-top: 40px;
+       display: inline-block;
+    }
+
     .game-feed{
-        width: 100%;
+        width: 820px;
+        height: 120vh;
         background-color: #21211F;
         color: #EAE6DA;
     }
 
     .game-container{
         flex-direction: row;
-        width: 18rem;
+        height: 300px;
+        width: 620px;
+        margin-bottom: 20px;
+        background-color: #21211F;
+    }
+
+    .game-container img{
+        width: 240px;
+        height: 300px;
         margin-bottom: 20px;
     }
+    
+    .game-container-body{
+        width: 240px;
+    }
+    .notify-area{
+        width: 330px;
+        height: 120vh;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #21211F;
+        background-color: #EAE6DA;
+        border-color: none;
+    }
+
+    .profile{
+        float: left;
+        width: 16rem;
+        margin: 20px;
+        color: #21211F;
+        background-color: #EAE6DA;
+    }
+    .profile a{
+        color: red;
+    }
+
+    .add-game{
+        float: left;
+        margin: 20px;
+        width: 400px;
+
+    }
+
+    .add-game input{
+        margin-bottom: 10px;
+    }
+
+    .add-game button{
+        margin-top: 10px;
+    }
+
+    .collection{
+        float: left;
+        margin-top: 20px;
+        width: 540px;
+    }
+
+    .collection ul{
+        list-style: none;
+    }
+    .collection li{
+        display: inline-block;
+    }
+
+    .game-thumb{
+        width: 12rem;
+        margin: 5px;
+        color: #21211F;
+        background-color: #EAE6DA;
+    }
+    .game-thumb img{
+        height: 180px;
+    }
+
+    .game-details{
+        width: 90%;
+        height: 560px;
+        margin: 40px;
+        display: flex;
+        flex-direction: row;  
+        background-color: #21211F;
+        color: #EAE6DA;
+        font-size: smaller;
+    }
+    .game-details p{
+        font-size: 14px;
+    }
+    .game-details img{
+        width: 200px;
+        height: 280px; 
+    }
+
+    .game-details li{
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .game-details-footer{
+        background-color: #21211F;
+        color: #EAE6DA;
+        font-size: medium;
+        display: flex;
+        flex-direction: row;
+        margin-top: 100px;
+        font-size: smaller; 
+        
+    }
+
+    .game-details-footer img{
+        width: 100px;
+        height: 100px;
+    }
+    .game-details-footer button{
+        float: right;
+    }
+
+    .tool-tabs{
+        margin-top: 40px;
+    }
+    .users-list{
+        margin: 40px;
+    }
+    .users-list tr,td,th{
+        color:#EAE6DA
+    }
+    .metrics-charts{
+        margin-top: 40px;
+        color: #21211F;
+    }
+
+    .metric-card{
+        width: 640px;
+        height: 440px
+    }
+    .admin-modal .modal-content{
+        max-width: 375px;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+    .admin-modal input{
+        margin-bottom: 10px;
+    }
+
+    .notify-screen{
+        height: 100vh;
+        width: 90%;
+        margin: 20px;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+    .notify-toast{
+        margin: 40px 20px;
+        width: 250px;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+    .notify-toast img{
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+    }
+
+    .chat-ballom{
+        width:640px;
+        margin: 20px;
+        background-color: #EAE6DA;
+        color: #21211F;
+    }
+
+    .chat-screen{
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+        .chat-list{
+        height: 110vh;
+        width: 100%;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+
+    .contact{
+        list-style: none;
+    }
+    
+    .contact li{
+        margin: 10px;
+        float: left;
+    }
+
+    .contact p{
+        margin-top: 15px;
+    }
+
+    .chat-screen{
+        background-color: #21211F;
+    }
+
 
   }
   
@@ -154,7 +389,6 @@ body{
         margin-left: 10px;
     }
 
-
     .login-card{
         margin-top: 40px;
         width: 100%;
@@ -173,8 +407,12 @@ body{
         color: #EAE6DA;
     }
 
-    .home h4{
-        margin-left: 40px;
+    .content{
+        text-align: center;
+        color: #EAE6DA;
+    }
+    .faq{
+        text-align: center;
         color: #EAE6DA;
     }
 
@@ -228,6 +466,7 @@ body{
 
     .dashboard{
         width: 100%;
+        list-style: none;
     }
 
     .game-feed{
@@ -271,9 +510,18 @@ body{
     }
 
     .collection{
+        list-style: none;
         margin-top: 20px;
         margin: 20px;
         color: #EAE6DA;
+    }
+
+    .collection ul{
+        list-style: none;
+    }
+
+    .collection li{
+        display: inline;
     }
 
     .game-thumb{
@@ -361,11 +609,26 @@ body{
         background-color: #21211F;
         color: #EAE6DA;
     }
+    .notify-area{
+        display: none;
+    }
 
     .notify-screen{
         height: 100vh;
         background-color: #21211F;
         color: #EAE6DA;
+    }
+
+    
+    .notify-toast{
+        margin: 40px;
+        background-color: #21211F;
+        color: #EAE6DA;
+    }
+    .notify-toast img{
+        width: 60px;
+        height: 60px;
+        margin: 5px;
     }
     .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
         color: #21211F;
@@ -400,6 +663,13 @@ body{
     .mailbox-fail{
         height: 100vh;
         background-color:#21211F;
+    }
+
+    .chat-ballom{
+        width:320px;
+        margin: 20px;
+        background-color: #EAE6DA;
+        color: #21211F;
     }
     
   }
