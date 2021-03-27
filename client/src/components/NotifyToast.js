@@ -5,7 +5,7 @@ import {FindUser} from '../utils/utils'
 
 export default function NotifyToast (props){
     const sender = FindUser(props.item.from)
-    const [updateNotify] = useMutation(UPDATE_NOTIFY, { variables : {_id: props.item.id} })
+   // const [updateNotify] = useMutation(UPDATE_NOTIFY, { variables : {_id: props.item.id} })
     const [deleteNotify] = useMutation(DELETE_NOTIFY, { variables : {_id: props.item.id} })
 
     return(

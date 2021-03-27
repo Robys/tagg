@@ -18,8 +18,6 @@ export default function TopBar() {
 
               <NavLink href={`/notifications`}>Notificações</NavLink>
 
-              <NavLink href={`/mailbox`}>Mensagens</NavLink>
-
               <NavLink href={`/contacts`}>Contatos</NavLink>
 
               {user.roles === "ADMIN" || user.roles === "MENAGER" ? (

@@ -84,7 +84,6 @@ export default function RequestMiniCard (info){
                         <div>
                             <p>pertence a: <a href={`/profile/${myProfile.id}`}> {myProfile.firstName} {myProfile.lastName} </a></p>
                             <p> {myProfile.email}</p>
-                            <a href="#">ir para detalhes</a>
                         </div>
                     
                         :""}

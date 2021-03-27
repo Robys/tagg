@@ -16,7 +16,7 @@ import {ExportUserPDF} from '../components/ExportPDF'
 
 export default function UserTable(props){
     const [error,SetError] = useState()
-    const [ready,SetReady] = useState(false)
+    //const [ready,SetReady] = useState(false)
     const [deleteUser] = useMutation(DELETE_USER)
     const [createNotify] = useMutation(CREATE_NOTIFY)
     const [currentPage,setCurrentPage] = useState(1);
@@ -51,7 +51,7 @@ export default function UserTable(props){
                 })
             }  
         }).then(({ data }) => {
-            SetReady(true)
+            console.log(data)
           })
           .catch(error => {
             SetError(error)

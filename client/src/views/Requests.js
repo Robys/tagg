@@ -11,7 +11,7 @@ export default function Requests (){
     const getData = () => {
         
             if(reqs.length > 0){
-            return reqs.map(itens => <RequestMiniCard info={itens} key={itens} /> )
+            return reqs.map(itens => <RequestMiniCard info={itens} key={itens.id} /> )
     
             }
 

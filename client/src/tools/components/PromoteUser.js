@@ -6,12 +6,12 @@ import {Form} from 'react-bootstrap'
 export default function PromoteUser ({_id}){
     const [PromoteUser] = useMutation(PROMOTE_USER)
     const [error,SetError] = useState()
-    const [ready,SetReady] = useState(false)
+    //const [ready,SetReady] = useState(false)
 
     const setNewRole = (e,role)=>{
         e.preventDefault()
         PromoteUser({variables: {_id:_id, roles:role}}).then(({ data }) => {
-            SetReady(true)
+            console.log(data)
           })
           .catch(error => {
             SetError(error)

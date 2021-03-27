@@ -11,7 +11,7 @@ from 'react-bootstrap'
 
 export default function GamesList(){
     const [keyword,SetKeyword] = useState()
-    const [results, SetResults] = useState()
+    //const [results, SetResults] = useState()
     const {data,loading,error} = useQuery(GET_GAMES)
 
     const searchUser = keyword =>{
