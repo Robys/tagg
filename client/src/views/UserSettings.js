@@ -1,8 +1,7 @@
 import {FindCurrent} from '../utils/utils'
+import {Redirect} from 'react-router-dom'
 import {useState} from 'react'
-import {useMutation} from '@apollo/react-hooks'
-import {UPDATE_USER} from '../api/mutations'
-import {Card,Form,Button,Col,Row,Spinner,Alert} from 'react-bootstrap'
+import {Card,Form,Button,Col,Row} from 'react-bootstrap'
 import TopBar from '../utils/TopBar'
 
 export default function UserSettings(){
@@ -13,9 +12,10 @@ export default function UserSettings(){
     const [picture,SetPhoto] = useState()
     const [location,SetLocation] = useState()
     const [password,SetPassword] = useState()
-    const current = FindCurrent()
 
-    const [UpdateUser,{data,loading,error}] = useMutation(UPDATE_USER, { variables: {_id: current.id ,firstName,lastName,email,picture,location,password} })
+    const [ready,SetReady] = useState(false)
+
+    const current = FindCurrent()
 
     const convertFile = e =>{
         const file = e.target.files[0]
@@ -48,7 +48,7 @@ export default function UserSettings(){
                 <Form  style={{padding:"20px"}}
                 onSubmit={e =>{
                     e.preventDefault()
-                    UpdateUser();
+                    SetReady(true)
                     
                 }}>
                     <h2>Atualizar Perfil</h2>
@@ -68,10 +68,8 @@ export default function UserSettings(){
 
                 <Form.Label>Você se mudou?</Form.Label>
                 <Form.Control type="text" onChange={e=> SetLocation(e.target.value)} placeholder={current.location}/>
-                
-                {loading
-                ? <Spinner/> 
-                : <Button type="submit">Enviar</Button> }
+
+                <Button type="submit">Enviar</Button> 
 
                 </Form>
 
@@ -98,19 +96,11 @@ export default function UserSettings(){
                 </Card>
 
             </Card.Body>
+            {ready? <Redirect to={{
+                pathname:"/processuser",
+                state: {firstName,lastName,email,picture,location,password}
 
-            {data
-                ? <Alert variant="success" show={show} onClose={() => setShow(false)} dismissible>
-                    Alteração realizada com sucesso!
-                </Alert>
-                :" "}
-
-                {error
-                ? <Alert variant="danger" show={show} onClose={() => setShow(false)} dismissible>
-                Operação não realizada
-                {JSON.stringify(error.message)}
-                </Alert>
-                : "" }
+            }}/> : ""}
 
             </Card>
 

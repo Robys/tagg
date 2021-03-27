@@ -15,7 +15,7 @@ export default function MyNotifications(){
                     <div style={{height:"548px"}}>
                 <ScrollArea height="100%">
                 {data?
-                data.notifies.map(item => <NotifyToast item={item} enabled={!item.accepted}/> )  
+                data.notifies.map(item => <NotifyToast key={item.id} item={item} enabled={!item.accepted}/> )  
                 : <p>você não possui mensagens</p>}
                 </ScrollArea>
                     </div>
@@ -24,7 +24,7 @@ export default function MyNotifications(){
                     <div style={{height:"548px"}}>
                 <ScrollArea height="100%">
                 {data?
-                 data.notifies.map(item => <NotifyToast item={item} enabled={item.accepted}/> )
+                 data.notifies.map(item => <NotifyToast key={item.id} item={item} enabled={item.accepted}/> )
                 :  <p>você não possui mensagens</p>}
                 </ScrollArea>
                     </div>

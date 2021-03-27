@@ -403,7 +403,7 @@ const resolvers = {
         },
 
         deleteGame : async (parent, {_id}, context) => {
-            return await deleteGame(_id);
+            return await games.findByIdAndDelete(_id);
         },
 
         updateGame: async (parent, {_id,title,publisher,platform,status,value,description,cover}, context)=>{

@@ -13,7 +13,6 @@ export default function DeleteGame(props){
     const ConfirmDelete = e =>{
         e.preventDefault()
         deleteGame().then(res => setData(res))
-        console.log(data)
     }
     
     return(
