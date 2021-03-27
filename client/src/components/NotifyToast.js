@@ -5,7 +5,7 @@ import {FindUser} from '../utils/utils'
 
 export default function NotifyToast (props){
     const sender = FindUser(props.item.from)
-   // const [updateNotify] = useMutation(UPDATE_NOTIFY, { variables : {_id: props.item.id} })
+    const [updateNotify] = useMutation(UPDATE_NOTIFY, { variables : {_id: props.item.id} })
     const [deleteNotify] = useMutation(DELETE_NOTIFY, { variables : {_id: props.item.id} })
 
     return(
@@ -19,7 +19,12 @@ export default function NotifyToast (props){
                 {sender.firstName} {sender.lastName}
                 </a>
                 </Toast.Header> 
-            <Toast.Body>{props.item.content}</Toast.Body>
+            <Toast.Body>
+                <p>
+                {props.item.content}
+                </p>
+            <a href="/dashboard" onClick={e=>updateNotify()}>marcar como lida</a>
+            </Toast.Body>
         </Toast>
 
 

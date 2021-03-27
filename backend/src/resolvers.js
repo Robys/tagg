@@ -478,13 +478,7 @@ const resolvers = {
         },
     /* CRIA E EXCLUI A SALA DE CHAT COM OUTRO USUÀRIO */
         createChat : async (parent, {from,receiver}, context) =>{
-            const chat = Chat.create({
-                from,
-                receiver
-            })
-
-            return await chat
-
+            return await Chat.create({from,receiver}) 
         },
         deleteChat: async (parent, {_id}, context) =>{
             return await Chat.findByIdAndRemove(_id)

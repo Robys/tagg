@@ -1,7 +1,7 @@
 import {FindNotifies} from '../utils/utils'
 import NotifyToast from './NotifyToast'
 import {Spinner,Card,Tabs,Tab,Container} from 'react-bootstrap'
-
+import ScrollArea from '@xico2k/react-scroll-area';
 export default function MyNotifications(){
     const {data,loading,error}  = FindNotifies()
 
@@ -12,14 +12,22 @@ export default function MyNotifications(){
             <Card.Body>
             <Tabs defaultActiveKey="new">
                 <Tab eventKey="new" title="Novos">
+                    <div style={{height:"548px"}}>
+                <ScrollArea height="100%">
                 {data?
                 data.notifies.map(item => <NotifyToast item={item} enabled={!item.accepted}/> )  
                 : <p>você não possui mensagens</p>}
+                </ScrollArea>
+                    </div>
                 </Tab>
-                <Tab eventKey="readed" title="Lidos">
+                <Tab eventKey="readed" title="Lidos" >
+                    <div style={{height:"548px"}}>
+                <ScrollArea height="100%">
                 {data?
                  data.notifies.map(item => <NotifyToast item={item} enabled={item.accepted}/> )
                 :  <p>você não possui mensagens</p>}
+                </ScrollArea>
+                    </div>
                 </Tab>
             </Tabs>
 

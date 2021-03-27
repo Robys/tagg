@@ -16,7 +16,6 @@ export default function CreateChat(props) {
       receiver = props.from;
     }
 
-    setTimeout(() => {
       CreateChat({ variables: { from: current.id, receiver } })
         .then(({ data }) => {
           console.log(data);
@@ -24,7 +23,7 @@ export default function CreateChat(props) {
         .catch((error) => {
           console.log(error);
         });
-    }, 5000);
+
   };
   return (
     <div>

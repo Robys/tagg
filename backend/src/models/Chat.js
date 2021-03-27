@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 const ChatSchema = mongoose.Schema({
-    from:mongoose.Types.ObjectId,
-    receiver:mongoose.Types.ObjectId,
+    from:String,
+    receiver:String,
     
 })
 

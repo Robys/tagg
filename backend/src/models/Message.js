@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 
 const MessageSchema = mongoose.Schema({
-    from:mongoose.Types.ObjectId,
-    receiver:mongoose.Types.ObjectId,
-    chatId: mongoose.Types.ObjectId,
+    from:String,
+    receiver:String,
+    chatId: String,
     content: String,
     createAt:String
     
