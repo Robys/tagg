@@ -62,7 +62,6 @@ export const ADD_GAME = gql` mutation AddGame($owner:String,$title:String!,$publ
 export const UPDATE_GAME = gql` mutation UpdateGame($_id:ID,$title:String,$publisher:String,$platform:String,$status:String,$value:String,$description:String,$cover:Upload){
     updateGame(_id:$_id,title:$title,publisher:$publisher,platform:$platform,status:$status,value:$value,description:$description,cover:$cover){
         id
-        title
     }
 }`
 

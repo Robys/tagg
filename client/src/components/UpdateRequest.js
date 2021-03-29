@@ -1,13 +1,13 @@
 
 import {useMutation} from '@apollo/react-hooks'
-import {UPDATE_REQUEST} from '../api/mutations'
+import {UPDATE_REQUEST,CREATE_NOTIFY} from '../api/mutations'
 import CreateChat from './CreateChat'
 import {Button,Spinner} from 'react-bootstrap'
 import {FindCurrent} from '../utils/utils'
 
 export default function UpdateRequest (props){
-    
     const [updateRequest,{loading,error}] = useMutation(UPDATE_REQUEST)
+    const [createNotify] = useMutation(CREATE_NOTIFY)
 
     const current = FindCurrent()
 
@@ -19,6 +19,14 @@ export default function UpdateRequest (props){
                 <Button variant="danger" disabled={props.accepted} onClick={e=>{
                 e.preventDefault()
                 updateRequest({variables: {_id:props.id,accepted:false, from:props.from, receiver:props.receiver } } )
+                const content = `Infelizmente você possui uma troca negada :(`
+                createNotify({
+                    variables: 
+                    {_id:current.id,
+                        receiver:props.from,
+                        content:content,
+                        accepted:false}
+                })
                 }}>
                     {loading? <Spinner/> : "negar"}
                 </Button>
@@ -27,6 +35,14 @@ export default function UpdateRequest (props){
                 <Button variant="success" disabled={props.accepted} onClick={e=>{
                 e.preventDefault()
                 updateRequest({variables: {_id:props.id,accepted:true, from:props.from, receiver:props.receiver }  })
+                const content = `Você possui uma troca aceita!`
+                createNotify({
+                    variables: 
+                    {_id:current.id,
+                        receiver:props.from,
+                        content:content,
+                        accepted:false}
+                })
                 }}>
                     {loading? <Spinner/> : "aceitar"}
                 </Button>
@@ -39,6 +55,9 @@ export default function UpdateRequest (props){
              {error? <p>Error. </p>: ""}
 
              {error? <p>Error. </p>: ""}
+
+             {props.status === false ? "caso tenha negado a troca, ainda é possivel aceita-lá depois caso mude de idéia"
+             : "você aceitou esta troca"}
             </div>
             
     

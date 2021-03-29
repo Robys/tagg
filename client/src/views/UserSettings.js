@@ -5,7 +5,7 @@ import {Card,Form,Button,Col,Row} from 'react-bootstrap'
 import TopBar from '../utils/TopBar'
 
 export default function UserSettings(){
-    const [show, setShow] = useState(true);
+   // const [show, setShow] = useState(true);
     const [firstName,SetFirstName] = useState()
     const [lastName,SetLastName] = useState()
     const [email,SetEmail] = useState()
@@ -45,12 +45,7 @@ export default function UserSettings(){
             : "" }
 
             <Card.Body>
-                <Form  style={{padding:"20px"}}
-                onSubmit={e =>{
-                    e.preventDefault()
-                    SetReady(true)
-                    
-                }}>
+                <Form  style={{padding:"20px"}}>
                     <h2>Atualizar Perfil</h2>
                 <Row>
                     <Col>
@@ -69,8 +64,6 @@ export default function UserSettings(){
                 <Form.Label>Você se mudou?</Form.Label>
                 <Form.Control type="text" onChange={e=> SetLocation(e.target.value)} placeholder={current.location}/>
 
-                <Button type="submit">Enviar</Button> 
-
                 </Form>
 
                 <Card  bg="dark">
@@ -87,7 +80,10 @@ export default function UserSettings(){
                     <Form.Control type="password" onChange={e=> SetPassword(e.target.value)}/>
                     </Col>
                     <Col>
-                    <Button variant="danger" type="submit">Alterar senha</Button>
+                    <Button onClick={e=>{
+                        e.preventDefault()
+                        SetReady(true)
+                    }}>Enviar</Button> 
                     </Col>
                 </Row>
                 

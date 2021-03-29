@@ -27,10 +27,10 @@ export default function TopBar() {
               )}
               <NavLink href={`/profile/${user.id}`}>{user.firstName}</NavLink>
 
-              <Logout />
             </Nav>
           </Nav>
         </Navbar.Collapse>
+              <Logout />
       </Container>
     </Navbar>
   );

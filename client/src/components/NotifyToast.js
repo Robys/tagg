@@ -10,7 +10,7 @@ export default function NotifyToast (props){
 
     return(
         <Toast className="notify-toast"
-        key={props.item.id} show={props.enabled} onClose={e=>deleteNotify()}>
+        key={props.item.id} show={props.enabled} onClose={()=>deleteNotify()}>
             <Toast.Header>
                 <Image 
                 roundedCircle src={sender.picture} alt={sender.firstName} />
@@ -23,7 +23,9 @@ export default function NotifyToast (props){
                 <p>
                 {props.item.content}
                 </p>
-            <a href="/dashboard" onClick={e=>updateNotify()}>marcar como lida</a>
+                {props.item.accepted===false?
+                <a href="/dashboard" onClick={()=>updateNotify()}>marcar como lida</a>
+                :""}
             </Toast.Body>
         </Toast>
 

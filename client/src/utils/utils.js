@@ -6,7 +6,9 @@ import {GET_GAME,
     MY_NOTIFIES,
     ALL_REQUESTS,
     CHAT} from '../api/queries'
-import {useQuery} from '@apollo/react-hooks'
+
+import {CREATE_NOTIFY} from '../api/mutations'   
+import {useQuery,useMutation} from '@apollo/react-hooks'
 
 
 export const publishers = [
@@ -97,6 +99,16 @@ export function FindRequests(_id){
 export function FindChat(_id){
     const {data,loading,error} = useQuery(CHAT,{variables: {_id} })
     return {data,loading,error}
+}
+
+export function NotifyUserRequest({receiver,content}){
+    const _id = FindCurrent().id
+    const [createNotify] = useMutation(CREATE_NOTIFY)
+    createNotify({
+        variables: {_id,receiver,content,accepted:false}
+    })
+
+    console.log("chegou aqui")
 }
 
 

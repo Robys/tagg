@@ -137,8 +137,14 @@ body{
         background-color: #EAE6DA;
     }
 
+    .logout-button{
+       position: absolute;
+       margin-left: 900px;
+    }
+
     .dashboard ul{
         list-style: none;
+        margin-left: 720px;
         
     }
     
@@ -193,6 +199,10 @@ body{
     }
     .profile a{
         color: red;
+    }
+
+    .profile img{
+        height: 280px;
     }
 
     .add-game{

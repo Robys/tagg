@@ -7,7 +7,8 @@ export const Logout = () =>{
 
     return(
 
-        <Button variant="danger" href="/" onClick={e=>{
+        <Button variant="danger" className="logout-button"
+        href="/" onClick={e=>{
         logout()}}> Sair </Button>
 
     )

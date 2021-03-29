@@ -56,7 +56,16 @@ const resolvers = {
         },
         /* retorna notificações/recados recebidos pelo usuário */
         notifies: async (parent, {_id}, context) =>{
-            return await Notify.find({receiver:_id})
+            return await Notify.find({$or:[{madeBy: _id},{receiver:_id}]}, function(err, chat) 
+            {
+               if (err)
+               {
+                   return err
+               }
+               
+               return chat
+           
+            });
         },
         /* todas as requisições */
         allRequests: async (parent,args, context) =>{
@@ -240,8 +249,6 @@ const resolvers = {
          }
     },
  
-
-
     Mutation:{
         /* Criação de conta */
         signup: async (parent, {firstName,lastName,email,picture,location,password}, context) =>{
@@ -363,11 +370,14 @@ const resolvers = {
         },
         /* CRIAR e DELETAR NOTIFICAÇÔES/RECADOS */
         createNotify: async (parent, {_id,receiver,content,accepted}, context)=>{
-            const from = _id
             const published = DateFormat()
-            const notify = await Notify.create({from,receiver,content,published,accepted})
+            const notify = await Notify.create({from:_id,receiver,content,published,accepted})
             pubSub.publish(NOTIFY_ADDED, { notifyAdded: notify  });
             return notify
+
+        },
+        updateNotify: async (parent, {_id}, context) =>{
+            return Notify.findByIdAndUpdate(_id,{accepted:true})
 
         },
         deleteNotify: async (parent, {_id}, context) =>{
@@ -435,7 +445,7 @@ const resolvers = {
                 const newfile = {filename:title, path: upfile.secure_url}
                 game.cover = newfile
             }
-
+            
             game.save()
             return game
         },
@@ -443,17 +453,8 @@ const resolvers = {
         /* CRIA, ATUALIZA E EXCLUI PEDIDO/REQUISIÇÂO DE TROCA */
         createRequest: async (parent, {_id,selected,required},context) =>{
             const madeBy = _id
-
-            const gameRequested = games.findById(required)
-            const receiver = gameRequested.owner
-            
-            const content = `Você tem um novo pedido de troca para ${gameRequested.title} !` 
             const published = DateFormat()
-
             const newReq = await Request.create({madeBy,selected,required,createdAt:published,accepted:false})
-            const notify = await Notify.create({from:_id,receiver,content,published,accepted:false})
-            pubSub.publish(NOTIFY_ADDED, { notifyAdded: notify  });
-            
             return await newReq
         },
 
@@ -468,13 +469,7 @@ const resolvers = {
         }
         request.accepted = accepted;
         request.save()
-        const required = games.findById(request.required)
-        const selected = games.findById(request.selected)
-        const published = DateFormat()
-        const content = `Existe uma atualização sobre a troca entre ${required.title} e ${selected.title}`
-
-        const notify = await Notify.create({from,receiver,content,published,accepted})
-        pubSub.publish(NOTIFY_ADDED, { notifyAdded: notify  });
+        return request
         },
     /* CRIA E EXCLUI A SALA DE CHAT COM OUTRO USUÀRIO */
         createChat : async (parent, {from,receiver}, context) =>{

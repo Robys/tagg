@@ -20,7 +20,7 @@ export default function GameDetails(props) {
   if (array[0] === undefined) {
     disableRequest = false;
   }
-  console.log(game.cover);
+
   return (
     <div>
       <TopBar />
@@ -40,6 +40,9 @@ export default function GameDetails(props) {
             <Card.Text>{game.status}</Card.Text>
             <Card.Text>{game.location}</Card.Text>
             <Card.Text>R$ {game.value}</Card.Text>
+            {disableRequest
+            ? <a href={`/gameSettings/${game.id}`}>Editar Jogo</a>
+            : "" }
           </Card.Header>
 
           <Card.Header>Descrição</Card.Header>
@@ -63,10 +66,10 @@ export default function GameDetails(props) {
                     <Button
                       as="button"
                       variant="danger"
-                      disabled={!disableRequest}
-                      href={`/deleteGame/${game.id}`}
-                    >
-                    Excluir
+                      disabled={!disableRequest} >
+                      <a href={`/deleteGame/${game.id}`}>
+                      Excluir
+                      </a>
                     </Button>
                   </li>
 

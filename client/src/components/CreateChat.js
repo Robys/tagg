@@ -1,13 +1,15 @@
-import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { FindCurrent } from "../utils/utils";
 import { useMutation } from "@apollo/react-hooks";
-import { CREATE_CHAT } from "../api/mutations";
+import { CREATE_CHAT, CREATE_NOTIFY} from "../api/mutations";
 
 export default function CreateChat(props) {
   let receiver = ''
   const [CreateChat] = useMutation(CREATE_CHAT);
+  const [createNotify] = useMutation(CREATE_NOTIFY)
   const current = FindCurrent();
+
+  const content = `${current.firstName} ${current.lastName} te adicionou aos contatos`
 
   const StartChat = () => {
     if (current.id === props.from) {
@@ -24,6 +26,14 @@ export default function CreateChat(props) {
           console.log(error);
         });
 
+        createNotify({
+          variables: 
+          {_id:current.id,
+              receiver:receiver,
+              content:content,
+              accepted:false}
+      })
+
   };
   return (
     <div>
@@ -31,6 +41,7 @@ export default function CreateChat(props) {
         onClick={(e) => {
           e.preventDefault();
           StartChat();
+          
         }}
       >
         Adicionar contato

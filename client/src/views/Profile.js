@@ -11,7 +11,7 @@ import TopBar from '../utils/TopBar'
 export default function Profile (props){
     const data = FindUser(props.match.params.id)
     const current = FindCurrent()
-    console.log(data)
+    
     return(
         <div>
 

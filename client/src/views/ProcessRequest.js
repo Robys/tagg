@@ -2,7 +2,7 @@ import {useEffect,useState} from 'react'
 import {FindCurrent} from '../utils/utils'
 import {Button, Jumbotron,Spinner} from 'react-bootstrap'
 import {useMutation} from '@apollo/react-hooks'
-import {CREATE_REQUEST} from '../api/mutations'
+import {CREATE_REQUEST,CREATE_NOTIFY} from '../api/mutations'
 
 import TopBar from '../utils/TopBar'
 
@@ -13,11 +13,25 @@ export default function ProcessRequest(props){
     const [CreateRequest, {loading,error}] = useMutation(CREATE_REQUEST,
         {variables:{selected:selected,required:required,_id:current.id}})
     const [data,setData] = useState()
+    const [createNotify] = useMutation(CREATE_NOTIFY)
+    
+
+    const content = `você possui um pedido de troca para ${props.location.state.required.title}`
+    
 
     useEffect(()=>{
-    CreateRequest().then(res => setData(res))
-
-    },[CreateRequest])
+    CreateRequest().then(res => {
+        setData(res)
+    })
+    createNotify({
+        variables: 
+        {_id:current.id,
+            receiver:props.location.state.required.owner,
+            content:content,
+            accepted:false}
+    })
+    
+    },[CreateRequest,createNotify,content,current,props])
     
 
     return(
@@ -31,7 +45,10 @@ export default function ProcessRequest(props){
 
                 {error? <p>{JSON.stringify(error)}</p>: ""}
                 {loading? <Spinner/>: ""}
-                {data? <Button href="/dashboard">Voltar ao início</Button>: ""}
+                {data? <div>
+                    <Button href="/dashboard">Voltar ao início</Button>
+                </div> 
+                : ""}
 
             </Jumbotron>
         
