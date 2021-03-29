@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fetch games 1`] = `
+Object {
+  "data": Object {
+    "games": Array [
+      Object {
+        "id": "605f6d417d1c8c19247d8375",
+        "owner": "605f6cf77d1c8c19247d8374",
+        "title": "mad max",
+      },
+      Object {
+        "id": "605f6d737d1c8c19247d8376",
+        "owner": "605f6cf77d1c8c19247d8374",
+        "title": "the surge",
+      },
+      Object {
+        "id": "605f6dd07d1c8c19247d8377",
+        "owner": "605f6611158ad72fc051ac03",
+        "title": "Resident Evil 7",
+      },
+      Object {
+        "id": "605f6dfd7d1c8c19247d8378",
+        "owner": "605f6611158ad72fc051ac03",
+        "title": "Doom",
+      },
+      Object {
+        "id": "6061db9430a2231bd02ffcde",
+        "owner": "6061dadf30a2231bd02ffcdd",
+        "title": "Star Wars Battlefront",
+      },
+      Object {
+        "id": "606203a311cec524f423a781",
+        "owner": "606202ce11cec524f423a780",
+        "title": "Front Mission",
+      },
+      Object {
+        "id": "606203e411cec524f423a782",
+        "owner": "605f6611158ad72fc051ac03",
+        "title": "Mega Man 2",
+      },
+    ],
+  },
+}
+`;
