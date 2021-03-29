@@ -41,7 +41,7 @@ export default function GameDetails(props) {
             <Card.Text>{game.location}</Card.Text>
             <Card.Text>R$ {game.value}</Card.Text>
             {disableRequest
-            ? <a href={`/gameSettings/${game.id}`}>Editar Jogo</a>
+            ? <Button href={`/gameSettings/${game.id}`}>Editar Jogo</Button>
             : "" }
           </Card.Header>
 
