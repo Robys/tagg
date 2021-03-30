@@ -5,7 +5,7 @@ import {useState} from 'react'
 import {LOGIN} from '../api/mutations'
 import {CURRENT_USER} from '../api/queries'
 import {Form,Button,Card,Alert} from 'react-bootstrap'
-import Footer from '../utils/Footer'
+//import Footer from '../utils/Footer'
 
 const Login = () => {
 
@@ -37,16 +37,7 @@ const Login = () => {
             </Alert> 
             : ""}
 
-            <Form 
-            onSubmit={e =>{
-                e.preventDefault()
-                login({ variables: {email,password} }).then(({ data }) => {
-                    SetReady(true)
-                  })
-                  .catch(error => {
-                    SetError(error)
-                  })
-            } }>
+            <Form>
             <h2>Login</h2>
             
             <Form.Label>Email</Form.Label>
@@ -56,8 +47,17 @@ const Login = () => {
 
             <ul>
                 <li>
-            <Button style={{marginRight:"10px"}}
-            type="submit">
+            <Button style={{marginRight:"10px"}} 
+            data-testid="login" 
+            onClick={e =>{
+                e.preventDefault()
+                login({ variables: {email,password} }).then(({ data }) => {
+                    SetReady(true)
+                  })
+                  .catch(error => {
+                    SetError(error)
+                  })
+            } }>
             Entrar
             </Button>
                 </li>
@@ -78,7 +78,7 @@ const Login = () => {
             </Form>
 
         </Card>
-            <Footer/>
+         
         </div>
     )
     

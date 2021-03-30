@@ -1,6 +1,6 @@
 /** importando dependencias **/
 import React from 'react'
-import {waitFor,render,getByTestId} from '@testing-library/react' 
+import {waitFor,render} from '@testing-library/react' 
 import {MockedProvider} from '@apollo/react-testing'
 import '@testing-library/jest-dom/extend-expect';
 import {GetUserTest,GET_USER} from './GetUserTest'
