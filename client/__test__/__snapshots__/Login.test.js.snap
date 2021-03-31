@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`mutation should call with the button pressed 1`] = `
+exports[`login mutation should call with the button pressed 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

@@ -111,16 +111,13 @@ export default function UserTable(props){
                             <Dropdown.Menu>
 
                             <Dropdown.Item><PromoteUser _id={user.id}/></Dropdown.Item>
-                            {error? error.graphQLErrors.map(({ message }, i) => (
-                                    <p style={{color:"red"}} key={i}>{message}</p>
-                                    ) )
-
-                                : ""}
-                            <Dropdown.Item as="button" onClick={e => onDeleteButton(user.id) }> Deletar </Dropdown.Item>
+                            <Dropdown.Item as="button" onClick={e => {
+                                onDeleteButton(user.id) 
+                                }}> Excluir Usuário </Dropdown.Item>
                             <Dropdown.Item as="button" onClick={e =>{
                                 setReceiver(user.id)
                                 setShow(true) 
-                                }} > Notificar </Dropdown.Item> 
+                                }} > Notificar Usuário </Dropdown.Item> 
 
                             </Dropdown.Menu>
                         </Dropdown>
@@ -135,6 +132,10 @@ export default function UserTable(props){
                 </tbody>
                 
                 </Table>
+
+                {error? error.graphQLErrors.map(({ message }, i) => (
+                        <p style={{color:"red"}} key={i}>{message}</p>) )
+                        : ""}
 
                 <Button onClick={e => {
                     e.preventDefault()

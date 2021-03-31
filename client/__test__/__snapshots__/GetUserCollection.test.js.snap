@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`get users games / user collection 1`] = `
+<div
+  data-testid="ndata"
+>
+  [[{"id":"605f6d417d1c8c19247d8375","title":"mad max","owner":"605f6cf77d1c8c19247d8374","location":"São Paulo","status":"Usado","value":"","publisher":"Other","platform":"PC","description":"procuro jogo de luta ou  aventura","cover":{"filename":"mad max","path":"https://res.cloudinary.com/dahwijw8w/image/upload/v1616866624/robert_crud_test/iyqagjhp0mcjxhvycyjg.jpg"}},{"id":"605f6d737d1c8c19247d8376","title":"the surge","owner":"605f6cf77d1c8c19247d8374","location":"São Paulo","status":"Usado","value":"40","publisher":"Other","platform":"Playstation","description":"troco ou vendo","cover":{"filename":"the surge","path":"https://res.cloudinary.com/dahwijw8w/image/upload/v1616866674/robert_crud_test/hltz1qvtbm75bhaoknh0.jpg"}}]]
+</div>
+`;

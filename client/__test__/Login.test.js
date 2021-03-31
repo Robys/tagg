@@ -1,13 +1,16 @@
 /** importando dependencias **/
 import React from 'react'
-import {waitFor,render,fireEvent} from '@testing-library/react' 
+import {waitFor,render,fireEvent,screen} from '@testing-library/react' 
 import {MockedProvider} from '@apollo/react-testing'
 import '@testing-library/jest-dom/extend-expect';
 import {LOGIN} from '../src/api/mutations'
 import {useMutation} from "@apollo/react-hooks"
 
+//email e senha para simular um login
 const info = {email:"william@emil.com",password:"456456"}
 
+//o mock é criado como parâmetro 
+//do que deve ser a resposta esperada
 const mock = [{
     request:{
         query:LOGIN,
@@ -40,16 +43,22 @@ const LoginComp = ({email,password}) =>{
   )
 }
 
-    test('mutation should call with the button pressed',async ()=>{
+//este teste simula um usuário preenchendo os campos de login
+// e precionando o botão para acessar
+
+test('login mutation should call with the button pressed',async ()=>{
       const container = render(
         <MockedProvider mocks={mock} addTypename={false}>
           <LoginComp email={info.email} password={info.password}/>
         </MockedProvider>)
+
           await waitFor(() => new Promise((res) => setTimeout(res, 0)));
           const btn = await container.findByTestId('login')
           fireEvent.click(btn)
           await waitFor(() => new Promise((res) => setTimeout(res, 0)));
-         expect(container).toMatchSnapshot();
+          //const ndata = await screen.queryByTestId('ndata')
+          expect(screen.queryByTestId('ndata')).toBeInTheDocument()
+          expect(container).toMatchSnapshot();
     })
 
 

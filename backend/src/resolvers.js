@@ -252,9 +252,8 @@ const resolvers = {
     Mutation:{
         /* Criação de conta */
         signup: async (parent, {firstName,lastName,email,picture,location,password}, context) =>{
-          //  const users = context.User.getUsers();
-         //   const user = users.find(user => user.email === email)
-          //  if(user){throw new Error('email already used')}
+           const user = users.find({email});
+            if(user){throw new Error('email already used')}
 
           if(password.lenght <= 5){
               throw new Error('a senha deve conter mais de 6 digitos')
@@ -358,15 +357,13 @@ const resolvers = {
             return user
         },
         /* Deletar conta - SOMENTE PARA GERENTE E USUÁRIO */
-        deleteUser: (parent, {_id}, context)=>{
-            const currentUser = context.getUser()
-            if(currentUser === null || currentUser.roles !== 'MENAGER' || currentUser.roles !== 'USER' ){
-                throw new Error ('você precisa do nível de gerente')
-            }
-            else{
+        deleteUser: async (parent, {_id}, context)=>{
+            const currentUser = await context.getUser()
+           // console.log(currentUser.roles)
+            if(currentUser.roles == 'MENAGER' || currentUser.roles == 'USER' ){
                 return deleteUser(_id)
-
             }
+            throw Error('você precisa ter o nível de gerente para esta ação')
         },
         /* CRIAR e DELETAR NOTIFICAÇÔES/RECADOS */
         createNotify: async (parent, {_id,receiver,content,accepted}, context)=>{
