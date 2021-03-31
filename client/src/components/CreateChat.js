@@ -1,3 +1,11 @@
+/** IMPORTANTE **/
+/**
+ * Para melhor compreenção, os chats passaram a ser chamados de contatos
+ * quando se adiona um usuário aos contatos na verdade
+ * se está criando uma "sala de chat" isolada, que só pode 
+ * ser vista pelos dois usuários com id gravados nela.
+ **/
+
 import { Button } from "react-bootstrap";
 import { FindCurrent } from "../utils/utils";
 import { useMutation } from "@apollo/react-hooks";

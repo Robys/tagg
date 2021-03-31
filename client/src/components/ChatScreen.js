@@ -7,7 +7,7 @@ import {MESSAGES} from '../api/queries'
 import ScrollArea from '@xico2k/react-scroll-area';
 
 export default function ChatScreen ({chatId,from,receiver}){
-    const {data,loading,error} = useQuery(MESSAGES, {variables: {_id:chatId} })
+    const {data} = useQuery(MESSAGES, {variables: {_id:chatId} })
     
     const current = FindCurrent()
     var user = ''

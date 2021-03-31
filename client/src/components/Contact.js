@@ -1,3 +1,9 @@
+/** IMPORTANTE
+ * 
+ * Os contatos nada mais são que os chats no lado do servidor!
+ * 
+ * **/
+
 import { FindUser, FindCurrent } from "../utils/utils";
 import { Image } from "react-bootstrap";
 

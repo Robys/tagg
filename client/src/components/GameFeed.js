@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import GameSub from './GameSub'
 import GameFeedContainer from './GameFeedContainer'
 import {InputGroup,FormControl,Button, Card, Media} from 'react-bootstrap'
 import ScrollArea from '@xico2k/react-scroll-area';
@@ -42,6 +43,7 @@ export default function GameFeed(){
                 
             <Card.Body style={{height:"548px"}}>
             <ScrollArea height="100%">
+                <GameSub/>
 
                 {result
                 ?<div>

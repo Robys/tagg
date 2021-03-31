@@ -15,11 +15,14 @@ export default function GameDetails(props) {
   const current = FindCurrent();
   const collection = FindCollection(current.id);
   const array = Object.values(collection);
-
-  var disableRequest = current.id === owner.id;
-  if (array[0] === undefined) {
-    disableRequest = false;
+  let disableRequest = true 
+  if(owner){
+    disableRequest = current.id === owner.id;
+    if (array[0] === undefined) {
+      disableRequest = false;
+    }
   }
+
 
   return (
     <div>
