@@ -1,164 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`testing login mutation mutation should call with the button pressed 1`] = `
+exports[`mutation should call with the button pressed 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div>
-        <div
-          class="login-card card"
+        <button
+          data-testid="login"
         >
-          <div
-            class="fade alert alert-danger alert-dismissible show"
-            role="alert"
-          >
-            <button
-              class="close"
-              type="button"
-            >
-              <span
-                aria-hidden="true"
-              >
-                ×
-              </span>
-              <span
-                class="sr-only"
-              >
-                Close alert
-              </span>
-            </button>
-            <div
-              class="alert-heading h4"
-            >
-              Aviso
-            </div>
-          </div>
-          <form
-            class=""
-          >
-            <h2>
-              Login
-            </h2>
-            <label
-              class="form-label"
-            >
-              Email
-            </label>
-            <input
-              class="form-control"
-            />
-            <label
-              class="form-label"
-            >
-              Senha
-            </label>
-            <input
-              class="form-control"
-              type="password"
-            />
-            <ul>
-              <li>
-                <button
-                  class="btn btn-primary"
-                  data-testid="login"
-                  style="margin-right: 10px;"
-                  type="button"
-                >
-                  Entrar
-                </button>
-              </li>
-              <li>
-                <a
-                  class="btn btn-primary"
-                  href="http://localhost:4000/auth/facebook"
-                >
-                  Entrar com Facebook
-                </a>
-              </li>
-            </ul>
-            
-          </form>
-        </div>
+          Login
+        </button>
+        
+        
+        <p
+          data-testid="ndata"
+        >
+          {"login":{"user":{"id":"605f6cf77d1c8c19247d8374","firstName":"William"}}}
+        </p>
       </div>
     </div>
   </body>,
   "container": <div>
     <div>
-      <div
-        class="login-card card"
+      <button
+        data-testid="login"
       >
-        <div
-          class="fade alert alert-danger alert-dismissible show"
-          role="alert"
-        >
-          <button
-            class="close"
-            type="button"
-          >
-            <span
-              aria-hidden="true"
-            >
-              ×
-            </span>
-            <span
-              class="sr-only"
-            >
-              Close alert
-            </span>
-          </button>
-          <div
-            class="alert-heading h4"
-          >
-            Aviso
-          </div>
-        </div>
-        <form
-          class=""
-        >
-          <h2>
-            Login
-          </h2>
-          <label
-            class="form-label"
-          >
-            Email
-          </label>
-          <input
-            class="form-control"
-          />
-          <label
-            class="form-label"
-          >
-            Senha
-          </label>
-          <input
-            class="form-control"
-            type="password"
-          />
-          <ul>
-            <li>
-              <button
-                class="btn btn-primary"
-                data-testid="login"
-                style="margin-right: 10px;"
-                type="button"
-              >
-                Entrar
-              </button>
-            </li>
-            <li>
-              <a
-                class="btn btn-primary"
-                href="http://localhost:4000/auth/facebook"
-              >
-                Entrar com Facebook
-              </a>
-            </li>
-          </ul>
-          
-        </form>
-      </div>
+        Login
+      </button>
+      
+      
+      <p
+        data-testid="ndata"
+      >
+        {"login":{"user":{"id":"605f6cf77d1c8c19247d8374","firstName":"William"}}}
+      </p>
     </div>
   </div>,
   "debug": [Function],
