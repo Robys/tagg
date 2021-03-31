@@ -85,15 +85,19 @@ export function FindNotifies(){
 export function FindRequests(_id){
     const {data} = useQuery(ALL_REQUESTS)
     var response = ''
-    const coll = FindCollection(_id)
-    Object.values(coll).map(res => res.map(game => {
-        response =  data.allRequests.filter(item => game.id === item.required || item.selected )
+    if(data){
+        const coll = FindCollection(_id)
+                Object.values(coll).map(res =>
+                    res.map(game => {
+                    response =  data.allRequests.filter(item => game.id === item.required || item.selected )
+        
+                }) ) 
+        return  response
+    }
+    else{
+        return undefined
+    }
 
-    } ) )
-
-    return  response
-    
-    
 }
 
 export function FindChat(_id){

@@ -3,7 +3,7 @@ import React from 'react'
 import {MockedProvider} from '@apollo/react-testing'
 import {waitFor,render,screen} from '@testing-library/react' 
 import '@testing-library/jest-dom/extend-expect';
-import {FindCollection} from '../src/utils/utils' // <- função de extrema importância
+import Collection from '../src/components/Collection'
 import {GET_COLECTION} from '../src/api/queries'
 
 /** id de usuário para a pesquisa */
@@ -53,25 +53,13 @@ const mock = [{
   }]
 
 
-/** este componente é uma versão simplificada */
-/* ndata = new data */
-const GetUserCollectionComp = (props)=>{
-    const array = FindCollection(props.userId)
-    
-    return (
-        <div data-testid="ndata">
-          {array ? JSON.stringify(array) :""}
-        </div>
-    )
-}
-
-/* este teste consiste em certificar 
-que a coleção seja requisitada e tenha algum retorno e seu formato */
+/* este teste consiste em verificar 
+se a coleção seja requisitada e tenha seja mostrada na tela */
 test('get users games / user collection',async ()=>{
 
     const container = render(
         <MockedProvider mocks={mock} addTypename={false}>
-            <GetUserCollectionComp userId={userId}/>
+            <Collection user={userId}/>
         </MockedProvider>
     )
     await waitFor(() => new Promise((res) => setTimeout(res, 0)));

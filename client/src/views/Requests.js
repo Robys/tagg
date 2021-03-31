@@ -1,3 +1,4 @@
+import React from 'react'
 import {FindCurrent,FindRequests} from '../utils/utils'
 import RequestMiniCard from '../components/RequestMiniCard'
 import {Jumbotron} from 'react-bootstrap'
@@ -27,7 +28,11 @@ export default function Requests (){
 return(
     <div>
          <TopBar/>
-        {getData()}
+        {reqs!==undefined? getData() 
+        : <Jumbotron>
+            <h2>Que pena, você ainda não possui nenhuma troca em andamento...</h2>
+            <p>mas não se preoculpe, retorne e comece agora! </p>
+        </Jumbotron>}
 
     </div>
 
