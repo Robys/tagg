@@ -1,3 +1,7 @@
+/**
+ * Tela onde os usuários podem conversar
+ */
+
 import ChatScreen from "../components/ChatScreen";
 import TopBar from "../utils/TopBar";
 import { Button, Jumbotron, Alert } from "react-bootstrap";

@@ -11,6 +11,9 @@ export default function Contact({ info, contact }) {
   var user = "";
   const current = FindCurrent();
 
+  /** verifica quem é o usuário, se ele quem fez o pedido
+   * ou se ele que está recebendo, isso evita de ver a si mesmo
+   * como um contato **/
   const setUser = () => {
     if (current.id === info.receiver) {
       user = FindUser(info.from);

@@ -1,3 +1,6 @@
+/**
+ * Tela de perfíl do usuário
+ * **/
 
 import React from 'react'
 import {Card} from 'react-bootstrap'

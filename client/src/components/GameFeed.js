@@ -1,3 +1,9 @@
+/**
+ * Este componente é a área onde ficam dispostos todos os jogos
+ * cadastrados. Possui também uma barra de pesquisa.
+ * 
+ */
+
 import {useState} from 'react'
 import GameSub from './GameSub'
 import GameFeedContainer from './GameFeedContainer'
@@ -10,6 +16,9 @@ export default function GameFeed(){
     const [keyword,setKeyWord] = useState()
     const [result,setResult] = useState()
 
+    /** Esta mini função tenta organizar os
+     * jogos por ordem de criação, do mais novo
+     * para o mais velho**/
     const SortArray = array => {
         const sortProperty = 'createdAt';
         const sorted = Object.values(array).sort((a,b)=>b[sortProperty] - a[sortProperty])

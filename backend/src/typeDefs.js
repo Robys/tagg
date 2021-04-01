@@ -67,7 +67,7 @@ type AuthPayload{
     user:User
 }
 
-type Chat{
+type Contact{
     id:ID!
     from: String
     receiver: String
@@ -102,7 +102,7 @@ type Query{
     game(_id:ID):Game
     notifies(_id:ID):[Notify]
     allRequests:[Request]
-    chats(_id:ID): [Chat]
+    contacts(_id:ID): [Contact]
     messages (_id:ID): [Message]
     metrics(keyword:String):[Metrics]
 }
@@ -128,8 +128,8 @@ type Mutation{
     deleteRequest (_id:ID) : Request
     updateRequest (_id:ID,from:String,receiver:String,accepted:Boolean) : Request
 
-    createChat (from:String, receiver:String) : Chat
-    deleteChat (_id:ID):Chat
+    createContact (from:String, receiver:String) : Contact
+    deleteContact (_id:ID):Contact
 
     createMessage (chatId:ID!,from:String,receiver:String,content:String): Message
     deleteMessage (_id:ID!): Message

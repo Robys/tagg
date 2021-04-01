@@ -1,3 +1,7 @@
+/**
+ * Notificação (recado de canto de tela) 
+ */
+
 import {useMutation} from '@apollo/react-hooks'
 import {UPDATE_NOTIFY,DELETE_NOTIFY} from '../api/mutations'
 import {Toast,Image} from 'react-bootstrap'

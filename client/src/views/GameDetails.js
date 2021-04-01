@@ -1,3 +1,11 @@
+/**
+ * Tela de Detalhes dos jogos, nela também é possível
+ * propor uma troca (se possuir jogos na coleção) 
+ * e acesso a edição das informações do anuncio
+ * **/
+
+
+
 import { Button, Card, Dropdown, DropdownButton, Image } from "react-bootstrap";
 import DelayLink from "react-delay-link";
 //import generic from '../imgs/generic.png'

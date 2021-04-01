@@ -1,3 +1,9 @@
+/**
+ * tela de processamento (loading) de alterações que foram
+ * feitas na tela de edição do usuário 
+ * **/
+
+
 import {useEffect,useState} from 'react'
 import {FindCurrent} from '../utils/utils'
 import {Button, Jumbotron,Spinner} from 'react-bootstrap'

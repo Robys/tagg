@@ -1,3 +1,7 @@
+/**
+ * Balão (cartão) contendo a mensagem que foi enviada
+ * **/
+
 import {Card,Image} from 'react-bootstrap'
 import {FindUser} from '../utils/utils'
 

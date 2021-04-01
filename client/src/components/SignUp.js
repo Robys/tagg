@@ -1,3 +1,7 @@
+/**
+ * Cadastro de novo usuário. 
+ * **/
+
 import React from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {Redirect,Link} from 'react-router-dom'
@@ -19,6 +23,8 @@ const  SignUp = ()=>{
     const [location,SetLocation] = useState()
     const [signup] = useMutation(SIGNUP)
 
+    /** funcão que converte o arquivo selecionado
+     * para base64 **/
     const convertFile = e =>{
         const file = e.target.files[0]
         const reader = new FileReader()

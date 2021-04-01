@@ -1,3 +1,10 @@
+/**
+ * tela de processamento (loading) dos pedidos de troca.
+ * Aqui o usuário espera enquanto as informações
+ * são gravadas.
+ * **/
+
+
 import {useEffect,useState} from 'react'
 import {FindCurrent} from '../utils/utils'
 import {Button, Jumbotron,Spinner} from 'react-bootstrap'

@@ -1,3 +1,10 @@
+/**
+ * 
+ * Tela para edição das informações do jogo.
+ * esta também da acesso a tela de processamento da alteração
+ */
+
+
 import {FindGame} from '../utils/utils'
 import {Redirect} from 'react-router-dom'
 import {useState} from 'react'

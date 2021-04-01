@@ -1,3 +1,10 @@
+/**
+ * Barra no topo da tela, contém o menu
+ * de navegação, ela também omite 
+ * opições que não podem ser acessadas pelos
+ * usuários comuns
+ * **/
+
 import React from 'react'
 import { FindCurrent } from "./utils";
 import { Navbar, Container, Nav, NavLink } from "react-bootstrap";

@@ -4,7 +4,7 @@ const {getGames,deleteGame,addGame, games} = require('./models/Game')
 const {findById,getUsers,addUser,deleteUser,users} = require('./models/User')
 const Notify = require('./models/Notify')
 const Request = require('./models/Request')
-const Chat = require('./models/Chat')
+const Contact = require('./models/Contact')
 const Message = require('./models/Message')
 
 const bcrypt = require('bcrypt')
@@ -73,8 +73,8 @@ const resolvers = {
             
         },
         /* todas as salas de chat */
-        chats: (parent,{_id},context) => {
-            return Chat.find({$or:[{from: _id},{receiver:_id}]}, function(err, chat) 
+        contacts: (parent,{_id},context) => {
+            return Contact.find({$or:[{from: _id},{receiver:_id}]}, function(err, chat) 
             {
                if (err)
                {
@@ -469,15 +469,15 @@ const resolvers = {
         return request
         },
     /* CRIA E EXCLUI A SALA DE CHAT COM OUTRO USUÀRIO */
-        createChat : async (parent, {from,receiver}, context) =>{
-            return await Chat.create({from,receiver}) 
+        createContact : async (parent, {from,receiver}, context) =>{
+            return await Contact.create({from,receiver}) 
         },
-        deleteChat: async (parent, {_id}, context) =>{
-            return await Chat.findByIdAndRemove(_id)
+        deleteContact: async (parent, {_id}, context) =>{
+            return await Contact.findByIdAndRemove(_id)
         },
         /* CRIA E ENVIA MENSAGEM A OUTRO USUÁRIO - NECESSARIO QUE EXISTA UM CHAT  */
         createMessage: async (parent, {chatId,from,receiver,content}, context) =>{
-            const conversation = await Chat.findById(chatId)
+            const conversation = await Contact.findById(chatId)
 
             if(!conversation)
             {

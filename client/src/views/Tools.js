@@ -1,3 +1,11 @@
+/**
+ * IMPORTANTE
+ * 
+ * esta tela só é apresentada para ADM E MENAGER (GERENTE)
+ * 
+ * dispões as listas e gráficos com métricas da aplicação
+ * **/
+
 import React from 'react'
 import {Tabs,Tab} from 'react-bootstrap'
 import {useQuery} from '@apollo/react-hooks'

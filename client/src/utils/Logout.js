@@ -1,3 +1,7 @@
+/**
+ * Botão de LOGOUT, permite que usuário saia da aplicação.
+ * **/
+
 import React from 'react'
 import { useMutation } from '@apollo/react-hooks'
 import {Button} from 'react-bootstrap'

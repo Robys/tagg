@@ -1,6 +1,6 @@
 import {Redirect} from 'react-router-dom'
 import {Card,Spinner} from 'react-bootstrap'
-import {FindCurrent,FindChat} from '../utils/utils'
+import {FindCurrent,FindContact} from '../utils/utils'
 import Contact from '../components/Contact'
 import ScrollArea from '@xico2k/react-scroll-area';
 import {useState} from 'react'
@@ -8,8 +8,8 @@ import TopBar from '../utils/TopBar'
 
 export default function Contacts (){
     const current = FindCurrent()
-    const {data,loading,error} = FindChat(current.id)
-    const [currentChat,setCurrentChat] = useState()
+    const {data,loading,error} = FindContact(current.id)
+    const [currentChat,setCurrentChat] = useState() // <- seleciona o chat com as mensagens que serão exibidas na próxima tela
 
     const contact = (currentChat) => setCurrentChat(currentChat);
     

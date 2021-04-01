@@ -1,3 +1,11 @@
+/**
+ * IMPORTANTE
+ * 
+ * opição disponível somente para gerentes (MENAGER)
+ * 
+ * **/
+
+
 import {useState} from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {PROMOTE_USER} from '../../api/mutations'

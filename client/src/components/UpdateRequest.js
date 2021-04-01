@@ -1,7 +1,10 @@
-
+/**
+ * Função responsável por atualizar a requisição de troca
+ * Também apresenta a possibilidade de adicionar outro usuário aos contatos
+ * **/
 import {useMutation} from '@apollo/react-hooks'
 import {UPDATE_REQUEST,CREATE_NOTIFY} from '../api/mutations'
-import CreateChat from './CreateChat'
+import AddContact from './AddContact'
 import {Button,Spinner} from 'react-bootstrap'
 import {FindCurrent} from '../utils/utils'
 
@@ -47,10 +50,10 @@ export default function UpdateRequest (props){
                     {loading? <Spinner/> : "aceitar"}
                 </Button>
                 </li>
-                {props.status ?<li> <CreateChat from={props.from} receiver={props.receiver} madeby={props.madeBy} />  </li> : "" }
+                {props.status ?<li> <AddContact from={props.from} receiver={props.receiver} madeby={props.madeBy} />  </li> : "" }
                 </ul>
         
-             : <CreateChat from={props.from} receiver={props.receiver} required={props.madeBy} madeby={props.madeBy} />}
+             : <AddContact from={props.from} receiver={props.receiver} required={props.madeBy} madeby={props.madeBy} />}
 
              {error? <p>Error. </p>: ""}
 

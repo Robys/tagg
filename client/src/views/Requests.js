@@ -1,3 +1,8 @@
+/**
+ * Este Script é responsável por mostrar em tela todos
+ * os pedidos de troca que envolvem o usuário.
+ * **/
+
 import React from 'react'
 import {FindCurrent,FindRequests} from '../utils/utils'
 import RequestMiniCard from '../components/RequestMiniCard'
@@ -28,7 +33,7 @@ export default function Requests (){
 return(
     <div>
          <TopBar/>
-        {reqs!== undefined ? getData() 
+        {reqs ? getData() 
         : <Jumbotron>
             <h2>Que pena, você ainda não possui nenhuma troca em andamento...</h2>
             <p>mas não se preoculpe, retorne e comece agora! </p>

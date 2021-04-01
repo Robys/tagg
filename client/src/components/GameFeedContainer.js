@@ -1,3 +1,7 @@
+/**
+ * Carão de anuncio dos jogos, presente na tela inicial
+ */
+
 import {Card, Button} from 'react-bootstrap'
 
 export default function GameFeedContainer(props){

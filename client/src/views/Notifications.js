@@ -1,3 +1,7 @@
+/**
+ * tela com todas as notificações
+ */
+
 import { FindNotifies } from "../utils/utils";
 import NotifyToast from "../components/NotifyToast";
 import TopBar from "../utils/TopBar";

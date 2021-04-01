@@ -1,3 +1,9 @@
+/**
+ * Este arquivo possuem funções 
+ * que são constantemente repetidas no decorrer
+ * da aplicação.
+ **/
+
 import {GET_GAME,
     GET_USER,
     GET_COLECTION,
@@ -5,7 +11,7 @@ import {GET_GAME,
     GET_GAMES,
     MY_NOTIFIES,
     ALL_REQUESTS,
-    CHAT} from '../api/queries'
+    CONTACTS} from '../api/queries'
 
 import {CREATE_NOTIFY} from '../api/mutations'   
 import {useQuery,useMutation} from '@apollo/react-hooks'
@@ -82,10 +88,13 @@ export function FindNotifies(){
     
 }
 
+/** Alteraçoes nesta função foram feitas após testes, 
+ * já esta funcão passou no teste porém quebra a aplicação 
+ * durante o uso normal
+ * **/
 export function FindRequests(_id){
     const {data} = useQuery(ALL_REQUESTS)
     var response = ''
-    if(data){
         const coll = FindCollection(_id)
                 Object.values(coll).map(res =>
                     res.map(game => {
@@ -93,15 +102,11 @@ export function FindRequests(_id){
         
                 }) ) 
         return  response
-    }
-    else{
-        return undefined
-    }
 
 }
 
-export function FindChat(_id){
-    const {data,loading,error} = useQuery(CHAT,{variables: {_id} })
+export function FindContact(_id){
+    const {data,loading,error} = useQuery(CONTACTS,{variables: {_id} })
     return {data,loading,error}
 }
 

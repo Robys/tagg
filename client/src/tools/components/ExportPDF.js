@@ -1,3 +1,7 @@
+/**
+ * Função para exportar arquivos em PDF
+ * **/
+
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 

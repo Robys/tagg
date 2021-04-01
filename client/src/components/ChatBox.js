@@ -1,3 +1,7 @@
+/**
+ * Caixa onde o usuário insere a mensagem a ser enviada
+ * **/
+
 import {useState} from 'react'
 import {Card,Form,Button} from 'react-bootstrap'
 import {useMutation} from '@apollo/react-hooks'

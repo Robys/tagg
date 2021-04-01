@@ -1,3 +1,7 @@
+/**
+ * Tela de edição das informações do usuário
+ * **/
+
 import {FindCurrent} from '../utils/utils'
 import {Redirect} from 'react-router-dom'
 import {useState} from 'react'

@@ -1,3 +1,8 @@
+/**
+ * Filtros podem ser utilizados nas pequisas ou
+ * e na organização de alguns componentes
+ * **/
+
 import {compareTwoStrings} from 'string-similarity'
 
 export const filterUser = (data,keyword) =>{

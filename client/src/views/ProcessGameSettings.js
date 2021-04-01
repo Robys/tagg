@@ -1,3 +1,8 @@
+/**
+ * tela de processamento (loading) de alterações que foram
+ * feitas na tela de edição dos jogos 
+ * **/
+
 import {useEffect,useState} from 'react'
 import {Button, Jumbotron,Spinner} from 'react-bootstrap'
 import {useMutation} from '@apollo/react-hooks'

@@ -1,3 +1,8 @@
+/**
+ * Esta tela é mostrada quando o usuário pretende 
+ * exluir permanentemente seu jogo da coleção.
+ * **/
+
 import {useState} from 'react'
 import {Button, Jumbotron,Spinner} from 'react-bootstrap'
 import {FindGame} from '../utils/utils'

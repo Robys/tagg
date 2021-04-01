@@ -1,3 +1,9 @@
+/**
+ * Componente responsável por organizar informações 
+ * do pedido de troca na tela.
+ * ATENÇÃO - Script confuso
+ * 
+ */
 import {FindGame,FindUser,FindCurrent} from '../utils/utils'
 import UpdateRequest from './UpdateRequest'
 import {Card} from 'react-bootstrap'
@@ -9,14 +15,18 @@ export default function RequestMiniCard (info){
    })
 
    const current = FindCurrent()
-   
-   let personProfile = []
-   let myProfile = []
+
+   /** ATENÇÂO **/ 
+   let personProfile = [] // <- perfíl de outro usuário
+   let myProfile = []  // <- perfíl de quem está utilizando
    let show = false
    
-   const requiredGame = FindGame(res[0].required)
-   const SelectedGame = FindGame(res[0].selected)
+   const requiredGame = FindGame(res[0].required) // <- jogo requisitado na troca
+   const SelectedGame = FindGame(res[0].selected) // <- jogo escolhido para fazer a troca com o jogo acima
 
+   /** este if tenta garantir que os serão ou não mostrados em
+    * tela e assim não quebrar a aplicação por falta 
+    * de usuários **/
    if(requiredGame && SelectedGame){
         personProfile = FindUser(requiredGame.owner)
         myProfile = FindUser(SelectedGame.owner)

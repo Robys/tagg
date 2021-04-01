@@ -1,3 +1,10 @@
+/**
+ * Site de apresentação da aplicação
+ * após efetuar o login o usuário é
+ * redirecionado a Dashboard, 
+ * a tela inicial da aplicação
+ * **/
+
 import React from 'react'
 import SignUp from '../components/SignUp'
 import Footer from '../utils/Footer'

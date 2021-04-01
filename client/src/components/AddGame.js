@@ -1,3 +1,9 @@
+/**
+ * Componente responsável por adicionar os games 
+ * na coleção do usuário.
+ * **/
+
+
 import React from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {useState} from 'react'
@@ -15,6 +21,8 @@ const AddGame = (props) => {
     const [description,SetDesc] = useState()
     const [addGame] = useMutation(ADD_GAME)
 
+    /** mini função que converte aquivos
+     * para base64 **/
     const convertFile = e =>{
         const file = e.target.files[0]
         const reader = new FileReader()

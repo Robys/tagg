@@ -1,19 +1,16 @@
-/** IMPORTANTE **/
 /**
- * Para melhor compreenção, os chats passaram a ser chamados de contatos
- * quando se adiona um usuário aos contatos na verdade
- * se está criando uma "sala de chat" isolada, que só pode 
- * ser vista pelos dois usuários com id gravados nela.
- **/
+ * Script responsável por adicionar contatos
+ * tornando possível a conversação entre usuários
+ * **/
 
 import { Button } from "react-bootstrap";
 import { FindCurrent } from "../utils/utils";
 import { useMutation } from "@apollo/react-hooks";
-import { CREATE_CHAT, CREATE_NOTIFY} from "../api/mutations";
+import { CREATE_CONTACT, CREATE_NOTIFY} from "../api/mutations";
 
-export default function CreateChat(props) {
+export default function AddContact(props) {
   let receiver = ''
-  const [CreateChat] = useMutation(CREATE_CHAT);
+  const [CreateContact] = useMutation(CREATE_CONTACT);
   const [createNotify] = useMutation(CREATE_NOTIFY)
   const current = FindCurrent();
 
@@ -26,7 +23,7 @@ export default function CreateChat(props) {
       receiver = props.from;
     }
 
-      CreateChat({ variables: { from: current.id, receiver } })
+      CreateContact({ variables: { from: current.id, receiver } })
         .then(({ data }) => {
           console.log(data);
         })

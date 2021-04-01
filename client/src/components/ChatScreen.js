@@ -1,3 +1,10 @@
+/**
+ * Tela de Chat, este componente separa quem é
+ * o emissor e o receptor das mensagens, e 
+ * também organiza as mensagens.
+ * **/
+
+
 import {Card} from 'react-bootstrap'
 import ChatBox from './ChatBox'
 import ChatBallon from './ChatBallon'
@@ -12,6 +19,7 @@ export default function ChatScreen ({chatId,from,receiver}){
     const current = FindCurrent()
     var user = ''
     
+    //verifica quem é quem na conversa
     if(current.id === receiver){
         user = FindUser(from)
        

@@ -1,3 +1,8 @@
+/**
+ * Area posicionada ao canto da tela de perfíl, contém todos os 
+ * jogos adicionados pelo jogador.
+ * **/
+
 import React from 'react'
 import GameThumbnail from './GameThumbnail'
 import ScrollArea from '@xico2k/react-scroll-area';

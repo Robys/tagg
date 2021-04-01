@@ -1,3 +1,7 @@
+/***
+ * Componente para paginação.
+*/
+
 import {Pagination} from 'react-bootstrap'
 
 export default function Paginate({postPerPage,totalPosts,paginate}){

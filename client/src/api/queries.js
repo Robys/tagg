@@ -137,8 +137,8 @@ export const REQUESTS = gql `query Requests{
     
 }`
 
-export const CHAT = gql` query Chats($_id:ID){
-   chats(_id:$_id){
+export const CONTACTS = gql` query Contacts($_id:ID){
+   contacts(_id:$_id){
     id
     receiver
     from

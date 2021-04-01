@@ -1,3 +1,8 @@
+/**
+ * Componente responsável por organizar as notificações (caso existam)
+ * e mostra-las no canto da tela
+ * **/
+
 import {FindNotifies} from '../utils/utils'
 import NotifyToast from './NotifyToast'
 import {Spinner,Card,Tabs,Tab,Container} from 'react-bootstrap'

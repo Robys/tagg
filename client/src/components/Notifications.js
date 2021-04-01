@@ -1,3 +1,9 @@
+/**
+ * Script chamado quando existe 
+ * uma nova notificação adicionada 
+ * (retirado do projeto por enquanto)
+ */
+
 import {useState} from 'react'
 import {useSubscription} from '@apollo/react-hooks'
 import {NOTIFY_ADDED} from '../api/subscriptions'

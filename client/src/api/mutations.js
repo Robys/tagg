@@ -106,8 +106,8 @@ export const UPDATE_REQUEST = gql` mutation UpdateRequest($_id:ID,$accepted:Bool
     }
 }`
 
-export const CREATE_CHAT = gql` mutation CreateChat($from:String,$receiver:String){
-    createChat(from:$from, receiver:$receiver){
+export const CREATE_CONTACT = gql` mutation CreateContact($from:String,$receiver:String){
+    createContact(from:$from, receiver:$receiver){
         id
         from
         receiver

@@ -1,3 +1,7 @@
+/**
+ * Cartão com informações do jogo (presente na tela de perfil)
+ * **/
+
 import React from 'react'
 import {Card} from 'react-bootstrap'
 
