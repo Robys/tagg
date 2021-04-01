@@ -37,7 +37,7 @@ const AddGame = (props) => {
         <div className="add-game">
             <h3>Adicionar Game</h3>
             <Form onSubmit={e => {
-                e.preventDefault() 
+               
             addGame({
                 variables: {
                     owner:props.current,

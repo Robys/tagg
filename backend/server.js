@@ -120,4 +120,4 @@ httpServer.listen(PORT, () => {
     console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`)
   })
 
- // module.exports = httpServer
+  module.exports = httpServer

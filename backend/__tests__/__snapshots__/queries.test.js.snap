@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`fetch a game 1`] = `
+Object {
+  "data": Object {
+    "game": null,
+  },
+}
+`;
+
 exports[`fetch games 1`] = `
 Object {
   "data": Object {
@@ -38,6 +46,90 @@ Object {
         "id": "606203e411cec524f423a782",
         "owner": "605f6611158ad72fc051ac03",
         "title": "Mega Man 2",
+      },
+    ],
+  },
+}
+`;
+
+exports[`fetch notifies 1`] = `
+Object {
+  "data": Object {
+    "notifies": Array [
+      Object {
+        "content": "Olá William, seja bem vindo!",
+        "from": "605f6611158ad72fc051ac03",
+        "id": "605f6e9f7d1c8c19247d837b",
+      },
+      Object {
+        "content": "você possui um pedido de troca para the surge",
+        "from": "6061dadf30a2231bd02ffcdd",
+        "id": "6062019911cec524f423a77f",
+      },
+      Object {
+        "content": "Robert Oliveira te adicionou aos contatos",
+        "from": "605f6611158ad72fc051ac03",
+        "id": "60620cdbe0c0d32930c57ed1",
+      },
+      Object {
+        "content": "Penelope Ferreira te adicionou aos contatos",
+        "from": "6061dadf30a2231bd02ffcdd",
+        "id": "606211c9e0c0d32930c57edb",
+      },
+    ],
+  },
+}
+`;
+
+exports[`fetch requests 1`] = `
+Object {
+  "data": Object {
+    "allRequests": Array [
+      Object {
+        "accepted": false,
+        "createdAt": "2021-03-27",
+        "id": "605f6e4e7d1c8c19247d8379",
+        "madeBy": "605f6611158ad72fc051ac03",
+        "required": "605f6d417d1c8c19247d8375",
+        "selected": "605f6dd07d1c8c19247d8377",
+      },
+      Object {
+        "accepted": false,
+        "createdAt": "2021-03-29",
+        "id": "6062019911cec524f423a77e",
+        "madeBy": "6061dadf30a2231bd02ffcdd",
+        "required": "605f6d737d1c8c19247d8376",
+        "selected": "6061db9430a2231bd02ffcde",
+      },
+    ],
+  },
+}
+`;
+
+exports[`fetch users 1`] = `
+Object {
+  "data": Object {
+    "users": Array [
+      Object {
+        "email": "robert.oliveira.f@gmail.com",
+        "firstName": "Robert",
+        "id": "605f6611158ad72fc051ac03",
+        "lastName": "Oliveira",
+        "picture": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3398385236912314&height=200&width=200&ext=1619456786&hash=AeR8tNqW3FhdAYIbC7I",
+      },
+      Object {
+        "email": "william@email.com",
+        "firstName": "William",
+        "id": "605f6cf77d1c8c19247d8374",
+        "lastName": "Pacifico",
+        "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1616866551/robert_crud_test/iubvtisvf47jkm84ruia.jpg",
+      },
+      Object {
+        "email": "pe@email.com",
+        "firstName": "Penelope",
+        "id": "6061dadf30a2231bd02ffcdd",
+        "lastName": "Ferreira",
+        "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1617025759/robert_crud_test/tvz7jjzlkvoxm0rrc89p.jpg",
       },
     ],
   },
