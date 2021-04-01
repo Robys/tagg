@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`find requests  1`] = `
+exports[`getting user contacts 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -78,15 +78,46 @@ Object {
           </div>
         </nav>
         <div
-          class="jumbotron"
+          class="chat-list card"
         >
-          <h2>
-            Que pena, você ainda não possui nenhuma troca em andamento...
-          </h2>
-          <p>
-            mas não se preoculpe, retorne e comece agora! 
-          </p>
+          <div
+            class="card-header"
+          >
+            Contatos
+          </div>
+          <div
+            class="card-body"
+            style="height: 548px;"
+          >
+            
+            <p>
+              ops, não foi possível carregar os dados
+            </p>
+            <div
+              class="ScrollArea__outer___37v-o"
+              style="height: 100%;"
+            >
+              <div
+                class="Overflow__overflow___2Ugl4"
+              >
+                <div
+                  class="Inner__inner___sunA0"
+                  style="margin-right: -1px;"
+                />
+              </div>
+              <div
+                class="Track__track___NMWjQ  Track__hidden___2toS3"
+                style="top: 2px; height: -4px;"
+              >
+                <div
+                  class="Handler__handler___5yegf "
+                  style="height: 0px; top: 0px;"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+        
       </div>
     </div>
   </body>,
@@ -164,15 +195,46 @@ Object {
         </div>
       </nav>
       <div
-        class="jumbotron"
+        class="chat-list card"
       >
-        <h2>
-          Que pena, você ainda não possui nenhuma troca em andamento...
-        </h2>
-        <p>
-          mas não se preoculpe, retorne e comece agora! 
-        </p>
+        <div
+          class="card-header"
+        >
+          Contatos
+        </div>
+        <div
+          class="card-body"
+          style="height: 548px;"
+        >
+          
+          <p>
+            ops, não foi possível carregar os dados
+          </p>
+          <div
+            class="ScrollArea__outer___37v-o"
+            style="height: 100%;"
+          >
+            <div
+              class="Overflow__overflow___2Ugl4"
+            >
+              <div
+                class="Inner__inner___sunA0"
+                style="margin-right: -1px;"
+              />
+            </div>
+            <div
+              class="Track__track___NMWjQ  Track__hidden___2toS3"
+              style="top: 2px; height: -4px;"
+            >
+              <div
+                class="Handler__handler___5yegf "
+                style="height: 0px; top: 0px;"
+              />
+            </div>
+          </div>
+        </div>
       </div>
+      
     </div>
   </div>,
   "debug": [Function],

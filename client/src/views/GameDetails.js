@@ -4,8 +4,6 @@
  * e acesso a edição das informações do anuncio
  * **/
 
-
-
 import { Button, Card, Dropdown, DropdownButton, Image } from "react-bootstrap";
 import DelayLink from "react-delay-link";
 //import generic from '../imgs/generic.png'
@@ -16,6 +14,7 @@ import {
   FindCollection,
 } from "../utils/utils";
 import TopBar from "../utils/TopBar";
+import Report from '../components/Report'
 
 export default function GameDetails(props) {
   const game = FindGame(props.match.params.id);
@@ -54,11 +53,11 @@ export default function GameDetails(props) {
             {disableRequest
             ? <Button href={`/gameSettings/${game.id}`}>Editar Jogo</Button>
             : "" }
+            <Report/>
           </Card.Header>
 
           <Card.Header>Descrição</Card.Header>
           <Card.Text>{game.description}</Card.Text>
-
           {owner ? (
             <Card className="game-details-footer">
               <Card.Img src={owner.picture} alt={owner.firstName} />
@@ -78,7 +77,7 @@ export default function GameDetails(props) {
                       as="button"
                       variant="danger"
                       disabled={!disableRequest} >
-                      <a href={`/deleteGame/${game.id}`}>
+                      <a href={`/deleteGame/${game.id}`} style={{color:"#EAE6DA"}}>
                       Excluir
                       </a>
                     </Button>

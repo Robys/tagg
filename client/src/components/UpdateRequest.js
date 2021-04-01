@@ -5,6 +5,7 @@
 import {useMutation} from '@apollo/react-hooks'
 import {UPDATE_REQUEST,CREATE_NOTIFY} from '../api/mutations'
 import AddContact from './AddContact'
+import Report from './Report'
 import {Button,Spinner} from 'react-bootstrap'
 import {FindCurrent} from '../utils/utils'
 
@@ -18,6 +19,9 @@ export default function UpdateRequest (props){
             <div className="update-request">
             {current.id === props.receiver
              ?  <ul className="update-request">
+                 <li>
+                     <Report/>
+                 </li>
                 <li>
                 <Button variant="danger" disabled={props.accepted} onClick={e=>{
                 e.preventDefault()

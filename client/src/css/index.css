@@ -299,8 +299,8 @@ body{
     }
 
     .metric-card{
-        width: 640px;
-        height: 440px
+        width: 720px;
+        height: 540px
     }
     .admin-modal .modal-content{
         max-width: 375px;
@@ -603,7 +603,7 @@ body{
 
     .metric-card{
         margin-top: 10px;
-        max-width: 480px;
+        max-width: 450px;
         background-color: DA9B68;
         color: #21211F;
     }

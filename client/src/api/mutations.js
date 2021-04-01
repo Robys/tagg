@@ -58,6 +58,13 @@ export const ADD_GAME = gql` mutation AddGame($owner:String,$title:String!,$publ
         title
     }
 }`
+/** versão de teste da query ADD GAME *retira o upload de imagem/arquivo **/
+export const ADD_GAME_T = gql` mutation AddGame($owner:String,$title:String!,$publisher:String,$platform:String,$status:String,$value:String,$description:String){
+    addGame(owner:$owner,title:$title,publisher:$publisher,platform:$platform,status:$status,value:$value,description:$description){
+        owner
+        title
+    }
+}`
 
 export const UPDATE_GAME = gql` mutation UpdateGame($_id:ID,$title:String,$publisher:String,$platform:String,$status:String,$value:String,$description:String,$cover:Upload){
     updateGame(_id:$_id,title:$title,publisher:$publisher,platform:$platform,status:$status,value:$value,description:$description,cover:$cover){

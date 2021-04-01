@@ -3,15 +3,16 @@ import React from 'react'
 import {MockedProvider} from '@apollo/react-testing'
 import {waitFor,render} from '@testing-library/react' 
 import '@testing-library/jest-dom/extend-expect';
-import Requests from '../src/views/Requests'
+import Contacts from '../src/views/Contacts'
 
 /* Este teste consiste em certificar 
-que as trocas sejam requisitada e que se seu resultado for nulo
-não quebre a aplcação */
-test('find requests ',async ()=>{
+se os contatos são chamados da forma adequada,
+como nao se tem usuário logado, o esperado é que nada
+seja mostrado na tela, ou uma mensagem apareça */
+test('getting user contacts',async ()=>{
     const container = render (
         <MockedProvider mocks={[]}>
-            <Requests/>
+            <Contacts/>
         </MockedProvider>
     )
     await waitFor(() => new Promise((res) => setTimeout(res, 0)));

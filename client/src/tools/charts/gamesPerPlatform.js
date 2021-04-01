@@ -15,7 +15,7 @@ export default function GamesPerPlatform (){
             {loading? <p>carregando</p>: ""}
             {error? <p>{error.message}</p>:""}
             {data? Object.values(data).map(res => 
-            <VictoryChart theme={VictoryTheme.material} domainPadding={10} key={res}>
+            <VictoryChart theme={VictoryTheme.material} horizontal domainPadding={10} key={res}>
                 <VictoryBar data={res} x="platform" y="games" style={{ data: { fill: "#c43a31" } }}/>
             </VictoryChart>
             ): ""}

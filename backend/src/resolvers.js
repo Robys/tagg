@@ -497,9 +497,10 @@ const resolvers = {
 
         },
         /* EXCLUI A MENSAGEM ENVIADA */
-        deleteMessage: async (parent,{_id},content) =>{
+        deleteMessage: async (parent,{_id},context) =>{
             return await Message.findOneAndDelete(_id)
         },
+
 
 }
 

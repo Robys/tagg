@@ -88,10 +88,31 @@ export function FindNotifies(){
     
 }
 
-/** Alteraçoes nesta função foram feitas após testes, 
- * já esta funcão passou no teste porém quebra a aplicação 
- * durante o uso normal
+/** Alterações nesta função foram feitas após testes, 
+ * já esta funcão passou no teste, porém quebra a aplicação 
+ * durante o uso normal, a função usada nos teste estará
+ * comentada na versão final!
  * **/
+
+/*
+export function FindRequests(_id){
+    const {data} = useQuery(ALL_REQUESTS)
+    var response = ''
+    if(data){
+        const coll = FindCollection(_id)
+                Object.values(coll).map(res =>
+                    res.map(game => {
+                    response =  data.allRequests.filter(item => game.id === item.required || item.selected )
+        
+                }) ) 
+        return  response
+    }
+
+    return null
+
+}
+*/
+
 export function FindRequests(_id){
     const {data} = useQuery(ALL_REQUESTS)
     var response = ''
@@ -104,6 +125,7 @@ export function FindRequests(_id){
         return  response
 
 }
+
 
 export function FindContact(_id){
     const {data,loading,error} = useQuery(CONTACTS,{variables: {_id} })
