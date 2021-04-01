@@ -49,7 +49,7 @@ export function FindUser (_id){
     const {data,loading,error} = useQuery(GET_USER,{variables: {_id} })
     if(error) return error
     if(loading) return loading
-    if(data) return data.user
+    return data.user
 }
 
 

@@ -53,7 +53,7 @@ export default function GameDetails(props) {
             {disableRequest
             ? <Button href={`/gameSettings/${game.id}`}>Editar Jogo</Button>
             : "" }
-            <Report/>
+            <Report about={game.id} content={'game'}/>
           </Card.Header>
 
           <Card.Header>Descrição</Card.Header>

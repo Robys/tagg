@@ -1,10 +1,33 @@
 import React from 'react'
 import {OverlayTrigger,Button,Popover} from 'react-bootstrap'
+import {FindCurrent} from '../utils/utils'
 import {useMutation} from '@apollo/react-hooks'
-import {CREATE_NOTIFY} from '../api/mutations'
+import {APP_REPORT} from '../api/mutations'
 
-export default function Report (){
-    const [createNotify,{data,loading,error}] = useMutation(CREATE_NOTIFY)
+export default function Report ({about,content}){
+    const [createAppReport] = useMutation(APP_REPORT)
+
+    const sender = FindCurrent()
+
+    const SendReport = e =>{
+        e.preventDefault()
+        let message = ''
+        if(content==='game'){
+            message = `${sender.firstName} está reportando o game com id ${about}`
+        }
+        if(content==='troca'){
+            message = `${sender.firstName} está reportando a troca com id ${about}`
+        }
+
+        createAppReport({variables: {from:sender.id,content:message} })
+        .then(({ data }) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+    }
 
     const popover = (
         <Popover id="popover-basic" style={{backgroudColor:"#EAE6DA",color:"#21211F"}}>
@@ -23,7 +46,7 @@ export default function Report (){
         key={'right'} 
         placement={'right'}
         overlay={popover}>
-            <Button>Reportar</Button>
+            <Button onClick={e => SendReport(e)}>Reportar</Button>
         </OverlayTrigger>
         </>
     )

@@ -20,7 +20,7 @@ export default function UpdateRequest (props){
             {current.id === props.receiver
              ?  <ul className="update-request">
                  <li>
-                     <Report/>
+                     <Report about={props.id} content={'troca'}/>
                  </li>
                 <li>
                 <Button variant="danger" disabled={props.accepted} onClick={e=>{

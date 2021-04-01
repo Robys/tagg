@@ -501,6 +501,18 @@ const resolvers = {
             return await Message.findOneAndDelete(_id)
         },
 
+        /* NOTIFICAÇÃO CRIADA POR USUÁRIO PARA ADMS E GERENTES */
+        appReport: async (parent,{from,content},context)=>{
+            let notify = ''
+            const published = DateFormat()
+            const receivers = await users.find({$or : [{roles:'ADMIN'},{roles:'MENAGER'}]})
+            receivers.forEach(person => {
+                notify = Notify.create({from,receiver:person._id,content,published,accepted:false})
+                
+            });
+
+            return notify
+        }
 
 }
 

@@ -148,6 +148,10 @@ type Mutation{
     createMessage (chatId:ID!,from:String,receiver:String,content:String): Message
     deleteMessage (_id:ID!): Message
 
+    #um usuário pode notificar o ADM ou genrente sobre algo
+    appReport (from:String,content:String):Notify
+    #from = quem envia, content = reclamação em si 
+
 }
 `
 

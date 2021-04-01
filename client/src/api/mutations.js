@@ -82,6 +82,16 @@ export const CREATE_NOTIFY = gql` mutation CreateNotify($_id:ID,$receiver:String
     }
 }
 `
+export const APP_REPORT = gql` mutation AppReport($from:String,$content:String){
+    appReport(from:$from,content:$content){
+        id
+        from
+        receiver
+        content
+        accepted
+    }
+}
+`
 
 export const DELETE_NOTIFY = gql` mutation DeleteNotify($_id:ID){
     deleteNotify(_id:$_id){

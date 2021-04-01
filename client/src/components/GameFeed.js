@@ -65,6 +65,7 @@ export default function GameFeed(){
             :data
             ?
             <div>
+                <h4>adicionados recentemente</h4>
                 {Object.values(data).map(values => 
                     SortArray(values) )}
             </div> 
