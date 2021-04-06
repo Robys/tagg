@@ -1,5 +1,4 @@
 require('dotenv').config()
-const https = require('https')
 /* Apollo Server */
 const {ApolloServer} = require('apollo-server-express')
 const mongoose = require('mongoose') 
@@ -110,11 +109,7 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
 }))
 
 server.applyMiddleware({app,cors: false})
-const httpServer = https.createServer(app)
-//server.installSubscriptionHandlers(httpServer)
 
-//httpServer.listen(PORT)
-
-httpServer.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT || 4000, () => {
     console.log(`🚀 Server ready`)
   })
