@@ -62,7 +62,7 @@ const Login = () => {
             </Button>
                 </li>
                 <li>
-                <Button href="http://localhost:4000/auth/facebook">
+                <Button href={process.env.REACT_APP_FB_URL}>
                     Entrar com Facebook
                     </Button>
                 </li>

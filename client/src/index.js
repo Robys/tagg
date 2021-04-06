@@ -8,12 +8,16 @@ import {ApolloProvider} from '@apollo/react-hooks'
 import {createUploadLink} from 'apollo-upload-client'
 
 
-const httpLink = createUploadLink({uri:"http://localhost:4000/graphql",credentials:"include"})
-
 const client = new ApolloClient({
-  link:httpLink,
   cache: new InMemoryCache(),
-  
+  link: createUploadLink({uri:process.env.REACT_APP_BACKEND_URL}),
+  request: async operation =>{
+    operation.setContext({
+      fetchOptions: {
+        credentials: 'include'
+      }
+    })
+  }, 
 })
 
 
