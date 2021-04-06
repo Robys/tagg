@@ -1,5 +1,7 @@
 /**
  * Espaço destinado a jogos que foram adicionados em tempo real
+ * 
+ * (retirado)
  * **/
 
 import {useSubscription} from '@apollo/react-hooks'
