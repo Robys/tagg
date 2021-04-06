@@ -7,7 +7,7 @@ import {ApolloClient,InMemoryCache} from '@apollo/client'
 import {ApolloProvider} from '@apollo/react-hooks'
 import {createUploadLink} from 'apollo-upload-client'
 
-
+/**Setting Apollo Client**/
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: createUploadLink({uri:process.env.REACT_APP_BACKEND_URL}),
@@ -19,7 +19,6 @@ const client = new ApolloClient({
     })
   }, 
 })
-
 
   ReactDOM.render(
   <ApolloProvider client={client}>
