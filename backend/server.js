@@ -1,6 +1,5 @@
 require('dotenv').config()
-const http = require('http')
-const PORT = process.env.PORT
+const https = require('https')
 /* Apollo Server */
 const {ApolloServer} = require('apollo-server-express')
 const mongoose = require('mongoose') 
@@ -100,7 +99,13 @@ app.use(passport.session())
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req, res }) => buildContext({ req, res, users })
+    context: ({ req, res }) => buildContext({ req, res, users }),
+    introspection:true,
+    playground:true,
+    cors:{
+        credentials:true,
+        origin:'*'
+    }
 })
 
 app.get('/auth/facebook',passport.authenticate('facebook',{ scope: ['email', 'public_profile','user_location'] }))
@@ -110,14 +115,11 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
 }))
 
 server.applyMiddleware({app,cors: false})
-const httpServer = http.createServer(app)
-server.installSubscriptionHandlers(httpServer)
+const httpServer = https.createServer(app)
+//server.installSubscriptionHandlers(httpServer)
 
 //httpServer.listen(PORT)
 
-httpServer.listen(PORT, () => {
-    console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
-    console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`)
+httpServer.listen(process.env.PORT || 4000, () => {
+    console.log(`🚀 Server ready`)
   })
-
-  module.exports = httpServer
