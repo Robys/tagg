@@ -17,11 +17,6 @@ const cors = require('cors')
 const session = require('express-session')
 const uuid = require('uuid').v4 
 
-/* Body Parser */
-var bodyParser = require('body-parser');
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
-
 const resolvers = require('./src/resolvers')
 const typeDefs = require('./src/typeDefs');
 const DateFormat = require('./src/config/DateFormat')
