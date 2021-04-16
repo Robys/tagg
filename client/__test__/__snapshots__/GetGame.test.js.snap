@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`get a specific game by id 1`] = `
-<p
-  data-testid="ndata"
->
-  {"game":{"id":"605f6dfd7d1c8c19247d8378","title":"Doom","owner":"605f6611158ad72fc051ac03","location":"São Paulo","status":"Usado","value":"0","publisher":"Bethesda","platform":"Xbox","description":"somente troca","cover":{"filename":"Doom","path":"https://res.cloudinary.com/dahwijw8w/image/upload/v1616866813/robert_crud_test/mz94904mkr3nwyrz343w.jpg"}}}
-</p>
-`;

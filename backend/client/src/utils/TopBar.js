@@ -11,8 +11,8 @@ import { Navbar, Container, Nav, NavLink } from "react-bootstrap";
 import { Logout } from "./Logout";
 
 export default function TopBar() {
-  const user = FindCurrent();
-
+  const user = FindCurrent()
+  console.log(user)
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -27,13 +27,20 @@ export default function TopBar() {
               <NavLink href={`/notifications`}>Notificações</NavLink>
 
               <NavLink href={`/contacts`}>Contatos</NavLink>
+              {user !== undefined ?
+              <div>
 
-              {user.roles === "ADMIN" || user.roles === "MENAGER" ? (
-                <NavLink href={`/tools/${user.id}`}>ADMIN</NavLink>
-              ) : (
-                ""
-              )}
-              <NavLink href={`/profile/${user.id}`}>{user.firstName}</NavLink>
+                {user.roles === "ADMIN" || user.roles === "MENAGER" ? (
+                  <NavLink href={`/tools/${user.id}`}>ADMIN</NavLink>
+                ) : (
+                  ""
+                )}
+                <NavLink href={`/profile/${user.id}`}>{user.firstName}</NavLink>
+
+              </div>
+
+              :""}
+
 
             </Nav>
           </Nav>

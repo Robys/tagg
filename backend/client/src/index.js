@@ -7,17 +7,15 @@ import {ApolloClient,InMemoryCache} from '@apollo/client'
 import {ApolloProvider} from '@apollo/react-hooks'
 import {createUploadLink} from 'apollo-upload-client'
 
+const uplink = createUploadLink({
+  uri:"/graphql", 
+  credentials:'include',
+})
+
 /**Setting Apollo Client**/
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: createUploadLink({uri:process.env.REACT_APP_BACKEND_URL}),
-  request: async operation =>{
-    operation.setContext({
-      fetchOptions: {
-        credentials: 'include'
-      }
-    })
-  }, 
+  link: uplink,
 })
 
   ReactDOM.render(
@@ -40,7 +38,6 @@ const wsLink = new WebSocketLink({
     reconnect: true
   }
 });
-
  * 
  * const splitLink = split(
   ({ query }) => {
@@ -53,7 +50,6 @@ const wsLink = new WebSocketLink({
   wsLink,
   httpLink,
 );
-
  * 
  * 
  */

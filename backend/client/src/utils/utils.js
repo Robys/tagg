@@ -69,7 +69,6 @@ export function FindCurrent (){
 
     if(error) return error
     if(loading) return loading
-
     return data.me
     
 }

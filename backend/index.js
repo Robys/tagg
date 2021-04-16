@@ -110,6 +110,6 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
 
 server.applyMiddleware({app,cors: false})
 
-app.listen(process.env.PORT || 4000, () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log(`🚀 Server ready`)
   })
