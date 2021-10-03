@@ -98,7 +98,7 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
     failureRedirect: process.env.FRONT_END_URL
 }))
 
-server.applyMiddleware({app,cors: false})
+server.applyMiddleware({app,cors: true})
 
 /*
 app.use(express.static(path.join(__dirname, './build')))
