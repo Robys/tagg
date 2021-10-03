@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test context hook rendering dashboard components with context function 1`] = `
+<div>
+  <TopBar
+    user={
+      Object {
+        "active": true,
+        "contacts": Array [
+          Object {
+            "active": true,
+            "email": "pe@email.com",
+            "firstName": "Penelope",
+            "id": "60edbd0ddd108f2380cad3e9",
+            "lastName": "Lopes",
+            "location": "São Paulo",
+            "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1626193179/Tagg/jqxlkjzelp8x9byda1yn.jpg",
+          },
+          Object {
+            "active": true,
+            "email": "william@email.com",
+            "firstName": "William",
+            "id": "60f051ab648d18294c24c343",
+            "lastName": "Pacifico",
+            "location": "São Paulo",
+            "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1626362293/Tagg/lwlhmp3g9vwq9xxynpia.jpg",
+          },
+        ],
+        "createdAt": "13/07/2021",
+        "email": "adm@tagg.com",
+        "firstName": "Administrador",
+        "gamecollection": Array [
+          Object {
+            "cover": "https://res.cloudinary.com/dahwijw8w/image/upload/v1627662802/Tagg/pgyilwxsji2svlchrres.jpg",
+            "createdAt": "30/07/2021",
+            "description": "teste",
+            "gender": "ação",
+            "id": "610429da8d57550d245bdc34",
+            "platform": "playstation",
+            "status": "usado",
+            "title": "Doom 2016",
+            "value": "40",
+          },
+        ],
+        "id": "60edb9b0b291b127e48a8778",
+        "lastName": "-",
+        "location": "São Paulo",
+        "picture": "undefined",
+        "roles": "ADMIN",
+      }
+    }
+  />
+  <ContactList
+    user={
+      Object {
+        "active": true,
+        "contacts": Array [
+          Object {
+            "active": true,
+            "email": "pe@email.com",
+            "firstName": "Penelope",
+            "id": "60edbd0ddd108f2380cad3e9",
+            "lastName": "Lopes",
+            "location": "São Paulo",
+            "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1626193179/Tagg/jqxlkjzelp8x9byda1yn.jpg",
+          },
+          Object {
+            "active": true,
+            "email": "william@email.com",
+            "firstName": "William",
+            "id": "60f051ab648d18294c24c343",
+            "lastName": "Pacifico",
+            "location": "São Paulo",
+            "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1626362293/Tagg/lwlhmp3g9vwq9xxynpia.jpg",
+          },
+        ],
+        "createdAt": "13/07/2021",
+        "email": "adm@tagg.com",
+        "firstName": "Administrador",
+        "gamecollection": Array [
+          Object {
+            "cover": "https://res.cloudinary.com/dahwijw8w/image/upload/v1627662802/Tagg/pgyilwxsji2svlchrres.jpg",
+            "createdAt": "30/07/2021",
+            "description": "teste",
+            "gender": "ação",
+            "id": "610429da8d57550d245bdc34",
+            "platform": "playstation",
+            "status": "usado",
+            "title": "Doom 2016",
+            "value": "40",
+          },
+        ],
+        "id": "60edb9b0b291b127e48a8778",
+        "lastName": "-",
+        "location": "São Paulo",
+        "picture": "undefined",
+        "roles": "ADMIN",
+      }
+    }
+  />
+  <Notifications
+    user={
+      Object {
+        "active": true,
+        "contacts": Array [
+          Object {
+            "active": true,
+            "email": "pe@email.com",
+            "firstName": "Penelope",
+            "id": "60edbd0ddd108f2380cad3e9",
+            "lastName": "Lopes",
+            "location": "São Paulo",
+            "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1626193179/Tagg/jqxlkjzelp8x9byda1yn.jpg",
+          },
+          Object {
+            "active": true,
+            "email": "william@email.com",
+            "firstName": "William",
+            "id": "60f051ab648d18294c24c343",
+            "lastName": "Pacifico",
+            "location": "São Paulo",
+            "picture": "https://res.cloudinary.com/dahwijw8w/image/upload/v1626362293/Tagg/lwlhmp3g9vwq9xxynpia.jpg",
+          },
+        ],
+        "createdAt": "13/07/2021",
+        "email": "adm@tagg.com",
+        "firstName": "Administrador",
+        "gamecollection": Array [
+          Object {
+            "cover": "https://res.cloudinary.com/dahwijw8w/image/upload/v1627662802/Tagg/pgyilwxsji2svlchrres.jpg",
+            "createdAt": "30/07/2021",
+            "description": "teste",
+            "gender": "ação",
+            "id": "610429da8d57550d245bdc34",
+            "platform": "playstation",
+            "status": "usado",
+            "title": "Doom 2016",
+            "value": "40",
+          },
+        ],
+        "id": "60edb9b0b291b127e48a8778",
+        "lastName": "-",
+        "location": "São Paulo",
+        "picture": "undefined",
+        "roles": "ADMIN",
+      }
+    }
+  />
+</div>
+`;

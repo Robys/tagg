@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`rendering <Login/> rendering HTML without crashing 1`] = `
+<WithStyles(ForwardRef(Paper))
+  style={
+    Object {
+      "height": "320px",
+      "margin": "0 auto",
+      "marginTop": "80px",
+      "maxWidth": "420px",
+    }
+  }
+>
+  <WithStyles(ForwardRef(CardHeader))
+    className="addgame-card-header"
+    title="Login"
+  />
+  <form
+    onSubmit={[Function]}
+    style={
+      Object {
+        "padding": "20px",
+      }
+    }
+  >
+    <input
+      id="email"
+      name="email"
+      onChange={[Function]}
+      style={
+        Object {
+          "margin": "10px",
+        }
+      }
+      type="text"
+      value="adm@tagg.com"
+    />
+    <input
+      id="password"
+      name="password"
+      onChange={[Function]}
+      style={
+        Object {
+          "margin": "10px",
+        }
+      }
+      type="password"
+      value="123456"
+    />
+    <WithStyles(ForwardRef(Button))
+      color="primary"
+      id="submit"
+      style={
+        Object {
+          "margin": "10px",
+        }
+      }
+      type="submit"
+      variant="contained"
+    >
+      Enter
+    </WithStyles(ForwardRef(Button))>
+  </form>
+</WithStyles(ForwardRef(Paper))>
+`;

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing <Chat/> fetching messages 1`] = `
+<WithStyles(ForwardRef(List))
+  style={
+    Object {
+      "height": "100%",
+      "margin": "10px",
+    }
+  }
+>
+  <ul
+    style={
+      Object {
+        "listStyle": "none",
+        "marginTop": "10px",
+      }
+    }
+  >
+    <li
+      style={
+        Object {
+          "display": "inline-flex",
+        }
+      }
+    >
+      <WithStyles(ForwardRef(Skeleton))
+        animation="wave"
+        height={40}
+        variant="circle"
+        width={40}
+      />
+    </li>
+    <li>
+      <WithStyles(ForwardRef(Skeleton))
+        animation="wave"
+        height={100}
+        variant="rect"
+      />
+    </li>
+  </ul>
+</WithStyles(ForwardRef(List))>
+`;

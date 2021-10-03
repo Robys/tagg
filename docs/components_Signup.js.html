@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Signup.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Signup.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useState} from 'react'
+import ProcessSignUp from '../views/ProcessSignUp';
+import axios from 'axios'
+import {Card,
+    CardActions,
+    CardHeader,
+    TextField,
+    FormControl,
+    InputLabel,
+    Select,
+    Button,
+    MenuItem} from '@material-ui/core'
+import MuiAlert from '@material-ui/lab/Alert';
+import States from '../utils/Estados.json'
+
+function Alert(props) {
+    return &lt;MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+    const Styles ={
+        loginList:{
+            listStyle:"none"
+        },
+        loginListItem:{
+            display:"inline",
+            marginLeft:"5px"
+        },
+    }
+    
+    
+/** The Signup is the function to create a new account
+ * @constructor
+ * @param {string} firstName - users first name
+ * @param {string} lastName - users last name
+ * @param {string} email - users first email
+ * @param {string} password - users password
+ * @param {string} location - users city
+ * @param {file} picture - users profile image/avatar
+ * 
+ * @param {Boolean} ready - allow the create account
+ * @param {Object} error - active the alert in case of error
+ */
+
+function Signup(){
+    const [firstName,SetName] = useState() 
+    const [lastName,SetLastName] = useState() 
+    const [email,SetEmail] = useState() 
+    const [password,SetPassword] = useState() 
+    const [local,SetLocal] = useState('')
+    const [picture,SetPicture] = useState()
+
+    const [ready,SetReady] = useState(false)
+    const [error,SetError] = useState({onError:false,message:''})
+
+    const handleLocal = (event) => {
+        SetLocal(event.target.value);
+        
+      };
+
+      const handleCloseAlert = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        SetReady(false);
+        SetError({onError:false,message:''});
+      };
+
+      const HandleFilesUpload = e =>{
+        e.preventDefault()
+        const files = Object.values(e.target.files)
+        files.map(file => {
+          // Initial FormData
+          const formData = new FormData();
+          formData.append("file", file);
+          //formData.append("tags", `dahwijw8w, medium, gist`);
+          formData.append("upload_preset", "lqvmm3lj"); // Replace the preset name with your own
+          formData.append("api_key", "316375736115726"); // Replace API key with your own Cloudinary key
+         // formData.append("signature", "UyTJCwsJ89rr1ajiPEvWIvz3egc");
+          formData.append("timestamp", (Date.now() / 1000) | 0);
+      
+          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          return axios.post("https://api.cloudinary.com/v1_1/dahwijw8w/image/upload", formData, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }).then(response => {
+            const data = response.data;
+            const fileURL = data.secure_url // You should store this URL for future references in your app
+            SetPicture(fileURL)
+          })
+        });
+
+      }
+
+    const handleSubmit = (firstName,lastName,email,
+        password,picture,local) =>{
+        
+        axios.post(process.env.REACT_APP_API_URL,{
+            query:`mutation{
+                signup(firstName:"${firstName}",lastName:"${lastName}",
+                email:"${email}",password:"${password}",
+                picture:"${picture}",location:"${local}"){
+                   
+                        firstName
+                        email
+                    
+                }
+            }`
+        }).then(res => {
+            console.log(res)
+            if(res.data.data.signup!==null){
+                
+                SetReady(true)
+            }
+            else if(res.data.data.errors!==null){
+                const err = res.data.errors
+                err.map(item => {
+                   return SetError({onError:true,message:item.message})
+                })
+            }
+        })
+  
+    }
+    
+return(
+    &lt;div>
+            &lt;Card className="home-signup-card">
+
+                &lt;CardHeader title="Sign Up" className="addgame-card-header"
+                subheader={
+                &lt;ul style={Styles.loginList}>
+                &lt;li style={Styles.loginListItem}>já possui uma conta ?&lt;/li>
+                &lt;li style={Styles.loginListItem}>
+                    &lt;a href="/login">click aqui&lt;/a>
+                    &lt;/li>
+            &lt;/ul>
+            }/>
+                &lt;form style={{padding:"10px",marginTop:"20px"}}>
+
+            &lt;CardActions>
+            &lt;TextField id="outlined-basic"
+               label="Nome" variant="outlined" size="small" 
+               onChange={e => SetName(e.target.value)}/>
+            &lt;TextField id="outlined-basic"
+               label="Sobrenome" variant="outlined" size="small" 
+               onChange={e => SetLastName(e.target.value)}/>
+            &lt;/CardActions>
+
+            &lt;CardActions>
+            &lt;FormControl variant="outlined" size="small"  style={{width:"190px"}} >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Cidade&lt;/InputLabel>
+                &lt;Select labelId="demo-simple-select-outlined-label" id="demo-simple-select-outlined"
+                onChange={handleLocal}
+                value={local}
+                label="Cidade">
+
+                {States.map(estados => 
+                &lt;MenuItem value={estados.Nome} key={estados.ID} >
+                    {estados.Sigla} - {estados.Nome}
+                &lt;/MenuItem>
+                )}
+                &lt;/Select>
+
+                &lt;/FormControl>
+
+                &lt;input
+                accept="image/*"
+                style={{display:"none"}}
+                id="contained-button-file"
+                multiple
+                type="file"
+                onChange={HandleFilesUpload}
+            />
+            &lt;label htmlFor="contained-button-file">
+                &lt;Button variant="contained" component="span">
+                Foto de perfil
+                &lt;/Button>
+            &lt;/label>
+
+            &lt;/CardActions>
+
+            &lt;CardActions>
+            &lt;TextField id="outlined-basic"
+               label="Email" variant="outlined" size="small" 
+               onChange={e => SetEmail(e.target.value)}/>
+            &lt;TextField id="outlined-basic"
+               label="Senha" variant="outlined" size="small" 
+               onChange={e => SetPassword(e.target.value)}/>
+            &lt;/CardActions>
+
+            &lt;CardActions>
+            &lt;Button datatest-id="signup"
+            variant="contained" color="secondary" 
+            onClick={e => handleSubmit(firstName,lastName,email,
+                password,picture,local)}>
+                Entrar
+            &lt;/Button>
+
+            &lt;Button href={process.env.REACT_APP_FB_URL}
+            variant="contained" color="primary">
+            facebook
+            &lt;/Button>
+
+            &lt;/CardActions>
+
+            {error.onError ?
+            &lt;Alert onClose={handleCloseAlert} severity="error">
+              {error.message}
+            &lt;/Alert>
+
+          :""}
+
+          {ready ? &lt;ProcessSignUp email={email} password={password} /> :""}
+            
+
+            &lt;/form>
+            &lt;/Card>      
+        &lt;/div>)
+
+}
+
+export default Signup</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Chat.html">Chat</a></li><li><a href="Details.html">Details</a></li><li><a href="Login.html">Login</a></li><li><a href="Message.html">Message</a></li><li><a href="Notifications.html">Notifications</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Requests.html">Requests</a></li><li><a href="Signup.html">Signup</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountsChart">AccountsChart</a></li><li><a href="global.html#AddGame">AddGame</a></li><li><a href="global.html#AddToContactsButton">AddToContactsButton</a></li><li><a href="global.html#AdminDeleteAccountButton">AdminDeleteAccountButton</a></li><li><a href="global.html#AppContextProvider">AppContextProvider</a></li><li><a href="global.html#AutoCompleteInput">AutoCompleteInput</a></li><li><a href="global.html#ChangeAccountStatusButton">ChangeAccountStatusButton</a></li><li><a href="global.html#Collection">Collection</a></li><li><a href="global.html#ContactList">ContactList</a></li><li><a href="global.html#Contacts">Contacts</a></li><li><a href="global.html#CreateRequest">CreateRequest</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteUserButton">DeleteUserButton</a></li><li><a href="global.html#EditGame">EditGame</a></li><li><a href="global.html#EditGameForm">EditGameForm</a></li><li><a href="global.html#EditUser">EditUser</a></li><li><a href="global.html#EditUserForm">EditUserForm</a></li><li><a href="global.html#ExportGamesPDF">ExportGamesPDF</a></li><li><a href="global.html#ExportRequestPDF">ExportRequestPDF</a></li><li><a href="global.html#ExportUserPDF">ExportUserPDF</a></li><li><a href="global.html#GameCard">GameCard</a></li><li><a href="global.html#GamesListTabs">GamesListTabs</a></li><li><a href="global.html#GameTableRow">GameTableRow</a></li><li><a href="global.html#GameValueChart">GameValueChart</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#KeywordMetricTab">KeywordMetricTab</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#Metrics">Metrics</a></li><li><a href="global.html#NotificationCard">NotificationCard</a></li><li><a href="global.html#NotificationsView">NotificationsView</a></li><li><a href="global.html#NotifyUser">NotifyUser</a></li><li><a href="global.html#PlataformChart">PlataformChart</a></li><li><a href="global.html#ProcessLogin">ProcessLogin</a></li><li><a href="global.html#ProcessRequest">ProcessRequest</a></li><li><a href="global.html#ProcessSignUp">ProcessSignUp</a></li><li><a href="global.html#PromoteUser">PromoteUser</a></li><li><a href="global.html#RemoveGameButton">RemoveGameButton</a></li><li><a href="global.html#RemoveNotificationButton">RemoveNotificationButton</a></li><li><a href="global.html#ReportForm">ReportForm</a></li><li><a href="global.html#ReportTableRow">ReportTableRow</a></li><li><a href="global.html#RequestCard">RequestCard</a></li><li><a href="global.html#RequestsChart">RequestsChart</a></li><li><a href="global.html#RequestTableRow">RequestTableRow</a></li><li><a href="global.html#Tools">Tools</a></li><li><a href="global.html#TopBar">TopBar</a></li><li><a href="global.html#UpdateReportForm">UpdateReportForm</a></li><li><a href="global.html#useAppContext">useAppContext</a></li><li><a href="global.html#UserLocationChart">UserLocationChart</a></li><li><a href="global.html#UsersListTab">UsersListTab</a></li><li><a href="global.html#UserTableRow">UserTableRow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 03 2021 13:07:01 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

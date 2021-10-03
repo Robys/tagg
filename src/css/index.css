@@ -1,0 +1,592 @@
+body{
+    background-color: #232323;
+    color: #FFFF;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-weight: lighter;
+    font-style: normal;
+}
+
+@media screen and (min-width:1024px) /* Desktop */ {
+
+    .home{
+        padding: 20px;
+    }
+
+    .home-promo{
+        float: left;
+        margin-left: 20px;
+        background-color: #FFFF;
+        width: 820px;
+        height:520px;
+        
+    }
+    .home-signup-card{
+        float: left;
+        max-width: 420px;
+        height:520px;
+    }
+    
+    .site-content{
+        float: left;
+        width: 100%;
+        margin-top: 60px;
+        background-color: #FFFF;
+        max-height: 1460px;
+    }
+
+    .site-content-header{
+        height: 60px;
+        padding: 5px;
+        background-color: #FD507A;
+    }
+
+    .site-content-cards{
+        padding: 10px;
+        margin-top: 10px;
+    }
+    
+    .site-content-card{
+        height: 460px;
+        width: 340px;
+        margin: 20px 40px;
+        display: inline-block;
+    }
+    
+    .site-content-card-text{
+        background-color: #232323;
+        color: #FFFF;
+        height: 100%;
+        text-align: center;
+    }
+
+    .site-content-faq{
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    footer{
+        float: left;
+        width: 100%;
+        height: 220px;
+        background-color: #FFFF;
+    }
+    
+    .footer-content{
+        width: 100%;
+        height: 180px;
+        background-color: #FD507A;
+    }
+    .footer-end{
+        height: 50px;
+        padding: 10px;
+        text-align: center;
+        background-color: #FD507A;
+    }
+
+
+    .footer-end ul{
+        list-style: none;
+    }
+
+    .footer-end li{
+        display: inline-flex;
+        margin-right: 10px;
+        color: #232323;
+    }
+
+    .process-success{
+        height: 100%;
+        width: 100%;
+    }
+    .process-error{
+        height: 100%;
+        width: 100%;
+    }
+
+    .process-success-header{
+        background-color: #45FF8F;
+        color: #FFFF;
+    }
+    .process-error-header{
+        background-color: #FD507A;
+        color: #FFFF;
+    }
+    
+    .process-success-content{
+        background-color: #45FF8F;
+        color: #FFFF;
+        min-height: 500px;
+        align-content: center;
+        text-align: center;
+    }
+    .process-error-content{
+        color: #FFFF;
+        background-color: #FD507A;
+        min-height: 500px;
+        align-content: center;
+        text-align: center;
+    }
+
+    .process-actions{
+        
+       background-color: #232323;
+    }
+    
+    .game-list-card{
+        float: left;
+        margin: 20px;
+        max-width: 800px;
+        max-height:100%;
+    }
+
+    .dashboard-contacts{
+        float: right;
+        min-width: 400px;
+        margin: 20px 196px 0px 0px;
+    }
+    
+    .dashboard-contacts-list{
+        max-height: 100%;
+        padding: 10px;
+        background-color: #232323;
+        border:#FD507A solid;
+        border-radius: 3px;
+    }
+
+    .contacts{
+        margin:20px;
+        background-color: white;
+        color: #232323;
+    }
+    
+    .contact-photo{
+        margin:10px;
+        border: #FD507A solid;
+        border-width: 0 1px;
+    }
+
+    .game-list-input{
+        background-color: #FFFF;
+        width: 600px;
+        border-radius: 3px;
+        margin: 30px 20px;
+
+    }
+
+    .profile-card{
+        float: left;
+        margin: 20px;
+        width: 300px;
+        height:560px;
+    }
+    .profile-card p{
+        font-size: 18px;
+    }
+    
+    .profile-media{
+        height: 320px;
+        width: auto;
+    }
+    
+    .profile-card-header{
+        background-color: #FD507A;
+        color: white;
+    }
+    
+    .addgame-card{
+        float: left;
+        margin: 20px;
+        max-width: 420px;
+        height:460px;
+    }
+    .addgame-card-header{
+
+        background-color: #FD507A;
+        color: white;
+        font-size: 18px;
+
+    }
+
+    .addgame-input{
+        float: left;
+        width: 200px;
+        margin: 10px;
+    }
+
+    .addgame-card-actions{
+        margin-top: 40px;
+    }
+
+    .addgame-textarea{
+        min-width: 300px;
+        height: 350px;
+    }
+
+    .collection{
+        float: left;
+        margin: 20px;
+        width: 440px;
+        height: 100%;
+    }
+
+    .game-details-owner{
+        margin: 10px;
+        height: 200px;
+    }
+
+    .game-details-actions{
+        margin: 20px;
+    }
+
+    .game-card-header{
+        background-color: #FFFF;
+        color: #232323;
+    }
+
+
+    .game-card{
+        margin: 10px;
+        height:300px;
+        width: 90%; 
+    }
+
+    .game-card-media{
+        float: left;
+        height: 300px;
+        width: 300px;
+    }
+    
+    .game-card-content{
+        height: 300px;
+        margin-left: 300px;
+        color: #232323;
+        background-color: #FFFF;
+    }
+
+    .request-card{
+        height:400px;
+        width: 75%;
+        margin: 40px;
+    }
+
+    .request-card-media{
+        float: left;
+        width: 400px; 
+        height: 400px
+    }
+
+    .request-card-content{
+        float: left;
+    }
+
+    .message-box{
+        height: 100%;
+        width: 100%;
+    }
+
+    .edit-dialog-content{
+        padding: 20px;
+    }
+
+    .table-head{
+        background-color: #FD507A;
+        color: #FFFF;
+    }
+
+    .table-row{
+        background-color: #FFFF;
+        color: #000;
+    }
+
+    .metrics-content{
+        float: left;
+        margin: 20px 40px;
+    }
+    
+}
+
+
+@media screen and (max-width: 768px) /* Mobile */ {
+
+    
+    .home-promo{
+        max-width: 100%;
+        height: auto;
+    }
+
+    .home-signup-card{
+        margin: 0 auto;
+        width: 100%;
+        height:520px;
+    }
+    
+    .sign-input{
+        width: 190px;
+    }
+
+    .site-content{
+        width: 100%;
+        background-color: #FFFF;
+        max-height: 1600px;
+    }
+
+    .site-content-header{
+        height: 80px;
+        padding: 10px;
+        background-color: #FD507A;
+    }
+
+    .site-content-cards{
+        padding: 20px;
+        align-items: center;
+        margin-top: 10px;
+    }
+    
+    .site-content-card{
+        max-height: 480px;
+        max-width: 90%;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+    
+    .site-content-card-text{
+        background-color: #232323;
+        color: #FFFF;
+        height: 100%;
+        text-align: center;
+    }
+    
+    .site-content-faq{
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    footer{
+        clear: both;
+        position: relative;
+        width: 100%;
+        height: 280px;
+        margin-top: 280px;
+    }
+    
+    .footer-content{
+        width: 100%;
+        height: 280px;
+        background-color: #FD507A;
+    }
+    .footer-end{
+        height: 60px;
+        padding: 10px;
+        text-align: center;
+        background-color: #FD507A;
+    }
+
+
+    .footer-end ul{
+        list-style: none;
+    }
+
+    .footer-end li{
+        display: inline-flex;
+        margin-right: 10px;
+        color: #232323;
+    }
+
+    .progress-icon{
+        margin-right: 10px;
+        
+    }
+    .process-success{
+        height: 100%;
+        width: 100%;
+    }
+    .process-error{
+        height: 100%;
+        width: 100%;
+    }
+
+    .process-success-header{
+        background-color: #45FF8F;
+        color: #FFFF;
+    }
+    .process-error-header{
+        background-color: #FD507A;
+        color: #FFFF;
+    }
+    
+    .process-success-content{
+        background-color: #45FF8F;
+        color: #FFFF;
+        min-height: 500px;
+        align-content: center;
+        text-align: center;
+    }
+    .process-error-content{
+        color: #FFFF;
+        background-color: #FD507A;
+        min-height: 500px;
+        align-content: center;
+        text-align: center;
+    }
+
+    .process-actions{
+        
+       background-color: #232323;
+    }
+
+    .dashboard-contacts{
+        height:80px;
+        width: 90%;
+        margin: 20px;
+        overflow: hidden;
+        background-color: #232323;
+        border: #FD507A solid 2px;
+    }
+    
+    .dashboard-contacts-list{
+        max-height: 100%;
+        overflow: auto;
+        background-color: #232323;
+    }
+
+    .contacts{
+        margin:20px;
+        background-color: white;
+        color: #232323;
+    }
+    
+    .contact-photo{
+        margin:10px;
+        border: #FD507A solid;
+        border-width: 0 1px;
+    }
+    
+    
+    .game-list-input{
+        background-color: #FFFF;
+        margin: 40px 30px;
+        width: 60%;
+    }
+    
+    .game-list-card{
+        margin: 20px;
+        width: 90%;
+        max-height:100%;
+    }
+    
+    .profile-card{
+        width: 100%;
+        max-height:780px;
+    }
+    .profile-card p{
+        font-size: 18px;
+    }
+    
+    .profile-media{
+        width: 100%;
+        min-height: 520px;
+    }
+    
+    .profile-card-header{
+        background-color: #FD507A;
+        color: white;
+    }
+
+    .game-card-header{
+        background-color: #FD507A;
+        color: white;
+    }
+
+    .game-card{
+        height:640px;
+        width: 90%;
+       
+    }
+
+    .game-card-media{
+        width: 100%;
+        height: 400px;
+    }
+    
+    .addgame-card{
+        margin: 20px;
+        max-width: 90%;
+        height:460px;
+    }
+    .addgame-card-header{
+
+        background-color: #FD507A;
+        color: white;
+        font-size: 18px;
+
+    }
+
+    .addgame-input{
+        float: left;
+        width: 200px;
+        margin: 10px;
+    }
+
+    .addgame-card-actions{
+        margin-top: 40px;
+    }
+
+    .addgame-textarea{
+        min-width: 300px;
+        height: 350px;
+    }
+
+    .game-details-owner{
+        margin: 10px;
+        height: 200px;
+    }
+
+    .game-details-actions{
+        margin: 20px;
+    }
+
+
+    .request-card{
+        margin-top: 10px;
+        height:820px;
+        width: 100%;
+    }
+
+    .request-card-media{
+        width: 100%; 
+        height: 400px
+    }
+
+    .message-box{
+        height: 100vh;
+        width: 100%;
+    }
+
+    .message-box-input{
+        clear: both;
+        position: relative;
+        width: 100%;
+        height: 250px;
+        margin-top: 250px;
+    }
+
+    .edit-dialog-content{
+        padding: 20px;
+    }
+    
+    .table-head{
+        background-color: #FD507A;
+        color: #FFFF;
+    }
+    
+    .table-row{
+        background-color: #FFFF;
+        color: #000;
+    }
+    
+    
+}
+
+
