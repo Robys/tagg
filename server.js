@@ -4,7 +4,7 @@ const path = require('path')
 const {ApolloServer} = require('apollo-server-express')
 const mongoose = require('mongoose') 
 const {GETBYFACEBOOK,GETUSERBYID,ADDUSER,GETUSERBYEMAIL,USER} = require('./server/Models/User')
-const DateFormat = require('./server/config/DateFormat')
+const DateFormat = require("./server/config/DateFormat")
 
 /* Passport */
 const passport = require('passport') 
@@ -16,8 +16,8 @@ const express = require('express'); const app = express()
 const session = require('express-session')
 const uuid = require('uuid').v4 
 
-const resolvers = require('./server/config/resolvers')
-const typeDefs = require('./server/config/typeDefs');
+const resolvers = require('./server/config/Resolvers')
+const typeDefs = require('./server/config/TypeDefs');
 
 mongoose.connect(process.env.MONGO_DB_URL,{useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false,useCreateIndex:true })
 
