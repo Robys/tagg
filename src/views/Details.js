@@ -89,6 +89,24 @@ function Details(props){
                 :""}
             </Card>
 
+            {game? 
+            <Card className="profile-card" variant="outlined">
+                {game ? 
+                <CardHeader title="Descrição" 
+                className="profile-card-header"/> 
+                :""}
+            <CardContent>
+
+            <Typography variant="body2" color="textSecondary" component="p">
+                {game.description}
+            </Typography>
+
+
+            </CardContent>
+
+            </Card>
+            :""}
+
             {game ? 
                 <Card key={game.owner.id} className="game-details-owner">
                     <CardHeader className="profile-card-header"
