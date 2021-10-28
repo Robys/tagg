@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/EditForm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/EditForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from 'axios'
+import {useState} from 'react'
+import {UPDATEGAME,UPDATEUSER,SENDREPORT,CREATENOTIFICATION, UPDATEREPORT} from '../api'
+
+import {
+    DialogActions,
+    ButtonGroup,
+    Button,
+    TextField,
+    TextareaAutosize,
+    MenuItem,
+    FormControl,
+    InputLabel,
+    Select} from '@material-ui/core'
+
+import States from '../utils/Estados.json'
+import { ProgressIcon } from "./ProgressIcon"
+import RemoveGameButton from "./RemoveGameButton";
+import ChangeAccountStatusButton from './ChangeAccountStatusButton'
+
+/** This form allow the user to edit the game information,
+ * the game object is provited by the Edit Game component
+ * 
+ * @param {Object} game - the game to be edited
+ * @param {Function} handleClose - toggle on/off the dialog
+ */
+
+const  EditGameForm = ({game,handleClose}) =>{
+
+    const [title, SetTitle] = useState();
+    const [value, SetValue] = useState();
+    const [cover, SetCover] = useState();
+    const [description, SetDescription] = useState();
+    const [videogame, SetConsole] = useState();
+    const [status, SetStatus] = useState();
+    const [gender,SetGender] = useState();
+
+    const [loading,SetLoading] = useState({status:""})
+
+
+ 
+    const handleTitle = (event) => {
+        SetTitle(event.target.value);
+     };
+ 
+    const handleValue = (event) => {
+       SetValue(event.target.value);
+       
+     };
+    const handleDescription = (event) => {
+        SetDescription(event.target.value);
+
+     };
+    const handleConsole = (event) => {
+       SetConsole(event.target.value);
+       
+     };
+   const handleStatus = (event) => {
+       SetStatus(event.target.value);
+       
+     };
+   const handleGender = (event) => {
+       SetGender(event.target.value);
+       
+     };
+
+
+     const HandleFilesUpload = e =>{
+        e.preventDefault()
+        SetLoading({isLoading:"true"})
+        const files = Object.values(e.target.files)
+        files.map(file => {
+          // Initial FormData
+          const formData = new FormData();
+          formData.append("file", file);
+          //formData.append("tags", `dahwijw8w, medium, gist`);
+          formData.append("upload_preset", "lqvmm3lj"); // Replace the preset name with your own
+          formData.append("api_key", "316375736115726"); // Replace API key with your own Cloudinary key
+         // formData.append("signature", "UyTJCwsJ89rr1ajiPEvWIvz3egc");
+          formData.append("timestamp", (Date.now() / 1000) | 0);
+      
+          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          return axios.post("https://api.cloudinary.com/v1_1/dahwijw8w/image/upload", formData, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }).then(response => {
+            const data = response.data;
+            const fileURL = data.secure_url // You should store this URL for future references in your app
+            SetCover(fileURL)
+            SetLoading({isLoading:"false"})
+        });
+  
+      })
+  
+  
+    }
+
+    const handleSaving = async () =>{
+
+        const upTitle = title === undefined ? game.title : title
+        const upGender = gender === undefined ? game.gender : gender
+        const upVideogame = videogame === undefined ? game.platform : videogame
+        const upDescription = description === undefined ? game.description : description
+        const upCover = cover === undefined ? game.cover : cover
+        const upStatus = status === undefined ? game.status : status
+        const upValue = value === undefined ? game.value : value
+        
+        const response = await UPDATEGAME({game,upTitle,upGender,upValue,upVideogame,upStatus,upCover,upDescription})
+        console.log(response)
+        handleClose()
+
+        /**
+         * 
+         */
+    }
+
+    return(
+        &lt;div>
+            &lt;DialogActions>
+            &lt;input
+                accept="image/*"
+                style={{display:"none"}}
+                id="contained-button-file"
+                multiple
+                type="file"
+                onChange={HandleFilesUpload}
+            />
+            &lt;label htmlFor="contained-button-file">
+                &lt;Button variant="contained" color="primary" component="span">
+                trocar foto
+                &lt;/Button>
+            &lt;/label>
+
+            &lt;ProgressIcon loading={loading} className="progress-icon"/>
+
+            &lt;TextField
+               className="addgame-input"
+               label="Titulo" variant="outlined" size="small" 
+               onChange={handleTitle}/>
+            &lt;/DialogActions>
+
+            &lt;DialogActions>
+
+            &lt;TextField 
+               className="addgame-input"
+               label="Valor" variant="outlined" size="small" 
+               onChange={handleValue}/>
+
+                &lt;FormControl variant="outlined" size="small" className="addgame-input"  >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Console&lt;/InputLabel>
+                &lt;Select defaultValue=""  
+                labelId="demo-simple-select-outlined-label"
+                onChange={handleConsole}
+                value={videogame}
+                label="Console">
+                            &lt;MenuItem value="pc">PC&lt;/MenuItem>
+                            &lt;MenuItem value="playstation">Playstation&lt;/MenuItem>
+                            &lt;MenuItem value="xbox">Xbox&lt;/MenuItem>
+                            &lt;MenuItem value="nintendo">Nintendo&lt;/MenuItem> 
+                            &lt;MenuItem value="outro">Outro&lt;/MenuItem> 
+                    &lt;/Select>
+                &lt;/FormControl>
+
+            &lt;/DialogActions>
+
+            &lt;DialogActions>
+            &lt;FormControl variant="outlined" size="small" className="addgame-input"  >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Estado&lt;/InputLabel>
+                &lt;Select defaultValue=""  
+                labelId="demo-simple-select-outlined-label"
+                onChange={handleStatus}
+                value={status}
+                label="Estado">
+                            &lt;MenuItem value="usado">Usado&lt;/MenuItem>
+                            &lt;MenuItem value="novo">Novo&lt;/MenuItem>
+                            &lt;MenuItem value="lacrado">Lacrado&lt;/MenuItem>
+                            &lt;MenuItem value="outro">Outro&lt;/MenuItem>
+                    &lt;/Select>
+                &lt;/FormControl>
+
+                &lt;FormControl variant="outlined" size="small" className="addgame-input"  >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Genero&lt;/InputLabel>
+                &lt;Select defaultValue=""  
+                labelId="demo-simple-select-outlined-label"
+                onChange={handleGender}
+                value={gender}
+                label="Estado">
+                            &lt;MenuItem value="ação">Ação&lt;/MenuItem>
+                            &lt;MenuItem value="aventura">Aventura&lt;/MenuItem>
+                            &lt;MenuItem value="esportes">Esportes&lt;/MenuItem>
+                            &lt;MenuItem value="corrida">Corrida&lt;/MenuItem>
+                            &lt;MenuItem value="luta">Luta&lt;/MenuItem>
+                            &lt;MenuItem value="outro">Outro&lt;/MenuItem>
+                    &lt;/Select>
+                &lt;/FormControl>
+
+            &lt;/DialogActions>
+
+            &lt;DialogActions>
+                &lt;FormControl variant="outlined">
+                &lt;InputLabel id="demo-simple-select-outlined-label">Descrição&lt;/InputLabel>
+                &lt;TextareaAutosize rows={4} className="addgame-textarea" 
+                onChange={handleDescription}/>
+                &lt;/FormControl>
+
+                &lt;/DialogActions>
+
+                &lt;DialogActions>
+                  &lt;Button size="small" variant="contained" 
+                  color="primary" onClick={handleSaving}>Salvar&lt;/Button>
+                  &lt;RemoveGameButton game={game}/>
+                  &lt;Button onClick={handleClose}>Fechar&lt;/Button>
+      
+              &lt;/DialogActions>
+        &lt;/div>
+    )
+
+
+
+}
+
+/** This form allow the user to edit your own information,
+ * the user object is provited by the Edit User component
+ * 
+ * @param {Object} user - the game to be edited
+ * @param {Function} handleClose - toggle on/off the dialog
+ */
+
+const EditUserForm = ({user,handleClose}) =>{
+    const [firstName,SetName] = useState() 
+    const [lastName,SetLastName] = useState() 
+    const [email,SetEmail] = useState() 
+    const [password,SetPassword] = useState() 
+    const [local,SetLocal] = useState('')
+    const [picture,SetPicture] = useState()
+
+    const handleLocal = (event) => {
+        SetLocal(event.target.value);
+        
+      };
+
+      const HandleFilesUpload = e =>{
+        e.preventDefault()
+        const files = Object.values(e.target.files)
+        files.map(file => {
+          // Initial FormData
+          const formData = new FormData();
+          formData.append("file", file);
+          //formData.append("tags", `dahwijw8w, medium, gist`);
+          formData.append("upload_preset", "lqvmm3lj"); // Replace the preset name with your own
+          formData.append("api_key", "316375736115726"); // Replace API key with your own Cloudinary key
+         // formData.append("signature", "UyTJCwsJ89rr1ajiPEvWIvz3egc");
+          formData.append("timestamp", (Date.now() / 1000) | 0);
+      
+          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          return axios.post("https://api.cloudinary.com/v1_1/dahwijw8w/image/upload", formData, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }).then(response => {
+            const data = response.data;
+            const fileURL = data.secure_url // You should store this URL for future references in your app
+            SetPicture(fileURL)
+          })
+        });
+
+      }
+
+      const handleSaving = async () =>{
+          const nameToSave = firstName === undefined ? user.firstName : firstName;
+          const lastNameToSave = lastName === undefined ? user.lastName : lastName;
+          const emailToSave = email === undefined ? user.email : email;
+          const passwordToSave = password === undefined ? user.password : password;
+          const localToSave = local === undefined ? user.local : local;
+          const pictureToSave = picture === undefined ? user.picture : picture;
+
+          const response = await UPDATEUSER(user,nameToSave,lastNameToSave,emailToSave,passwordToSave,localToSave,pictureToSave)
+          console.log(response);
+          handleClose()
+      }
+
+    return (
+        &lt;div>
+
+            &lt;DialogActions>
+            &lt;TextField id="outlined-basic"
+               label="Nome" variant="outlined" size="small" 
+               onChange={e => SetName(e.target.value)}/>
+            &lt;TextField id="outlined-basic"
+               label="Sobrenome" variant="outlined" size="small" 
+               onChange={e => SetLastName(e.target.value)}/>
+
+            &lt;/DialogActions>
+
+            &lt;DialogActions>
+            &lt;TextField id="outlined-basic"
+               label="Email" variant="outlined" size="small" 
+               onChange={e => SetEmail(e.target.value)}/>
+            &lt;TextField id="outlined-basic"
+               label="Senha" variant="outlined" size="small" 
+               onChange={e => SetPassword(e.target.value)}/>
+            &lt;/DialogActions>
+
+            &lt;DialogActions>
+            &lt;FormControl variant="outlined" size="small"  style={{width:"190px"}} >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Cidade&lt;/InputLabel>
+                &lt;Select labelId="demo-simple-select-outlined-label" id="demo-simple-select-outlined"
+                onChange={handleLocal}
+                value={local}
+                label="Cidade">
+
+                {States.map(estados => 
+                &lt;MenuItem value={estados.Nome} key={estados.ID} >
+                    {estados.Sigla} - {estados.Nome}
+                &lt;/MenuItem>
+                )}
+                &lt;/Select>
+
+            &lt;/FormControl>
+
+            
+            &lt;input
+                accept="image/*"
+                style={{display:"none"}}
+                id="contained-button-file"
+                multiple
+                type="file"
+                onChange={HandleFilesUpload}
+            />
+            &lt;label htmlFor="contained-button-file">
+                &lt;Button variant="contained" component="span">
+                Foto de perfil
+                &lt;/Button>
+            &lt;/label>
+  
+            &lt;/DialogActions>
+
+            &lt;DialogActions>
+                &lt;ButtonGroup>
+
+                  &lt;Button size="small" variant="contained" 
+                  color="primary" onClick={handleSaving}>Salvar&lt;/Button>
+
+
+                  &lt;ChangeAccountStatusButton user={user}/>
+                  
+                  &lt;Button size="small" variant="contained" 
+                  onClick={handleClose}>Fechar&lt;/Button>
+                &lt;/ButtonGroup>
+
+      
+              &lt;/DialogActions>
+
+
+        &lt;/div>
+    )
+}
+
+/** This form allow the user create a Report of strange activity, 
+ * @param {Object} sender - user who's is sending the report 
+ * @param {Function} HandleClose - toggle on/off the dialog
+ */
+
+const ReportForm = ({sender,HandleClose}) =>{
+  const [content,SetContent] = useState()
+
+  const handleSendReport = async () =>{
+    await SENDREPORT({sender,content});
+    HandleClose()
+  }
+
+  return (
+    &lt;div>
+
+    &lt;DialogActions>
+      &lt;textarea placeholder="descreva a situação"
+      rows={4} cols={50} onChange={e => SetContent(e.target.value)}/>
+
+    &lt;/DialogActions>
+
+    &lt;Button onClick={handleSendReport}>Enviar&lt;/Button>
+    &lt;/div>
+  )
+}
+
+/** This form allow the adminstrator or manager to answer the report
+ * 
+ * @param {Object} report - report to be answer
+ * @param {Object} currentUser - user who will update the report
+ * @param {Object} receiver - person who create the report
+ * @param {Function} HandleClose - toggle on/off the dialog
+ */
+
+const UpdateReportForm = ({report,currentUser,receiver,HandleClose})=>{
+  const [content,SetContent] = useState()
+
+  const handleCreateNotification = async () =>{
+    await CREATENOTIFICATION(currentUser,receiver,content)
+    if(report!==null)
+      handleUpdateReport()
+    else
+    HandleClose()
+  }
+
+  const handleUpdateReport= async () =>{
+    await UPDATEREPORT(report)
+    HandleClose()
+  }
+
+  return (
+
+    &lt;div>
+
+    &lt;DialogActions>
+      &lt;textarea placeholder="retorne seu parecer aqui"
+      rows={4} cols={50} onChange={e => SetContent(e.target.value)}/>
+
+    &lt;/DialogActions>
+    &lt;Button onClick={handleCreateNotification}>Enviar&lt;/Button>
+    &lt;Button onClick={HandleClose}>Fechar&lt;/Button>
+    
+    &lt;/div>
+
+  )
+}
+
+export {EditGameForm,EditUserForm,ReportForm,UpdateReportForm}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Chat.html">Chat</a></li><li><a href="Details.html">Details</a></li><li><a href="Login.html">Login</a></li><li><a href="Message.html">Message</a></li><li><a href="Notifications.html">Notifications</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Requests.html">Requests</a></li><li><a href="Signup.html">Signup</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountsChart">AccountsChart</a></li><li><a href="global.html#AddGame">AddGame</a></li><li><a href="global.html#AddToContactsButton">AddToContactsButton</a></li><li><a href="global.html#AdminDeleteAccountButton">AdminDeleteAccountButton</a></li><li><a href="global.html#AppContextProvider">AppContextProvider</a></li><li><a href="global.html#AutoCompleteInput">AutoCompleteInput</a></li><li><a href="global.html#ChangeAccountStatusButton">ChangeAccountStatusButton</a></li><li><a href="global.html#Collection">Collection</a></li><li><a href="global.html#ContactList">ContactList</a></li><li><a href="global.html#Contacts">Contacts</a></li><li><a href="global.html#CreateRequest">CreateRequest</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteUserButton">DeleteUserButton</a></li><li><a href="global.html#EditGame">EditGame</a></li><li><a href="global.html#EditGameForm">EditGameForm</a></li><li><a href="global.html#EditUser">EditUser</a></li><li><a href="global.html#EditUserForm">EditUserForm</a></li><li><a href="global.html#ExportGamesPDF">ExportGamesPDF</a></li><li><a href="global.html#ExportRequestPDF">ExportRequestPDF</a></li><li><a href="global.html#ExportUserPDF">ExportUserPDF</a></li><li><a href="global.html#GameCard">GameCard</a></li><li><a href="global.html#GamesListTabs">GamesListTabs</a></li><li><a href="global.html#GameTableRow">GameTableRow</a></li><li><a href="global.html#GameValueChart">GameValueChart</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#KeywordMetricTab">KeywordMetricTab</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#Metrics">Metrics</a></li><li><a href="global.html#NotificationCard">NotificationCard</a></li><li><a href="global.html#NotificationsView">NotificationsView</a></li><li><a href="global.html#NotifyUser">NotifyUser</a></li><li><a href="global.html#PlataformChart">PlataformChart</a></li><li><a href="global.html#ProcessLogin">ProcessLogin</a></li><li><a href="global.html#ProcessRequest">ProcessRequest</a></li><li><a href="global.html#ProcessSignUp">ProcessSignUp</a></li><li><a href="global.html#PromoteUser">PromoteUser</a></li><li><a href="global.html#RemoveGameButton">RemoveGameButton</a></li><li><a href="global.html#RemoveNotificationButton">RemoveNotificationButton</a></li><li><a href="global.html#ReportForm">ReportForm</a></li><li><a href="global.html#ReportTableRow">ReportTableRow</a></li><li><a href="global.html#RequestCard">RequestCard</a></li><li><a href="global.html#RequestsChart">RequestsChart</a></li><li><a href="global.html#RequestTableRow">RequestTableRow</a></li><li><a href="global.html#Tools">Tools</a></li><li><a href="global.html#TopBar">TopBar</a></li><li><a href="global.html#UpdateReportForm">UpdateReportForm</a></li><li><a href="global.html#useAppContext">useAppContext</a></li><li><a href="global.html#UserLocationChart">UserLocationChart</a></li><li><a href="global.html#UsersListTab">UsersListTab</a></li><li><a href="global.html#UserTableRow">UserTableRow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 03 2021 13:07:01 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

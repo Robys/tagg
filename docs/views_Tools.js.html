@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: views/Tools.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: views/Tools.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState,useEffect} from 'react';
+import { useAppContext } from '../utils/UserContext'
+import { GETUSERS , GETGAMES , ALLREQUESTS ,REPORTS } from '../api';
+import TopBar from '../components/TopBar'
+import { AppBar,Tabs,Tab} from '@material-ui/core';
+import UsersListTab from '../tools/UsersListTab';
+import GamesListTabs from '../tools/GamesListTab';
+import RequestsListTab from '../tools/RequestsListTable'
+import ReportsListTab from '../tools/ReportsListTab';
+import MetricsTab from '../tools/MetricsTab'
+
+function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+
+  /** The Tool function provide a environment for administrators
+   * and managers to inspect the application tables and metrics
+   * 
+   * @param {Object} users - list of all users
+   * @param {Object} games - list of all games
+   * @param {Object} requests - list of all requests
+   * @param {Object} reports - list of all reports
+   * @param {Object} user - logged user detected by the system 
+   * 
+   */
+
+function Tools(){
+  const [users,SetUsers]=useState()
+  const [games,SetGames]=useState()
+  const [requests,SetRequests]=useState()
+  const [reports,SetReports]=useState()
+
+  const {user} = useAppContext()
+
+    const [value, setValue] = useState(0);
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+      };
+
+    useEffect(()=>{
+      const getData = async ()=>{
+        const userList = await GETUSERS()
+        SetUsers(userList.data.data.users)
+        const gamesList = await GETGAMES()
+        SetGames(gamesList)
+        const requestsList = await ALLREQUESTS()
+        SetRequests(requestsList.data.data.allRequests)
+        const reportsList = await REPORTS()
+        SetReports(reportsList.data.data.reports)
+      }
+      
+      getData()
+
+    },[])
+
+    return (
+        &lt;div>
+            &lt;TopBar user={user}/>
+
+            &lt;AppBar position="static">
+            &lt;Tabs 
+            style={{backgroundColor:"#FFFF",color:"#232323"}}
+            value={value} 
+            variant="scrollable"
+            scrollButtons="auto"
+            onChange={handleChange} >
+                &lt;Tab label="Usuários" {...a11yProps(0)} />
+                &lt;Tab label="Jogos" {...a11yProps(1)} />
+                &lt;Tab label="Trocas" {...a11yProps(2)} />
+                &lt;Tab label="Reports" {...a11yProps(3)} />
+                &lt;Tab label="Metricas" {...a11yProps(4)} />
+               
+            &lt;/Tabs>
+            &lt;/AppBar>
+
+            &lt;UsersListTab value={value} index={0} current={user}>
+                {users}
+            &lt;/UsersListTab>
+
+            &lt;GamesListTabs value={value} index={1}>
+                {games}
+            &lt;/GamesListTabs>
+            &lt;RequestsListTab value={value} index={2}>
+            {requests}
+            &lt;/RequestsListTab>
+
+            &lt;ReportsListTab value={value} index={3}>
+              {reports}
+            &lt;/ReportsListTab>
+
+            &lt;MetricsTab value={value} index={4}/>
+            
+
+        &lt;/div>
+    )
+}
+
+export default Tools</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Chat.html">Chat</a></li><li><a href="Details.html">Details</a></li><li><a href="Login.html">Login</a></li><li><a href="Message.html">Message</a></li><li><a href="Notifications.html">Notifications</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Requests.html">Requests</a></li><li><a href="Signup.html">Signup</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountsChart">AccountsChart</a></li><li><a href="global.html#AddGame">AddGame</a></li><li><a href="global.html#AddToContactsButton">AddToContactsButton</a></li><li><a href="global.html#AdminDeleteAccountButton">AdminDeleteAccountButton</a></li><li><a href="global.html#AppContextProvider">AppContextProvider</a></li><li><a href="global.html#AutoCompleteInput">AutoCompleteInput</a></li><li><a href="global.html#ChangeAccountStatusButton">ChangeAccountStatusButton</a></li><li><a href="global.html#Collection">Collection</a></li><li><a href="global.html#ContactList">ContactList</a></li><li><a href="global.html#Contacts">Contacts</a></li><li><a href="global.html#CreateRequest">CreateRequest</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteUserButton">DeleteUserButton</a></li><li><a href="global.html#EditGame">EditGame</a></li><li><a href="global.html#EditGameForm">EditGameForm</a></li><li><a href="global.html#EditUser">EditUser</a></li><li><a href="global.html#EditUserForm">EditUserForm</a></li><li><a href="global.html#ExportGamesPDF">ExportGamesPDF</a></li><li><a href="global.html#ExportRequestPDF">ExportRequestPDF</a></li><li><a href="global.html#ExportUserPDF">ExportUserPDF</a></li><li><a href="global.html#GameCard">GameCard</a></li><li><a href="global.html#GamesListTabs">GamesListTabs</a></li><li><a href="global.html#GameTableRow">GameTableRow</a></li><li><a href="global.html#GameValueChart">GameValueChart</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#KeywordMetricTab">KeywordMetricTab</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#Metrics">Metrics</a></li><li><a href="global.html#NotificationCard">NotificationCard</a></li><li><a href="global.html#NotificationsView">NotificationsView</a></li><li><a href="global.html#NotifyUser">NotifyUser</a></li><li><a href="global.html#PlataformChart">PlataformChart</a></li><li><a href="global.html#ProcessLogin">ProcessLogin</a></li><li><a href="global.html#ProcessRequest">ProcessRequest</a></li><li><a href="global.html#ProcessSignUp">ProcessSignUp</a></li><li><a href="global.html#PromoteUser">PromoteUser</a></li><li><a href="global.html#RemoveGameButton">RemoveGameButton</a></li><li><a href="global.html#RemoveNotificationButton">RemoveNotificationButton</a></li><li><a href="global.html#ReportForm">ReportForm</a></li><li><a href="global.html#ReportTableRow">ReportTableRow</a></li><li><a href="global.html#RequestCard">RequestCard</a></li><li><a href="global.html#RequestsChart">RequestsChart</a></li><li><a href="global.html#RequestTableRow">RequestTableRow</a></li><li><a href="global.html#Tools">Tools</a></li><li><a href="global.html#TopBar">TopBar</a></li><li><a href="global.html#UpdateReportForm">UpdateReportForm</a></li><li><a href="global.html#useAppContext">useAppContext</a></li><li><a href="global.html#UserLocationChart">UserLocationChart</a></li><li><a href="global.html#UsersListTab">UsersListTab</a></li><li><a href="global.html#UserTableRow">UserTableRow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 03 2021 13:07:01 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

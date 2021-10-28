@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`testing <GameList/> fetching game list 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="game-list-card"
+>
+  <WithStyles(ForwardRef(Paper))
+    component="form"
+    style={
+      Object {
+        "backgroundColor": "#FD507A",
+        "color": "white",
+        "height": "100px",
+      }
+    }
+  >
+    <WithStyles(ForwardRef(InputBase))
+      className="game-list-input"
+      inputProps={
+        Object {
+          "aria-label": "procure aqui",
+        }
+      }
+      onChange={[Function]}
+      placeholder="Procure aqui"
+    />
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="search"
+      onClick={[Function]}
+    >
+      <Memo(ForwardRef(SearchIcon)) />
+    </WithStyles(ForwardRef(IconButton))>
+  </WithStyles(ForwardRef(Paper))>
+  <WithStyles(ForwardRef(List))
+    style={
+      Object {
+        "maxHeight": "100%",
+        "overflow": "auto",
+      }
+    }
+  >
+    <div>
+      <WithStyles(ForwardRef(Skeleton))
+        animation="wave"
+        height={380}
+        variant="rect"
+        width={380}
+      />
+      <WithStyles(ForwardRef(Skeleton))
+        animation="wave"
+        variant="text"
+      />
+    </div>
+  </WithStyles(ForwardRef(List))>
+</WithStyles(ForwardRef(Card))>
+`;

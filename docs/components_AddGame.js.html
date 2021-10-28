@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/AddGame.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/AddGame.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useState,useContext} from 'react'
+import { UserContext } from "../utils/UserContext";
+import axios from 'axios'
+import {Card,
+    CardActions, 
+    CardHeader,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem,
+    TextareaAutosize,
+    TextField, 
+    Button} from '@material-ui/core';
+
+//import { ProgressIcon } from './ProgressIcon';
+import AutoCompleteInput from './AutoCompleteInput';
+import MuiAlert from '@material-ui/lab/Alert';
+
+function Alert(props) {
+  return &lt;MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
+/** These component collect the input info to add a game to user collection
+ * 
+ * @param {string} title - The title of the game.
+ * @param {string} gender - The type of the game.
+ * @param {string} videogame - The platform/videogame from the game.
+ * @param {string} value - The value of the game.
+ * @param {string} status - The physic condition of the game/media.
+ * @param {string} description - Short text about the game.
+ * @param {file} cover - A photo or the cover of the game.
+ */
+
+
+const AddGame = () =>{
+  var {user} = useContext(UserContext)
+
+    var id = ''; 
+    const [title, SetTitle] = useState('');
+    const [price, SetPrice] = useState('');
+    const [cover, SetCover] = useState('');
+    const [description, SetDescription] = useState('');
+    const [videogame, SetConsole] = useState('');
+    const [status, SetStatus] = useState('');
+    const [gender,SetGender] = useState('');
+
+    const [ready,SetReady] = useState(false);
+    const [error,SetError] = useState({onError:false,message:''});
+
+    const handleCloseAlert = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      SetReady(false);
+      SetError({onError:false,message:''});
+    };
+
+    const handleConsole = (event) => {
+        SetConsole(event.target.value);
+        
+      };
+    const handleStatus = (event) => {
+        SetStatus(event.target.value);
+        
+      };
+    const handleGender = (event) => {
+        SetGender(event.target.value);
+        
+      };
+    
+      const HandleFilesUpload = e =>{
+        e.preventDefault()
+        const files = Object.values(e.target.files)
+        files.map(file => {
+          // Initial FormData
+          const formData = new FormData();
+          formData.append("file", file);
+          //formData.append("tags", `dahwijw8w, medium, gist`);
+          formData.append("upload_preset", "lqvmm3lj"); // Replace the preset name with your own
+          formData.append("api_key", "316375736115726"); // Replace API key with your own Cloudinary key
+         // formData.append("signature", "UyTJCwsJ89rr1ajiPEvWIvz3egc");
+          formData.append("timestamp", (Date.now() / 1000) | 0);
+      
+          // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
+          return axios.post("https://api.cloudinary.com/v1_1/dahwijw8w/image/upload", formData, {
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+          }).then(response => {
+            const data = response.data;
+            const fileURL = data.secure_url // You should store this URL for future references in your app
+            SetCover(fileURL)
+            
+        });
+
+      })
+
+
+    }
+
+      
+      function handleSubmit (title,price,videogame,description,
+        gender,status,cover){
+
+          var id = user ? user.id : "123456789"
+
+        axios.post(process.env.REACT_APP_API_URL,{
+            query:`mutation{
+                createGame(owner:"${id}",title:"${title}",value:"${price}",
+                platform:"${videogame}",description:"${description}",
+                gender:"${gender}",status:"${status}",cover:"${cover}"){
+                    id
+                    title
+                    status
+                }
+            }`,
+            headers: {
+              "Content-Type": 'application/json'
+            } 
+        })
+        .then(res => {
+         // console.log(res.data)
+         setTimeout(()=>{
+           
+        },1500)
+        SetReady(true)
+        
+        })
+        .catch(err => {
+          SetError({onError:true,message:err.message})
+        })
+      }
+ 
+
+    return (
+        &lt;div>
+
+            &lt;Card className="addgame-card">
+            &lt;CardHeader title="Adicionar Jogo"
+               className="addgame-card-header"/>
+
+               &lt;CardActions>
+
+               &lt;AutoCompleteInput SetTitle={SetTitle} title={title}/>
+               
+                &lt;/CardActions>
+
+                &lt;CardActions>
+                &lt;FormControl variant="outlined" size="small" className="addgame-input"  >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Console&lt;/InputLabel>
+                &lt;Select labelId="demo-simple-select-outlined-label" id="demo-simple-select-outlined"
+                onChange={handleConsole}
+                value={videogame}
+                label="Console">
+                            &lt;MenuItem value="pc">PC&lt;/MenuItem>
+                            &lt;MenuItem value="playstation">Playstation&lt;/MenuItem>
+                            &lt;MenuItem value="xbox">Xbox&lt;/MenuItem>
+                            &lt;MenuItem value="nintendo">Nintendo&lt;/MenuItem> 
+                            &lt;MenuItem value="outro">Outro&lt;/MenuItem> 
+                    &lt;/Select>
+                &lt;/FormControl>
+                
+                &lt;FormControl variant="outlined" size="small" className="addgame-input"  >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Estado&lt;/InputLabel>
+                &lt;Select labelId="demo-simple-select-outlined-label" id="demo-simple-select-outlined"
+                onChange={handleStatus}
+                value={status}
+                label="Estado">
+                            &lt;MenuItem value="usado">Usado&lt;/MenuItem>
+                            &lt;MenuItem value="novo">Novo&lt;/MenuItem>
+                            &lt;MenuItem value="antigo">Antigo&lt;/MenuItem>
+                            &lt;MenuItem value="lacrado">Lacrado&lt;/MenuItem>
+                            &lt;MenuItem value="outro">Outro&lt;/MenuItem>
+                    &lt;/Select>
+                &lt;/FormControl>
+                &lt;/CardActions> 
+
+                &lt;CardActions>
+                &lt;TextField id="outlined-basic"
+               className="addgame-input" 
+               label="Valor" variant="outlined" size="small" 
+               onChange={e => SetPrice(e.target.value)}/>
+
+                &lt;FormControl variant="outlined" size="small" className="addgame-input"  >
+                &lt;InputLabel id="demo-simple-select-outlined-label">Genero&lt;/InputLabel>
+                &lt;Select labelId="demo-simple-select-outlined-label" id="demo-simple-select-outlined"
+                onChange={handleGender}
+                value={gender}
+                label="Estado">
+                            &lt;MenuItem value="ação">Ação&lt;/MenuItem>
+                            &lt;MenuItem value="aventura">Aventura&lt;/MenuItem>
+                            &lt;MenuItem value="esportes">Esportes&lt;/MenuItem>
+                            &lt;MenuItem value="corrida">Corrida&lt;/MenuItem>
+                            &lt;MenuItem value="luta">Luta&lt;/MenuItem>
+                            &lt;MenuItem value="outro">Outro&lt;/MenuItem>
+                    &lt;/Select>
+                &lt;/FormControl>
+
+
+                &lt;/CardActions>
+
+                &lt;CardActions>
+                &lt;FormControl variant="outlined">
+                &lt;InputLabel id="demo-simple-select-outlined-label">Descrição&lt;/InputLabel>
+                &lt;TextareaAutosize minRows={4} className="addgame-textarea"
+                onChange={e => SetDescription(e.target.value)}/>
+                &lt;/FormControl>
+
+                &lt;/CardActions>
+
+                &lt;CardActions className="addgame-card-actions"> 
+                &lt;input
+                accept="image/*"
+                style={{display:"none"}}
+                id="contained-button-file"
+                multiple
+                type="file"
+                onChange={HandleFilesUpload}
+            />
+            &lt;label htmlFor="contained-button-file">
+                &lt;Button variant="contained" color="primary" component="span">
+                Foto
+                &lt;/Button>
+            &lt;/label>
+
+                
+                
+                &lt;button datatest-id="submit"
+                onClick={e => handleSubmit(title.title,price,videogame,description,
+                  gender,status,cover)} >Salvar&lt;/button>
+                &lt;/CardActions>
+                
+            {ready ?
+            &lt;Alert onClose={handleCloseAlert} severity="success">
+              Jogo adicionado com sucesso
+            &lt;/Alert>
+
+          :""}
+            {error.onError ?
+            &lt;Alert onClose={handleCloseAlert} severity="error">
+              Falha ao salvar informações : {error.message}
+            &lt;/Alert>
+          :""}
+          
+            &lt;/Card>
+            
+        &lt;/div>
+    )
+}
+
+export default AddGame
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Chat.html">Chat</a></li><li><a href="Details.html">Details</a></li><li><a href="Login.html">Login</a></li><li><a href="Message.html">Message</a></li><li><a href="Notifications.html">Notifications</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Requests.html">Requests</a></li><li><a href="Signup.html">Signup</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountsChart">AccountsChart</a></li><li><a href="global.html#AddGame">AddGame</a></li><li><a href="global.html#AddToContactsButton">AddToContactsButton</a></li><li><a href="global.html#AdminDeleteAccountButton">AdminDeleteAccountButton</a></li><li><a href="global.html#AppContextProvider">AppContextProvider</a></li><li><a href="global.html#AutoCompleteInput">AutoCompleteInput</a></li><li><a href="global.html#ChangeAccountStatusButton">ChangeAccountStatusButton</a></li><li><a href="global.html#Collection">Collection</a></li><li><a href="global.html#ContactList">ContactList</a></li><li><a href="global.html#Contacts">Contacts</a></li><li><a href="global.html#CreateRequest">CreateRequest</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteUserButton">DeleteUserButton</a></li><li><a href="global.html#EditGame">EditGame</a></li><li><a href="global.html#EditGameForm">EditGameForm</a></li><li><a href="global.html#EditUser">EditUser</a></li><li><a href="global.html#EditUserForm">EditUserForm</a></li><li><a href="global.html#ExportGamesPDF">ExportGamesPDF</a></li><li><a href="global.html#ExportRequestPDF">ExportRequestPDF</a></li><li><a href="global.html#ExportUserPDF">ExportUserPDF</a></li><li><a href="global.html#GameCard">GameCard</a></li><li><a href="global.html#GamesListTabs">GamesListTabs</a></li><li><a href="global.html#GameTableRow">GameTableRow</a></li><li><a href="global.html#GameValueChart">GameValueChart</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#KeywordMetricTab">KeywordMetricTab</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#Metrics">Metrics</a></li><li><a href="global.html#NotificationCard">NotificationCard</a></li><li><a href="global.html#NotificationsView">NotificationsView</a></li><li><a href="global.html#NotifyUser">NotifyUser</a></li><li><a href="global.html#PlataformChart">PlataformChart</a></li><li><a href="global.html#ProcessLogin">ProcessLogin</a></li><li><a href="global.html#ProcessRequest">ProcessRequest</a></li><li><a href="global.html#ProcessSignUp">ProcessSignUp</a></li><li><a href="global.html#PromoteUser">PromoteUser</a></li><li><a href="global.html#RemoveGameButton">RemoveGameButton</a></li><li><a href="global.html#RemoveNotificationButton">RemoveNotificationButton</a></li><li><a href="global.html#ReportForm">ReportForm</a></li><li><a href="global.html#ReportTableRow">ReportTableRow</a></li><li><a href="global.html#RequestCard">RequestCard</a></li><li><a href="global.html#RequestsChart">RequestsChart</a></li><li><a href="global.html#RequestTableRow">RequestTableRow</a></li><li><a href="global.html#Tools">Tools</a></li><li><a href="global.html#TopBar">TopBar</a></li><li><a href="global.html#UpdateReportForm">UpdateReportForm</a></li><li><a href="global.html#useAppContext">useAppContext</a></li><li><a href="global.html#UserLocationChart">UserLocationChart</a></li><li><a href="global.html#UsersListTab">UsersListTab</a></li><li><a href="global.html#UserTableRow">UserTableRow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 03 2021 13:07:01 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

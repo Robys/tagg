@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: tools/TableRows.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: tools/TableRows.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {useState,Fragment} from 'react'
+import {TableRow,TableCell,Collapse,IconButton,Box} from '@material-ui/core'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+
+import PromoteUser from './PromoteUser';
+import NotifyUser from './NotifyUser';
+import EditUser from '../components/EditUser';
+import EditGame from '../components/EditGame'
+import RemoveGameButton  from '../components/RemoveGameButton';
+import AdminDeleteAccountButton from './AdminDeleteAccountButton'
+
+/**
+ * These Row belongs to the Users Table, wrapped in the UsersListTab,
+ * The collapsed option allow the user information editing, notification and user promotion.  
+ * 
+ * @param {Object} user - user info to fill the table row 
+ * @param {Object} current - current user stored in the app context 
+ */
+ const UserTableRow = ({user,current}) =>{
+    const [open,SetOpen] = useState(false)
+
+    return (
+        &lt;Fragment>
+        &lt;TableRow 
+        className="table-row">
+
+            &lt;TableCell>
+            &lt;IconButton aria-label="expand row" size="small" onClick={() => SetOpen(!open)}>
+            {open ? &lt;KeyboardArrowUpIcon /> : &lt;KeyboardArrowDownIcon />}
+            &lt;/IconButton>
+            &lt;/TableCell>
+
+        &lt;TableCell>{user.id}&lt;/TableCell>
+        &lt;TableCell>{user.roles}&lt;/TableCell>
+        &lt;TableCell>
+            &lt;a href={`/profile/${user.id}`}>
+                
+            {user.firstName}
+            &lt;/a>
+        &lt;/TableCell>
+        &lt;TableCell>{user.lastName}&lt;/TableCell>
+        &lt;TableCell>{user.email}&lt;/TableCell>
+        &lt;TableCell>{user.location}&lt;/TableCell>
+        &lt;/TableRow>
+
+        &lt;TableRow className="table-row">
+            
+        &lt;TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        &lt;Collapse  in={open} timeout="auto" unmountOnExit>
+
+            &lt;Box margin={1}>
+                &lt;PromoteUser  user={user}/>
+                &lt;EditUser user={user}/>
+                {current ? 
+                &lt;AdminDeleteAccountButton user={user} current={current}/>
+                :""}
+                &lt;NotifyUser other={user}/>
+            &lt;/Box>
+        &lt;/Collapse>
+        &lt;/TableCell>
+
+        &lt;/TableRow>
+
+
+        &lt;/Fragment>
+    )
+
+}
+
+/**
+ * These Row belongs to the Games Table, wrapped in the GamesListTab,
+ * The collapsed option allow the editing and remotion of the selected game 
+ * 
+ * @param {Object} game - user info to fill the table row 
+ */
+
+ const GameTableRow = ({game}) =>{
+    const [open,SetOpen] = useState(false)
+
+    return (
+        &lt;Fragment>
+        &lt;TableRow 
+        className="table-row">
+
+            &lt;TableCell>
+            &lt;IconButton aria-label="expand row" size="small" onClick={() => SetOpen(!open)}>
+            {open ? &lt;KeyboardArrowUpIcon /> : &lt;KeyboardArrowDownIcon />}
+            &lt;/IconButton>
+            &lt;/TableCell>
+
+        &lt;TableCell>{game.id}&lt;/TableCell>
+        &lt;TableCell>
+            &lt;a href={`/details/${game.id}`}>{game.title}&lt;/a>
+        &lt;/TableCell>
+        &lt;TableCell>{game.gender}&lt;/TableCell>
+        &lt;TableCell>{game.status}&lt;/TableCell>
+        &lt;TableCell>{game.createdAt}&lt;/TableCell>
+        &lt;/TableRow>
+
+        &lt;TableRow className="table-row">
+        &lt;TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        &lt;Collapse  in={open} timeout="auto" unmountOnExit>
+            &lt;Box margin={1}>
+                &lt;RemoveGameButton game={game}/>
+                &lt;EditGame game={game}/>
+            &lt;/Box>
+        &lt;/Collapse>
+
+        &lt;/TableCell>
+            
+
+        &lt;/TableRow>
+
+
+        &lt;/Fragment>
+    )
+
+}
+
+/**
+ * These Row belongs to the Requesr Table, wrapped in the RequestsListTab,
+ * The collapsed option contain information about the users envolved and 
+ * the status of the request.  
+ * 
+ * @param {Object} request - requst info to fill the table row 
+ */
+ const RequestTableRow = ({request}) =>{
+    const [open,SetOpen] = useState(false)
+
+    return (
+        &lt;Fragment>
+        &lt;TableRow 
+        className="table-row">
+
+            &lt;TableCell>
+            &lt;IconButton aria-label="expand row" size="small" onClick={() => SetOpen(!open)}>
+            {open ? &lt;KeyboardArrowUpIcon /> : &lt;KeyboardArrowDownIcon />}
+            &lt;/IconButton>
+            &lt;/TableCell>
+
+        &lt;TableCell>{request.id}&lt;/TableCell>
+        &lt;TableCell>{request.createdAt}&lt;/TableCell>
+
+        &lt;/TableRow>
+
+        &lt;TableRow className="table-row">
+            &lt;TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                &lt;Collapse  in={open} timeout="auto" unmountOnExit>
+                &lt;Box margin={1}>
+                    &lt;h4>para: {request.selected.title} - {request.selected.platform}&lt;/h4>
+                    &lt;h4>em troca: {request.requested.title} - {request.requested.platform}&lt;/h4>
+
+                    &lt;p>situação: {request.status}&lt;/p>
+
+                &lt;/Box>
+                 &lt;/Collapse>
+            &lt;/TableCell>
+        &lt;/TableRow>
+
+        &lt;/Fragment>
+    )
+
+}
+
+/**
+ * These Row belongs to the Report Table, wrapped in the ReportsListTab,
+ * The collapsed option shows more information about the report and the
+ * possibility to notify the report creator's.
+ * 
+ * @param {Object} report - report info to fill the table row 
+ */
+
+ const ReportTableRow = ({report}) =>{
+    const [open,SetOpen] = useState(false)
+
+    return (
+        &lt;Fragment>
+            &lt;TableRow 
+        className="table-row">
+
+            &lt;TableCell>
+            &lt;IconButton aria-label="expand row" size="small" onClick={() => SetOpen(!open)}>
+            {open ? &lt;KeyboardArrowUpIcon /> : &lt;KeyboardArrowDownIcon />}
+            &lt;/IconButton>
+            &lt;/TableCell>
+
+        &lt;TableCell>{report.id}&lt;/TableCell>
+        &lt;TableCell>
+            &lt;a href={`/profile/${report.sender.id}`}>
+            {report.sender.firstName} {report.sender.lastName}
+            &lt;/a>
+        &lt;/TableCell>
+        &lt;TableCell>{report.createdAt}&lt;/TableCell>
+        &lt;/TableRow>
+
+        &lt;TableRow className="table-row">
+        &lt;TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        &lt;Collapse  in={open} timeout="auto" unmountOnExit>
+            &lt;Box margin={1}>
+                &lt;h4>Reclamação&lt;/h4>
+                &lt;p>{report.content}&lt;/p>
+                &lt;p>status: {report.done ? "resolvido" :"pendente"}&lt;/p>
+                &lt;NotifyUser other={report.sender} report={report}/>
+            &lt;/Box>
+        &lt;/Collapse>
+
+        &lt;/TableCell>
+            
+
+        &lt;/TableRow>
+
+        &lt;/Fragment>
+    )
+
+}
+
+export {UserTableRow,GameTableRow,RequestTableRow,ReportTableRow}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Chat.html">Chat</a></li><li><a href="Details.html">Details</a></li><li><a href="Login.html">Login</a></li><li><a href="Message.html">Message</a></li><li><a href="Notifications.html">Notifications</a></li><li><a href="Profile.html">Profile</a></li><li><a href="Requests.html">Requests</a></li><li><a href="Signup.html">Signup</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AccountsChart">AccountsChart</a></li><li><a href="global.html#AddGame">AddGame</a></li><li><a href="global.html#AddToContactsButton">AddToContactsButton</a></li><li><a href="global.html#AdminDeleteAccountButton">AdminDeleteAccountButton</a></li><li><a href="global.html#AppContextProvider">AppContextProvider</a></li><li><a href="global.html#AutoCompleteInput">AutoCompleteInput</a></li><li><a href="global.html#ChangeAccountStatusButton">ChangeAccountStatusButton</a></li><li><a href="global.html#Collection">Collection</a></li><li><a href="global.html#ContactList">ContactList</a></li><li><a href="global.html#Contacts">Contacts</a></li><li><a href="global.html#CreateRequest">CreateRequest</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#DeleteUserButton">DeleteUserButton</a></li><li><a href="global.html#EditGame">EditGame</a></li><li><a href="global.html#EditGameForm">EditGameForm</a></li><li><a href="global.html#EditUser">EditUser</a></li><li><a href="global.html#EditUserForm">EditUserForm</a></li><li><a href="global.html#ExportGamesPDF">ExportGamesPDF</a></li><li><a href="global.html#ExportRequestPDF">ExportRequestPDF</a></li><li><a href="global.html#ExportUserPDF">ExportUserPDF</a></li><li><a href="global.html#GameCard">GameCard</a></li><li><a href="global.html#GamesListTabs">GamesListTabs</a></li><li><a href="global.html#GameTableRow">GameTableRow</a></li><li><a href="global.html#GameValueChart">GameValueChart</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#KeywordMetricTab">KeywordMetricTab</a></li><li><a href="global.html#Messages">Messages</a></li><li><a href="global.html#Metrics">Metrics</a></li><li><a href="global.html#NotificationCard">NotificationCard</a></li><li><a href="global.html#NotificationsView">NotificationsView</a></li><li><a href="global.html#NotifyUser">NotifyUser</a></li><li><a href="global.html#PlataformChart">PlataformChart</a></li><li><a href="global.html#ProcessLogin">ProcessLogin</a></li><li><a href="global.html#ProcessRequest">ProcessRequest</a></li><li><a href="global.html#ProcessSignUp">ProcessSignUp</a></li><li><a href="global.html#PromoteUser">PromoteUser</a></li><li><a href="global.html#RemoveGameButton">RemoveGameButton</a></li><li><a href="global.html#RemoveNotificationButton">RemoveNotificationButton</a></li><li><a href="global.html#ReportForm">ReportForm</a></li><li><a href="global.html#ReportTableRow">ReportTableRow</a></li><li><a href="global.html#RequestCard">RequestCard</a></li><li><a href="global.html#RequestsChart">RequestsChart</a></li><li><a href="global.html#RequestTableRow">RequestTableRow</a></li><li><a href="global.html#Tools">Tools</a></li><li><a href="global.html#TopBar">TopBar</a></li><li><a href="global.html#UpdateReportForm">UpdateReportForm</a></li><li><a href="global.html#useAppContext">useAppContext</a></li><li><a href="global.html#UserLocationChart">UserLocationChart</a></li><li><a href="global.html#UsersListTab">UsersListTab</a></li><li><a href="global.html#UserTableRow">UserTableRow</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Oct 03 2021 13:07:01 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
