@@ -58,7 +58,7 @@ function AutoCompleteInput({SetTitle,title}){
             } else if (newValue && newValue.inputValue) {
               // Create a new value from the user input
               SetTitle(newValue.inputValue)
-              CREATESUGESTION(newValue.inputValue)
+              CREATESUGGESTION(newValue.inputValue)
             } else {
             SetTitle(newValue)
             }

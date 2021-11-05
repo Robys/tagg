@@ -1,7 +1,5 @@
 import axios from "axios"
 
-//process.env.REACT_APP_API_URL
-
 export const CURRENTUSER = async () =>{
 
     return await axios.post(process.env.REACT_APP_API_URL,{
@@ -45,14 +43,26 @@ export const CURRENTUSER = async () =>{
             "Content-Type": 'application/json'
         } 
     })
-    .then(res => {
-        if(res!==null)
-            return res.data.data.me
-        else
-        return null
-    })
+    .then(res => res.data.data.me)
     .catch(err => err)
     
+}
+
+export const SIGNUP = async (firstName,lastName,email,
+    password,picture,local) =>{
+    return axios.post(process.env.REACT_APP_API_URL,{
+        query:`mutation{
+            signup(firstName:"${firstName}",lastName:"${lastName}",
+            email:"${email}",password:"${password}",
+            picture:"${picture}",location:"${local}"){
+               
+                    firstName
+                    email
+                
+            }
+        }`
+    }).then(res => res.data.data)
+    .catch(err => err)
 }
 
 export const DELETEUSER = async (_id)=>{

@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {SIGNUP} from '../api'
 import ProcessSignUp from '../views/ProcessSignUp';
 import axios from 'axios'
 import {Card,
@@ -90,33 +91,22 @@ function Signup(){
 
       }
 
-    const handleSubmit = (firstName,lastName,email,
+    const handleSubmit = async (firstName,lastName,email,
         password,picture,local) =>{
-        
-        axios.post(process.env.REACT_APP_API_URL,{
-            query:`mutation{
-                signup(firstName:"${firstName}",lastName:"${lastName}",
-                email:"${email}",password:"${password}",
-                picture:"${picture}",location:"${local}"){
-                   
-                        firstName
-                        email
-                    
-                }
-            }`
-        }).then(res => {
-            console.log(res)
-            if(res.data.data.signup!==null){
-                
-                SetReady(true)
-            }
-            else if(res.data.data.errors!==null){
-                const err = res.data.errors
-                err.map(item => {
-                   return SetError({onError:true,message:item.message})
-                })
-            }
-        })
+
+          const response = await SIGNUP(firstName,lastName,email,
+            password,picture,local)
+
+            //console.log(response)
+
+          if(response.signup !== null){
+            SetReady(true)
+          }
+          else if(response.errors!==null){
+            response.errors.map(item => {
+               return SetError({onError:true,message:item.message})
+            })
+          }
   
     }
     

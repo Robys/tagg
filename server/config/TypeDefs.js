@@ -161,8 +161,8 @@ const typeDefs = gql`
     deleteGame(_id:ID):Game
 
     #adiciona sugestão de titulo para jogos vindos do usuários
-    createSuggestion(title:String):Sugestion
-    removeSuggestion(title:String):Sugestion
+    createSuggestion(title:String):Suggestion
+    removeSuggestion(title:String):Suggestion
 
     #adiciona outro usuário a lista de contatos
     addToContactList(_id:ID!, userToAdd:ID!) : User

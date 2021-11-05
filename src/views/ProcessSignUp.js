@@ -31,7 +31,7 @@ function ProcessSignUp({email,password}){
         const loginAttempt = async ()=>{
             SetLoading({state:true})
             const res = await LOGIN(email,password)
-            //console.log(res)
+            console.log(res)
             if(res.data.data.login!==null){
                 
                 SetReady(true)

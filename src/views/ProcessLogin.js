@@ -21,10 +21,8 @@ import {
  * @param {Boolean} loading - toggle if the user exist or not
  */
 
-function ProcessLogin (context){
+function ProcessLogin (){
     var {user,loading} = useAppContext()
-
-    user = loading ? user:context 
 
     return (
         <div>

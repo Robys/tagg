@@ -18,9 +18,11 @@ const UserContext = createContext({
 const useAppContext = () =>{
     const {user,loading} = useContext(UserContext)
     if(user===null){
-        window.location.reload()
-    }
+        setTimeout(()=>{
 
+            window.location.reload()
+        },1500)
+    }
     return {user,loading}
 }
 
@@ -32,14 +34,12 @@ const useAppContext = () =>{
 
 const AppContextProvider = ({children}) =>{
     const [user,SetUser] = useState()
-    const [loading,SetLoading] = useState(true)
+    var loading = user ? false : true
 
     useEffect(()=>{
         async function GetCurrentUser(){
             const response = await CURRENTUSER()
             SetUser(response)
-            if(user!==null)
-                SetLoading(false)
         }
 
         GetCurrentUser()
