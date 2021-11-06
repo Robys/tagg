@@ -32,7 +32,7 @@ function Alert(props) {
  */
 
 
-const AddGame = () =>{
+const AddGame = ({isCurrentUser}) =>{
   var {user} = useContext(UserContext)
 
     var id = ''; 
@@ -133,7 +133,7 @@ const AddGame = () =>{
     return (
         <div>
 
-            <Card className="addgame-card">
+            <Card className="addgame-card" style={{display: isCurrentUser ? "inline-block" : "none"}}>
             <CardHeader title="Adicionar Jogo"
                className="addgame-card-header"/>
 

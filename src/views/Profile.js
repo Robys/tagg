@@ -82,7 +82,7 @@ function Profile (props) {
 
             </Card> : ""}
 
-        <AddGame/>
+        <AddGame isCurrentUser={isCurrentUser}/>
 
         {profile ? <Collection collection={profile.gamecollection}/>  :""}
         
