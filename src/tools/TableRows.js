@@ -150,6 +150,17 @@ import AdminDeleteAccountButton from './AdminDeleteAccountButton'
                 <Box margin={1}>
                     <h4>para: {request.selected.title} - {request.selected.platform}</h4>
                     <h4>em troca: {request.requested.title} - {request.requested.platform}</h4>
+                    <hr/>
+                    <span>pedido por: 
+                        <a href={`/profile/${request.selected.owner.id}`}>
+                            {request.selected.owner.firstName} 
+                        </a>
+
+                        para: 
+                        <a href={`/profile/${request.requested.owner.id}`}>
+                            {request.requested.owner.firstName} 
+                        </a>
+                    </span>
 
                     <p>situação: {request.status}</p>
 
