@@ -110,7 +110,7 @@ export const RemoveToContactsButton = ({owner,currentUser}) =>{
       }
 
     const handleRemovePerson = async () =>{
-     await REMOVETOCONTACTLIST(currentUser,owner).then(res => {
+     await REMOVETOCONTACTLIST(currentUser.id,owner.id).then(res => {
        if(res.errors){
         handleOnError(res.errors[0])
       }

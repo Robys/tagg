@@ -125,7 +125,7 @@ const AddToContactsButton = ({owner,currentUser}) =>{
       }
 
     const handleAddPerson = async () =>{
-     await ADDTOCONTACTSLIST(currentUser,owner).then(res => {
+     await ADDTOCONTACTSLIST(currentUser.id,owner.id).then(res => {
        if(res.errors){
         handleOnError(res.errors[0])
       }

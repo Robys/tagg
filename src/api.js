@@ -233,13 +233,11 @@ export const UPDATEUSER = async (user,nameToSave,lastNameToSave,
 
 }
 
-export const ADDTOCONTACTSLIST = async (currentUser,owner) =>{
-    const _id = currentUser.id
-    const userToAdd = owner.id
+export const ADDTOCONTACTSLIST = async (currentUser,userToAdd) =>{
 
     const result = await axios.post(process.env.REACT_APP_API_URL,{
         query:`mutation {
-            addToContactList(_id:"${_id}",userToAdd:"${userToAdd}"){
+            addToContactList(_id:"${currentUser}",userToAdd:"${userToAdd}"){
                     id
                     firstName
             }
@@ -277,17 +275,14 @@ export const CONTACTS = async (_id) =>{
     return result.data.data
 }
 
-export const REMOVETOCONTACTLIST = async (currentUser,owner) =>{
-    const _id = currentUser.id
-    const userToRemove = owner.id
-    
-    const result = await axios.post(process.env.REACT_APP_API_URL,{
-        query:`query {
-            removeToContactList(_id:"${_id}",userToRemove:"${userToRemove}"){
-                user{
+export const REMOVETOCONTACTLIST = async (currentUser,userToRemove) =>{
+    //console.log(currentUser,userToRemove)
+
+    return await axios.post(process.env.REACT_APP_API_URL,{
+        query:`mutation {
+            removeToContactList(_id:"${currentUser}",userToRemove:"${userToRemove}"){
                     id
                     firstName
-                }
             }
         }`,
         
@@ -295,10 +290,8 @@ export const REMOVETOCONTACTLIST = async (currentUser,owner) =>{
             "Content-Type": 'application/json'
         } 
     })
-    .then(res => res)
+    .then(res => res.data)
     .catch(err => err)
-
-    return result.data
     
 }
 
