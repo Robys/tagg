@@ -59,9 +59,7 @@ function AutoCompleteInput({SetTitle,title}){
               // Create a new value from the user input
               SetTitle(newValue.inputValue)
               CREATESUGGESTION(newValue.inputValue)
-            } else {
-            SetTitle(newValue)
-            }
+            } 
           }}
 
           getOptionSelected={(option, value) => option.title === value.title}

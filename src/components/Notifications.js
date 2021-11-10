@@ -35,7 +35,7 @@ const Notifications = ({user}) => {
 
         getUserNotifications()
 
-    },[user])
+    },[])
 
     //console.log(data)
 

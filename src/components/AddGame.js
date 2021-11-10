@@ -35,7 +35,6 @@ function Alert(props) {
 const AddGame = ({isCurrentUser}) =>{
   var {user} = useContext(UserContext)
 
-    var id = ''; 
     const [title, SetTitle] = useState('');
     const [price, SetPrice] = useState('');
     const [cover, SetCover] = useState('');
@@ -120,8 +119,9 @@ const AddGame = ({isCurrentUser}) =>{
          // console.log(res.data)
          setTimeout(()=>{
            
+           SetReady(true)
         },1500)
-        SetReady(true)
+        window.location.reload()
         
         })
         .catch(err => {

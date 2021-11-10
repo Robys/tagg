@@ -43,7 +43,7 @@ const AppContextProvider = ({children}) =>{
         }
 
         GetCurrentUser()
-    },[user])
+    },[])
 
     const value = useMemo(() => ({
         user,loading

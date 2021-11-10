@@ -1,5 +1,6 @@
 import { useState,forwardRef } from "react"
 import {DELETEGAME} from '../api'
+import { Redirect } from "react-router";
 
 import {
     Button,
@@ -21,6 +22,7 @@ import {
 
 const RemoveGameButton = ({game})=>{
     const [open,SetOpen] = useState(false)
+    const [ready,SetReady] = useState(false)
      
     
     const handleClickOpen = () => {
@@ -32,8 +34,8 @@ const RemoveGameButton = ({game})=>{
       };
 
       const handleDeleteGame = async () =>{
-          const response = await DELETEGAME(game.id);
-          console.log(response)
+        await DELETEGAME(game.id);
+          SetReady(true)
       }
 
 
@@ -69,6 +71,7 @@ const RemoveGameButton = ({game})=>{
                </DialogContent>
                </Dialog> 
                :""}
+               {ready ? <Redirect to={`/profile/${game.owner.id}`}/> :""}
         </div>
     )
 }
