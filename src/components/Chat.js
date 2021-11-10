@@ -11,6 +11,7 @@ import Message from './Message'
  * @param {Object} receiver - person who's received the message
  */
 
+
 function Chat ({sender,receiver}){
     
     const [messages,SetMessages] = useState()
@@ -25,14 +26,11 @@ function Chat ({sender,receiver}){
 
     },[sender,receiver])
 
-    return <List style={{margin:"10px",height:"100%"}}>
-        {messages ? messages.map(item => 
-                <Message message={item} key={item.id} id="message"/>
-                ) 
-                
-                
-        :
-        <ul style={{listStyle:"none", marginTop:"10px"}}>
+    return(
+     <List style={{maxHeight: '400px', overflow: 'auto'}}>
+        {messages 
+        ? messages.map(item => <Message message={item} key={item.id} id="message"/>)
+            : <ul style={{listStyle:"none", marginTop:"10px"}}>
             <li style={{display:"inline-flex"}}>
             <Skeleton animation="wave" variant="circle" width={40} height={40} />
             </li>
@@ -42,10 +40,13 @@ function Chat ({sender,receiver}){
             </ul>
         }
         </List>
+    )
 
 }
 
 /**
+ * overflow-y: scroll;
+ * 
  * {messages ? 
         <List style={{margin:"10px",height:"100%"}}>
             {messages.map(item => 

@@ -36,12 +36,12 @@ const Messages = (props) =>{
             title={contact ? <a href={`/profile/${contact.id}`}> {contact.firstName} {contact.lastName} </a>
                     : <Skeleton animation="wave" height={10} width="80%"/> } />
 
-        <CardContent style={{maxHeight:"100%"}}>
+        <CardContent>
             <Chat receiver={contact} sender={user}/>
         </CardContent>
 
-        <MessageInputBox receiver={contact} sender={user}/>
 
+        <MessageInputBox receiver={contact} sender={user}/>
         </Card>
         
         </div>
