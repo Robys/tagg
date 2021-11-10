@@ -10,7 +10,7 @@ export default function MessageInputBox ({receiver,sender}){
     const [content,SetContent] = useState()
 
     const HandleSendMessage = async (e) =>{
-        e.preventDefault()
+        //e.preventDefault()
         const response = await SENDMESSAGE(receiver,sender,content)
         SetContent("")
         console.log(response.data)
