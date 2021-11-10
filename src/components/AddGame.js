@@ -12,6 +12,8 @@ import {Card,
     TextField, 
     Button} from '@material-ui/core';
 
+import {ADDGAME} from '../api'
+
 //import { ProgressIcon } from './ProgressIcon';
 import AutoCompleteInput from './AutoCompleteInput';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -96,26 +98,11 @@ const AddGame = ({isCurrentUser}) =>{
     }
 
       
-      function handleSubmit (title,price,videogame,description,
-        gender,status,cover){
+      const handleSubmit = async () =>{
+        var id = user ? user.id : "123456789"
 
-          var id = user ? user.id : "123456789"
-
-        axios.post(process.env.REACT_APP_API_URL,{
-            query:`mutation{
-                createGame(owner:"${id}",title:"${title}",value:"${price}",
-                platform:"${videogame}",description:"${description}",
-                gender:"${gender}",status:"${status}",cover:"${cover}"){
-                    id
-                    title
-                    status
-                }
-            }`,
-            headers: {
-              "Content-Type": 'application/json'
-            } 
-        })
-        .then(res => {
+        await ADDGAME(id,title,price,videogame,description,
+            gender,status,cover).then(res => {
          // console.log(res.data)
          setTimeout(()=>{
            
@@ -140,7 +127,6 @@ const AddGame = ({isCurrentUser}) =>{
                <CardActions>
 
                <AutoCompleteInput SetTitle={SetTitle} title={title}/>
-               
                 </CardActions>
 
                 <CardActions>
@@ -224,8 +210,7 @@ const AddGame = ({isCurrentUser}) =>{
                 
                 
                 <button datatest-id="submit"
-                onClick={e => handleSubmit(title.title,price,videogame,description,
-                  gender,status,cover)} >Salvar</button>
+                onClick={handleSubmit} >Salvar</button>
                 </CardActions>
                 
             {ready ?

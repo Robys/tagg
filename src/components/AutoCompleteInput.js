@@ -53,13 +53,19 @@ function AutoCompleteInput({SetTitle,title}){
           }}
 
           onChange={(event, newValue) => {
+
+            console.log(newValue,title)
+            
             if (typeof newValue === 'string') {
-              SetTitle(newValue)
+              SetTitle(newValue.title)
             } else if (newValue && newValue.inputValue) {
               // Create a new value from the user input
-              SetTitle(newValue.inputValue)
+              SetTitle(newValue.title)
               CREATESUGGESTION(newValue.inputValue)
-            } 
+            } else {
+              SetTitle(newValue.title)
+            }
+              
           }}
 
           getOptionSelected={(option, value) => option.title === value.title}
@@ -105,3 +111,13 @@ function AutoCompleteInput({SetTitle,title}){
 }
 
 export default AutoCompleteInput
+
+/**
+ * if (typeof newValue === 'string') {
+              SetTitle(newValue)
+            } else if (newValue && newValue.inputValue) {
+              // Create a new value from the user input
+              SetTitle(newValue.inputValue)
+              CREATESUGGESTION(newValue.inputValue)
+            } 
+ */

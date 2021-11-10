@@ -48,6 +48,26 @@ export const CURRENTUSER = async () =>{
     
 }
 
+export const ADDGAME = async (id,title,price,videogame,description,
+    gender,status,cover) =>{
+
+        return await axios.post(process.env.REACT_APP_API_URL,{
+            query:`mutation{
+                createGame(owner:"${id}",title:"${title}",value:"${price}",
+                platform:"${videogame}",description:"${description}",
+                gender:"${gender}",status:"${status}",cover:"${cover}"){
+                    id
+                    title
+                    status
+                }
+            }`,
+            headers: {
+              "Content-Type": 'application/json'
+            } 
+        })
+        
+    }
+
 export const SIGNUP = async (firstName,lastName,email,
     password,picture,local) =>{
     return axios.post(process.env.REACT_APP_API_URL,{
