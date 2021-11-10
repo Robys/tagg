@@ -100,6 +100,7 @@ app.get('/auth/facebook/callback',passport.authenticate('facebook',{
 
 server.applyMiddleware({app,cors: true})
 
+
 app.use('/docs', express.static(__dirname + '/docs'));
 
 app.use(express.static(path.join(__dirname, './build')))
