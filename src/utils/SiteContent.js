@@ -99,8 +99,7 @@ export const FAQ = () =>{
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
+                    Basta criar uma conta inserindo seus dados, ou utilizando o login do Facebook.
                 </Typography>
                 </AccordionDetails>
 
@@ -112,8 +111,7 @@ export const FAQ = () =>{
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
+                    Escolha um jogo anunciado e clique em "propor troca", escolha um jogo de sua coleção e pronto!
                 </Typography>
                 </AccordionDetails>
 
@@ -125,8 +123,7 @@ export const FAQ = () =>{
                 </AccordionSummary>
                 <AccordionDetails>
                 <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
+                    Em seu perfil, clique em "Editar perfil" e em seguida em "desativar conta"
                 </Typography>
                 </AccordionDetails>
 
