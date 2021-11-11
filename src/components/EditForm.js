@@ -104,9 +104,9 @@ const  EditGameForm = ({game,handleClose}) =>{
         const upStatus = status === undefined ? game.status : status
         const upValue = value === undefined ? game.value : value
         
-        const response = await UPDATEGAME({game,upTitle,upGender,upValue,upVideogame,upStatus,upCover,upDescription})
-        console.log(response)
+        await UPDATEGAME({game,upTitle,upGender,upValue,upVideogame,upStatus,upCover,upDescription})
         handleClose()
+        window.location.reload()
 
         /**
          * 
@@ -271,9 +271,10 @@ const EditUserForm = ({user,handleClose}) =>{
           const localToSave = local === undefined ? user.local : local;
           const pictureToSave = picture === undefined ? user.picture : picture;
 
-          const response = await UPDATEUSER(user.id,nameToSave,lastNameToSave,emailToSave,passwordToSave,localToSave,pictureToSave)
-          console.log(response);
+          await UPDATEUSER(user.id,nameToSave,lastNameToSave,emailToSave,passwordToSave,localToSave,pictureToSave)
+          //console.log(response);
           handleClose()
+          window.location.reload()
       }
 
     return (
@@ -402,6 +403,7 @@ const UpdateReportForm = ({report,currentUser,receiver,HandleClose})=>{
   const handleUpdateReport= async () =>{
     await UPDATEREPORT(report)
     HandleClose()
+    window.location.reload()
   }
 
   return (

@@ -238,8 +238,11 @@ export const UPDATEUSER = async (user,nameToSave,lastNameToSave,
                     lastName:"${lastNameToSave}",email:"${emailToSave}",
                     password:"${passwordToSave}"",location:"${localToSave}",
                     picture:"${pictureToSave})"{
+                        user{
+
                             id
                             firstName
+                        }
                     }
                 }`,
                 
