@@ -228,8 +228,8 @@ export const CHANGEACCOUNTSTATUS = async (user,status)=>{
     }
 }
 
-export const UPDATEUSER = async (user,nameToSave,lastNameToSave,
-    emailToSave,passwordToSave,localToSave,pictureToSave) =>{
+export const UPDATEUSER = async ({user,nameToSave,lastNameToSave,
+    emailToSave,passwordToSave,localToSave,pictureToSave}) =>{
 
         if(user!==undefined){
             const response = await axios.post(process.env.REACT_APP_API_URL,{
