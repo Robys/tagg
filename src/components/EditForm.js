@@ -271,7 +271,7 @@ const EditUserForm = ({user,handleClose}) =>{
           const localToSave = local === undefined ? user.local : local;
           const pictureToSave = picture === undefined ? user.picture : picture;
 
-          const response = await UPDATEUSER(user,nameToSave,lastNameToSave,emailToSave,passwordToSave,localToSave,pictureToSave)
+          const response = await UPDATEUSER(user.id,nameToSave,lastNameToSave,emailToSave,passwordToSave,localToSave,pictureToSave)
           console.log(response);
           handleClose()
       }
