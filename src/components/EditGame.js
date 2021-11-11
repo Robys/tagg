@@ -39,7 +39,7 @@ function EditGame({game}){
           
           {open ?
              <Dialog
-             fullScreen open={open} 
+              open={open} 
              TransitionComponent={Transition}
              keepMounted
              //onClose={handleClose}
