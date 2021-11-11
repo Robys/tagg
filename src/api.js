@@ -234,14 +234,13 @@ export const UPDATEUSER = async ({user,nameToSave,lastNameToSave,
         if(user!==undefined){
             const response = await axios.post(process.env.REACT_APP_API_URL,{
                 query:`mutation {
-                    updateUser(_id:"${user}",firstName:"${nameToSave}",
+                    updateUser(_id:"${user.id}",firstName:"${nameToSave}",
                     lastName:"${lastNameToSave}",email:"${emailToSave}",
-                    password:"${passwordToSave}"",location:"${localToSave}",
-                    picture:"${pictureToSave})"{
+                    password:"${passwordToSave}",location:"${localToSave}",
+                    picture:"${pictureToSave}"){
                         user{
-
                             id
-                            firstName
+                            email
                         }
                     }
                 }`,
