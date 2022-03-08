@@ -15,14 +15,13 @@ const FacebookStrategy = require('passport-facebook')
 const express = require('express'); const app = express()
 const session = require('express-session')
 const uuid = require('uuid').v4
-//const MemoryStore = require('memorystore')(session) 
+const MemoryStore = require('memorystore')(session) 
 
 const resolvers = require('./server/config/Resolvers')
 const typeDefs = require('./server/config/TypeDefs');
 
 mongoose.connect(process.env.MONGO_DB_URL,{useNewUrlParser: true,useUnifiedTopology: true, useFindAndModify: false,useCreateIndex:true })
-
-
+/*
 app.use(session({
   genid: (req) => uuid(),
   secret:  process.env.SESSION_SECRET,
@@ -31,8 +30,8 @@ app.use(session({
   // use secure cookies for production meaning they will only be sent via https
   cookie: { secure: true }
 }));
+*/
 
-/*
 app.use(session({
     secret: process.env.SESSION_SECRET,
     genid: (req) => uuid(),
@@ -43,7 +42,6 @@ app.use(session({
       checkPeriod: 86400000 // cookie duration 24h
     }),
 }))
-*/
 
 passport.serializeUser((user,done)=>{
     done(null,user)
