@@ -72,7 +72,7 @@ const facebookCallBack = async  (accessToken,refreshToken,profile,done)=>{
         done(null,matchingUser)
         return
     }
-    else{
+  
     const today = DateFormat()
     const newuser = {
         id:uuid(),
@@ -88,8 +88,6 @@ const facebookCallBack = async  (accessToken,refreshToken,profile,done)=>{
     }
     ADDUSER(newuser)
     done(null,newuser)
-}
-
 }
 
 passport.use(new FacebookStrategy(faceBookOptions,facebookCallBack))
