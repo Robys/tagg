@@ -19,6 +19,7 @@ const typeDefs = gql`
     picture:String!
     location: String
     createdAt:String
+    facebookId:String
     gamecollection:[Game]
     contacts:[User]
     }
