@@ -14,7 +14,8 @@ const FacebookStrategy = require('passport-facebook')
 /* Express & Session */
 const express = require('express'); const app = express()
 const session = require('express-session')
-const uuid = require('uuid').v4 
+const uuid = require('uuid').v4
+const MemoryStore = require('memorystore')(session) 
 
 const resolvers = require('./server/config/Resolvers')
 const typeDefs = require('./server/config/TypeDefs');
@@ -26,7 +27,10 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     genid: (req) => uuid(),
     resave:false,
-    saveUninitialized:false
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // cookie duration 24h
+    }),
 }))
 
 passport.serializeUser((user,done)=>{
