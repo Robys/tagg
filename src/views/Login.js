@@ -55,7 +55,7 @@ function Login (props){
 
         e.preventDefault()
         const res = await LOGIN(email,password)
-            //console.log(res)
+            console.log(res)
             if(res.data.data.login!==null){
                 
                 SetReady(true)
