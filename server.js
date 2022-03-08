@@ -27,6 +27,7 @@ app.use(session({
     secret: process.env.SESSION_SECRET,
     genid: (req) => uuid(),
     resave:false,
+    saveUninitialized:false,
     cookie: { maxAge: 86400000 },
     store: new MemoryStore({
       checkPeriod: 86400000 // cookie duration 24h
