@@ -96,11 +96,11 @@ const server = new ApolloServer({
     playground:true,
 })
 
-app.get('/login/facebook',passport.authenticate('facebook',{ scope: ['email', 'public_profile','user_location'] }))
-app.get('/oauth2/redirect/facebook',passport.authenticate('facebook',{
-    successRedirect: process.env.SUCCESS_URL,
-    failureRedirect: process.env.FRONT_END_URL
-}))
+app.get('/auth/facebook',passport.authenticate('facebook',{ scope: ['email', 'public_profile','user_location'] }))
+app.get('/auth/facebook/callback',passport.authenticate('facebook',{failureRedirect: process.env.FRONT_END_URL}),
+       function (req,res){
+        res.redirect(process.env.SUCCESS_URL)
+})
 
 server.applyMiddleware({app,cors: true})
 
