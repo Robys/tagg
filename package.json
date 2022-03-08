@@ -22,6 +22,7 @@
     "jsdoc": "^3.6.7",
     "jspdf": "^2.3.1",
     "jspdf-autotable": "^3.5.15",
+    "memorystore": "^1.6.7",
     "mongoose": "^5.12.14",
     "nodemon": "^2.0.9",
     "passport": "^0.4.1",
